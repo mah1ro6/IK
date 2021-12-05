@@ -21,7 +21,7 @@ const Home: NextPage = (props: any) => {
 
   return (
     <div>
-      {data.test}
+      コンポーネントをここに配置するよ
     </div>
   );
 };
