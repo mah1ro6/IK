@@ -1,7 +1,16 @@
-const Main = () => {
+import Link from 'next/link';
+
+const Main: React.FC = () => {
   return (
-    <div>メインページだよ</div>
-  )
-}
+    <div>
+      <Link href="/wine">
+        <a>ワイン</a>
+      </Link>
+      <Link href="/whisky">
+        <a>ウイスキー</a>
+      </Link>
+    </div>
+  );
+};
 
 export default Main;
