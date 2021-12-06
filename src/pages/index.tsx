@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import 'tailwindcss/tailwind.css';
 import { client } from '../libs/client';
+import Main from './main';
 
 export const getStaticProps = async () => {
   const data = await client.get({
@@ -21,7 +22,7 @@ const Home: NextPage = (props: any) => {
 
   return (
     <div>
-      コンポーネントをここに配置するよ
+      <Main />
     </div>
   );
 };
