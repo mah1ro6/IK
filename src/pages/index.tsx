@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import 'tailwindcss/tailwind.css';
-import Main from './main';
+import Main from './link';
 
 const Home: NextPage = () => {
   return (
