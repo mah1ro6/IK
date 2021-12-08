@@ -1,6 +1,6 @@
 const OneRank: React.FC = () => {
   return(
-    <div>赤ワインのその他のページだよ</div>
+    <div>赤ワインの1ランクのページだよ</div>
   )
 }
 

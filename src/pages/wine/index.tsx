@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { client } from '../../libs/client';
 
 export const getStaticProps = async () => {
@@ -19,16 +20,21 @@ const WinePage: React.FC = (props: any) => {
 
   return (
     <div>
-      {data.contents?.map((data: any) => (
+      {/* {data.contents?.map((data: any) => (
         <div key={data.id}>
           <p>{data.name}</p>
           <p>{data.REDorWHITE}</p>
           <p>{data.taste}</p>
         </div>
-      ))}
+      ))} */}
+      <Link href="/wine/red">
+        <a>赤ワイン</a>
+      </Link>
+      <Link href="/wine/white">
+        <a>白ワイン</a>
+      </Link>
     </div>
   );
 };
-
 
 export default WinePage;

@@ -1,6 +1,6 @@
 const Another: React.FC = () => {
   return(
-    <div>赤ワインのその他のページだよ</div>
+    <div>白ワインのその他のページだよ</div>
   )
 }
 

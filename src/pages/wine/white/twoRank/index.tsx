@@ -1,6 +1,6 @@
 const TwoRank: React.FC = () => {
   return(
-    <div>赤ワインのその他のページだよ</div>
+    <div>白ワインの2ランクのページだよ</div>
   )
 }
 
