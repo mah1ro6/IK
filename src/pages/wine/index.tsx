@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import { client } from '../../libs/client';
+import { Links } from '../../components/Links';
 
 export const getStaticProps = async () => {
   const data = await client.get({
@@ -13,26 +13,30 @@ export const getStaticProps = async () => {
   };
 };
 
+type PropsData = {
+  url: string;
+  text: string;
+};
+
 const WinePage: React.FC = (props: any) => {
   const { data } = props;
 
   console.log(data.contents[0]);
 
+  const propsData: PropsData[] = [
+    {
+      url: 'wine/red',
+      text: '赤ワイン',
+    },
+    {
+      url: 'wine/white',
+      text: '白ワイン',
+    },
+  ];
+
   return (
     <div>
-      {/* {data.contents?.map((data: any) => (
-        <div key={data.id}>
-          <p>{data.name}</p>
-          <p>{data.REDorWHITE}</p>
-          <p>{data.taste}</p>
-        </div>
-      ))} */}
-      <Link href="/wine/red">
-        <a>赤ワイン</a>
-      </Link>
-      <Link href="/wine/white">
-        <a>白ワイン</a>
-      </Link>
+      <Links height='h-1/3' propsData={propsData} />
     </div>
   );
 };

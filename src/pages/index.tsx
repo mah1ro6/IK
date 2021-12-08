@@ -1,9 +1,25 @@
 import type { NextPage } from 'next';
 import 'tailwindcss/tailwind.css';
-import { MainLinks } from '../components/Links/MainLinks';
+import { Links } from '../components/Links';
+
+type PropsData = {
+  url: string;
+  text: string;
+};
 
 const Home: NextPage = () => {
-  return <MainLinks />;
+  const propsData: PropsData[] = [
+    {
+      url: 'wine',
+      text: 'ワイン',
+    },
+    {
+      url: 'whisky',
+      text: 'ウイスキー',
+    },
+  ];
+
+  return <Links height='h-1/3' propsData={propsData} />;
 };
 
 export default Home;

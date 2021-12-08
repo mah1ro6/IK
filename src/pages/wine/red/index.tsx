@@ -1,17 +1,29 @@
-import Link from 'next/link';
+import { Links } from '../../../components/Links';
+
+type PropsData = {
+  url: string;
+  text: string;
+};
 
 const Red: React.FC = () => {
+  const propsData: PropsData[] = [
+    {
+      url: 'wine/red/oneRank',
+      text: '1ランク',
+    },
+    {
+      url: 'wine/red/twoRank',
+      text: '2ランク',
+    },
+    {
+      url: 'wine/red/another',
+      text: 'その他',
+    },
+  ];
+
   return (
     <div>
-      <Link href="/wine/red/oneRank">
-        <a>1ランク</a>
-      </Link>
-      <Link href="/wine/red/twoRank">
-        <a>2ランク</a>
-      </Link>
-      <Link href="/wine/red/another">
-        <a>その他</a>
-      </Link>
+      <Links height="h-1/4" propsData={propsData} />
     </div>
   );
 };
