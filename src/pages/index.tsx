@@ -1,5 +1,4 @@
 import type { NextPage } from 'next';
-import 'tailwindcss/tailwind.css';
 import { Links } from '../components/Links';
 
 type PropsData = {
