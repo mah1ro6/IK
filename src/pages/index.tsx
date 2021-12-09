@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import { Links } from '../components/Links';
+import { Links} from 'src/components/Links'
 
 type PropsData = {
   url: string;

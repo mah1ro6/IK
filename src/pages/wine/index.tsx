@@ -1,27 +1,11 @@
-import { client } from '../../libs/client';
-import { Links } from '../../components/Links';
-
-export const getStaticProps = async () => {
-  const data = await client.get({
-    endpoint: 'wine',
-  });
-
-  return {
-    props: {
-      data,
-    },
-  };
-};
+import { Links } from 'src/components/Links';
 
 type PropsData = {
   url: string;
   text: string;
 };
 
-const WinePage: React.FC = (props: any) => {
-  const { data } = props;
-
-  console.log(data.contents[0]);
+const WinePage: React.FC = () => {
 
   const propsData: PropsData[] = [
     {
