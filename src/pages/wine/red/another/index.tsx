@@ -10,6 +10,12 @@ export const getStaticProps = async () => {
     endpoint: 'wineimage',
   });
 
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
+
   return {
     props: {
       data,
