@@ -23,7 +23,7 @@ export const WineLists = (props: Props) => {
               alt="ワインの画像です"
             />
           </div>
-          <dl className="flex flex-wrap tracking-wide w-1/2">
+          <dl className="flex flex-wrap tracking-wide w-1/2 font-mono">
             <dt className="leading-relaxed flex w-3/12 font-bold">
               ワイン名 :{' '}
             </dt>
