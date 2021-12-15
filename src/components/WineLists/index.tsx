@@ -41,7 +41,7 @@ export const WineLists: React.FC<Props> = (props) => {
               alt="ワインの画像です"
             />
           </div>
-          <dl className="flex flex-wrap tracking-wide w-1/2 font-mono">
+          <dl className="flex flex-wrap tracking-wide w-1/2 font-mono bg-yellow-50 rounded-lg p-7 text-gray-700">
             <dt className="leading-relaxed flex w-3/12 font-bold">
               ワイン名 :{" "}
             </dt>
