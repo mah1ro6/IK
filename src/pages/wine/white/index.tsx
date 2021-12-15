@@ -1,23 +1,24 @@
-import { Links } from 'src/components/Links';
+import { Links } from "src/components/Links";
+import { NextPage } from "next";
 
 type PropsData = {
   url: string;
   text: string;
 };
 
-const White: React.FC = () => {
+const White: NextPage = () => {
   const propsData: PropsData[] = [
     {
-      url: 'wine/white/oneRank',
-      text: '1ランク',
+      url: "wine/white/oneRank",
+      text: "1ランク",
     },
     {
-      url: 'wine/white/twoRank',
-      text: '2ランク',
+      url: "wine/white/twoRank",
+      text: "2ランク",
     },
     {
-      url: 'wine/white/another',
-      text: 'その他',
+      url: "wine/white/another",
+      text: "その他",
     },
   ];
 

@@ -1,6 +1,7 @@
-import { client } from 'src/libs/client';
-import { WineLists } from 'src/components/WineLists';
-import { GetStaticProps } from 'next';
+import { client } from "src/libs/client";
+import { WineLists } from "src/components/WineLists";
+import { GetStaticProps } from "next";
+import { NextPage } from "next";
 
 type Data = {
   name: string;
@@ -30,7 +31,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
   });
 
   const sampleImage = await client.get({
-    endpoint: 'wineimage',
+    endpoint: "wineimage",
   });
 
   if (!data) {
@@ -47,7 +48,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
   };
 };
 
-const OneRank: React.FC<Props> = (props: any) => {
+const OneRank: NextPage<Props> = (props) => {
   return (
     <WineLists
       keyRank="1ランク"

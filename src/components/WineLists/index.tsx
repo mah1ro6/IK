@@ -1,13 +1,34 @@
+import Data from "../../pages/wine/red/oneRank/index";
+
+
+type Data = {
+  contents: {
+    name: string;
+    origin: string;
+    variety: string;
+    taste: string;
+    rank: string;
+    producer?: string;
+    image?: string;
+    remarks?: string;
+  };
+};
+
+// anyをなくす
+// tailwindcssの設定
+
 type Props = {
   keyRank: string;
   data: any;
   sampleImage: string;
 };
 
-export const WineLists = (props: Props) => {
+export const WineLists: React.FC<Props> = (props) => {
   const rankData = props.data.contents?.filter(
     (data: any) => data.rank[0] === props.keyRank
   );
+
+  console.log(props.data);
 
   return (
     <div className="h-screen">
@@ -25,7 +46,7 @@ export const WineLists = (props: Props) => {
           </div>
           <dl className="flex flex-wrap tracking-wide w-1/2 font-mono">
             <dt className="leading-relaxed flex w-3/12 font-bold">
-              ワイン名 :{' '}
+              ワイン名 :{" "}
             </dt>
             <dd className="leading-relaxed w-9/12">{data.name}</dd>
             <dt className="leading-relaxed flex w-3/12 font-bold">品種 : </dt>

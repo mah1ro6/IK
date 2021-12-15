@@ -1,4 +1,6 @@
-const WhiskyPage: React.FC = () => {
+import { NextPage } from "next";
+
+const WhiskyPage: NextPage = () => {
   return <div>ウイスキーのページだよ</div>;
 };
 
