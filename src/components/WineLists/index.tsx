@@ -1,38 +1,35 @@
 import Data from "../../pages/wine/red/oneRank/index";
 
-
 type Data = {
-  contents: {
-    name: string;
-    origin: string;
-    variety: string;
-    taste: string;
-    rank: string;
-    producer?: string;
-    image?: string;
-    remarks?: string;
+  id: string;
+  name: string;
+  origin: string;
+  variety: string;
+  taste: string;
+  rank: string;
+  producer?: string;
+  image?: {
+    url: string;
   };
+  remarks?: string;
 };
-
-// anyをなくす
-// tailwindcssの設定
 
 type Props = {
   keyRank: string;
-  data: any;
+  data: {
+    contents: [Data];
+  };
   sampleImage: string;
 };
 
 export const WineLists: React.FC<Props> = (props) => {
   const rankData = props.data.contents?.filter(
-    (data: any) => data.rank[0] === props.keyRank
+    (data: Data) => data.rank[0] === props.keyRank
   );
-
-  console.log(props.data);
 
   return (
     <div className="h-screen">
-      {rankData?.map((data: any) => (
+      {rankData?.map((data: Data) => (
         <div
           className="h-1/3 flex justify-around items-center bg-blue-100 mb-6"
           key={data.id}
