@@ -1,5 +1,5 @@
-import type { NextPage } from 'next';
-import { Links} from 'src/components/Links'
+import type { NextPage } from "next";
+import { Links } from "src/components/Links";
 
 type PropsData = {
   url: string;
@@ -9,16 +9,27 @@ type PropsData = {
 const Home: NextPage = () => {
   const propsData: PropsData[] = [
     {
-      url: 'wine',
-      text: 'ワイン',
+      url: "front",
+      text: "表に出ているワイン",
     },
     {
-      url: 'whisky',
-      text: 'ウイスキー',
+      url: "back",
+      text: "セラーのワイン",
     },
   ];
 
-  return <Links height='h-1/3' propsData={propsData} />;
+  // const propsData: PropsData[] = [
+  //   {
+  //     url: 'wine',
+  //     text: 'ワイン',
+  //   },
+  //   {
+  //     url: 'whisky',
+  //     text: 'ウイスキー',
+  //   },
+  // ];
+
+  return <Links height="h-1/3" propsData={propsData} />;
 };
 
 export default Home;

@@ -1,4 +1,4 @@
-import Data from "../../pages/wine/red/oneRank/index";
+import { ReactNode } from "react";
 
 type Data = {
   id: string;
@@ -16,9 +16,10 @@ type Data = {
 
 type Props = {
   keyRank: string;
-  data: {
-    contents: [Data];
-  };
+  data: any
+  // data: {
+  //   contents: Data[];
+  // };
   sampleImage: string;
 };
 

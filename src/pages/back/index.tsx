@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 
 const WhiskyPage: NextPage = () => {
-  return <div>ウイスキーのページだよ</div>;
+  return <div>セラー中にあるワインのページだよ</div>;
 };
 
 export default WhiskyPage;

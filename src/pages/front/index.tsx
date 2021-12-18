@@ -9,14 +9,15 @@ type PropsData = {
 const WinePage: NextPage = () => {
   const propsData: PropsData[] = [
     {
-      url: "wine/red",
+      url: "front/red",
       text: "赤ワイン",
     },
     {
-      url: "wine/white",
+      url: "front/white",
       text: "白ワイン",
     },
   ];
+  
 
   return (
     <div>

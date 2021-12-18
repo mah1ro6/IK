@@ -6,18 +6,18 @@ type PropsData = {
   text: string;
 };
 
-const Red: NextPage = () => {
+const White: NextPage = () => {
   const propsData: PropsData[] = [
     {
-      url: "wine/red/oneRank",
+      url: "front/white/oneRank",
       text: "1ランク",
     },
     {
-      url: "wine/red/twoRank",
+      url: "front/white/twoRank",
       text: "2ランク",
     },
     {
-      url: "wine/red/another",
+      url: "front/white/another",
       text: "その他",
     },
   ];
@@ -29,4 +29,4 @@ const Red: NextPage = () => {
   );
 };
 
-export default Red;
+export default White;

@@ -4,14 +4,17 @@ import { client } from "src/libs/client";
 import { NextPage } from "next";
 
 type Data = {
-  name: string;
-  origin: string;
-  variety: string;
-  taste: string;
-  rank: string;
-  producer?: string;
-  image?: string;
-  remarks?: string;
+  contents: {
+    id: string;
+    name: string;
+    origin: string;
+    variety: string;
+    taste: string;
+    rank: string;
+    producer?: string;
+    image?: string;
+    remarks?: string;
+  }
 };
 
 type SampleImage = {
@@ -21,7 +24,7 @@ type SampleImage = {
 };
 
 type Props = {
-  data: Data;
+  data: Data[]
   sampleImage: SampleImage;
 };
 
@@ -49,6 +52,8 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 };
 
 const TwoRank: NextPage<Props> = (props) => {
+  console.log(props);
+  
   return (
     <WineLists
       keyRank="2ランク"
