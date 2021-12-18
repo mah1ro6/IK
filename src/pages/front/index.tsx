@@ -7,6 +7,7 @@ type PropsData = {
 };
 
 const WinePage: NextPage = () => {
+
   const propsData: PropsData[] = [
     {
       url: "front/red",
@@ -16,8 +17,15 @@ const WinePage: NextPage = () => {
       url: "front/white",
       text: "白ワイン",
     },
+    {
+      url: "front/rose",
+      text: "ロゼ",
+    },
+    {
+      url: "front/sparkling",
+      text: "スパーク",
+    },
   ];
-  
 
   return (
     <div>
