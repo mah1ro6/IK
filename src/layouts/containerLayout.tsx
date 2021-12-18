@@ -5,5 +5,5 @@ type Props = {
 };
 
 export const ContainerLayout: React.FC<Props> = ({ children }) => {
-  return <div className="mx-auto h-5/6 bg-gray-100">{children}</div>;
+  return <div className="mx-auto h-screen bg-gray-100">{children}</div>;
 };
