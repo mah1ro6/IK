@@ -31,7 +31,11 @@ export const WineLists: React.FC<Props> = (props) => {
   console.log(rankData);
 
   if (rankData.length === 0) {
-    return <p className='text-4xl h-full text-gray-700 flex justify-center items-center font-mono'>登録しているワインがありません!</p>;
+    return (
+      <p className="text-4xl h-full text-gray-700 flex justify-center items-center font-mono">
+        登録しているワインがありません!
+      </p>
+    );
   }
 
   return (
