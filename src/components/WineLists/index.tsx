@@ -1,11 +1,10 @@
-import { ReactNode } from "react";
-
 type Data = {
   id: string;
   name: string;
   origin: string;
   variety: string;
   taste: string;
+  type: string;
   rank: string;
   producer?: string;
   image?: {
@@ -16,6 +15,7 @@ type Data = {
 
 type Props = {
   keyRank: string;
+  keyType: string;
   data: any;
   // data: {
   //   contents: Data[];
@@ -25,10 +25,9 @@ type Props = {
 
 export const WineLists: React.FC<Props> = (props) => {
   const rankData = props.data.contents?.filter(
-    (data: Data) => data.rank[0] === props.keyRank
+    (data: Data) =>
+      data.rank[0] === props.keyRank && data.type[0] === props.keyType
   );
-
-  console.log(rankData);
 
   if (rankData.length === 0) {
     return (

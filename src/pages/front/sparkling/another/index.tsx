@@ -2,6 +2,7 @@ import { GetStaticProps } from "next";
 import { WineLists } from "src/components/WineLists";
 import { client } from "src/libs/client";
 import { NextPage } from "next";
+import { keyAnotherRank, spark } from "src/util";
 
 type Data = {
   name: string;
@@ -27,7 +28,7 @@ type Props = {
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const data = await client.get({
-    endpoint: `sparklingwine`,
+    endpoint: `wine`,
   });
 
   const sampleImage = await client.get({
@@ -51,7 +52,8 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 const Another: NextPage<Props> = (props) => {
   return (
     <WineLists
-      keyRank="その他"
+      keyRank={keyAnotherRank}
+      keyType={spark}
       data={props.data}
       sampleImage={props.sampleImage.wineImage.url}
     />
