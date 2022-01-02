@@ -53,8 +53,6 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 };
 
 const TwoRank: NextPage<Props> = (props) => {
-  console.log(props);
-
   return (
     <WineLists
       keyRank={keyTwoRank}
