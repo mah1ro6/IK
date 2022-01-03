@@ -1,47 +1,52 @@
-type Data = {
-  id: string;
-  name: string;
-  origin: string;
-  variety: string;
-  taste: string;
-  type: string;
-  rank: string;
-  producer?: string;
-  image?: {
-    url: string;
-  };
-  remarks?: string;
-};
+import type { EndPoints } from "src/types/cms-types";
+import { MicroCMS } from "microcms-lib";
+import { Data, Props } from "src/types";
 
-type Props = {
-  keyRank: string;
-  keyType: string;
-  data: any;
-  // data: {
-  //   contents: Data[];
-  // };
-  sampleImage: string;
-};
+
+const cms = new MicroCMS<EndPoints>({
+  service: process.env.SERVICE!,
+  apiKey: process.env.X_MICROCMS_API_KEY,
+});
 
 export const WineLists: React.FC<Props> = (props) => {
-  const rankData = props.data.contents?.filter(
+  const contents = props.data.contents;
+
+  const rankData = contents?.filter(
     (data: Data) =>
       data.rank[0] === props.keyRank && data.type[0] === props.keyType
   );
 
   if (rankData.length === 0) {
     return (
-      <p className="text-4xl h-full text-gray-700 flex justify-center items-center font-mono">
+      <p className="text-4xl h-screen text-gray-700 flex justify-center items-center font-mono">
         登録しているワインがありません!
       </p>
     );
   }
 
+  const handleDelete = async ({ endpoint, contentId }: never) => {
+    // const result = await cms.gets('wine')
+    if (contents) {
+      // for (let i = 0; i < contents.length; i++) {
+      await cms.del(endpoint, contentId);
+      // }
+    }
+    try {
+      (v: any) => {
+        v ? console.log(`削除:${contentId}`) : false;
+      };
+      // console.log("削除に成功しました");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
   return (
     <div className="h-screen">
       {rankData?.map((data: Data) => (
         <div
-          className="h-1/3 flex justify-around items-center bg-blue-100 mb-6"
+          className="h-1/3 flex justify-around items-center bg-blue-100 mt-6"
           key={data.id}
         >
           <div>
@@ -50,6 +55,13 @@ export const WineLists: React.FC<Props> = (props) => {
               src={data?.image ? data.image.url : props.sampleImage}
               alt="ワインの画像です"
             />
+            {/* <button
+              onClick={async () => {
+                await cms.del("wine", data.id);
+              }}
+            >
+              削除
+            </button> */}
           </div>
           <dl className="flex flex-wrap tracking-wide w-1/2 font-mono bg-yellow-50 rounded-lg p-7 text-gray-700">
             <dt className="leading-relaxed flex w-3/12 font-bold">
