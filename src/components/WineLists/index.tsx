@@ -55,13 +55,13 @@ export const WineLists: React.FC<Props> = (props) => {
               src={data?.image ? data.image.url : props.sampleImage}
               alt="ワインの画像です"
             />
-            <button
+            {/* <button
               onClick={async () => {
                 await cms.del("wine", data.id);
               }}
             >
               削除
-            </button>
+            </button> */}
           </div>
           <dl className="flex flex-wrap tracking-wide w-1/2 font-mono bg-yellow-50 rounded-lg p-7 text-gray-700">
             <dt className="leading-relaxed flex w-3/12 font-bold">
