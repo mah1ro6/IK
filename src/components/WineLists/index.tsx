@@ -41,9 +41,6 @@ export const WineLists: React.FC<Props> = (props) => {
     }
   };
 
-  const deleteTest = async (id: string) => {
-    await cms.del("wine", id);
-  };
 
   return (
     <div className="h-screen">
