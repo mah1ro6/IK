@@ -1,12 +1,13 @@
 import type { EndPoints } from "src/types/cms-types";
 import { MicroCMS } from "microcms-lib";
 import { Data, Props } from "src/types";
+// import { useState } from "react";
+// import { client } from "src/libs/client";
 
-
-const cms = new MicroCMS<EndPoints>({
-  service: process.env.SERVICE!,
-  apiKey: process.env.X_MICROCMS_API_KEY,
-});
+// const cms = new MicroCMS<EndPoints>({
+//   service: process.env.SERVICE!,
+//   apiKey: process.env.X_MICROCMS_API_KEY,
+// });
 
 export const WineLists: React.FC<Props> = (props) => {
   const contents = props.data.contents;
@@ -23,24 +24,21 @@ export const WineLists: React.FC<Props> = (props) => {
       </p>
     );
   }
+  // const [res, setRes] = useState<Data[]>(rankData);
 
-  const handleDelete = async ({ endpoint, contentId }: never) => {
-    // const result = await cms.gets('wine')
-    if (contents) {
-      // for (let i = 0; i < contents.length; i++) {
-      await cms.del(endpoint, contentId);
-      // }
-    }
-    try {
-      (v: any) => {
-        v ? console.log(`削除:${contentId}`) : false;
-      };
-      // console.log("削除に成功しました");
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
+  // const handleDelete: any = async (id: string) => {
+  //   const newData = await cms.del("wine", id);
+  //   if (newData) {
+  //     console.log("削除に成功しました");
+  //     setRes(
+  //       await client.get({
+  //         endpoint: `wine`,
+  //       })
+  //     );
+  //   } else {
+  //     console.log("削除に失敗しました");
+  //   }
+  // };
 
   return (
     <div className="h-screen">
@@ -57,11 +55,13 @@ export const WineLists: React.FC<Props> = (props) => {
             />
             {/* <button
               onClick={async () => {
-                await cms.del("wine", data.id);
+                // await cms.del(data.id);
+                console.log(await cms.delete2("wine", data.id));
               }}
             >
               削除
             </button> */}
+            {/* <button onClick={handleDelete(data.id)}>削除</button> */}
           </div>
           <dl className="flex flex-wrap tracking-wide w-1/2 font-mono bg-yellow-50 rounded-lg p-7 text-gray-700">
             <dt className="leading-relaxed flex w-3/12 font-bold">
