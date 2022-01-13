@@ -22,3 +22,14 @@ export type Props = {
   // };
   sampleImage: string;
 };
+
+export type SampleImage = {
+  wineImage: {
+    url: string;
+  };
+};
+
+export type PagesProps = {
+  data: Data;
+  sampleImage: SampleImage;
+};

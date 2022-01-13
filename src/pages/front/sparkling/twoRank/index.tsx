@@ -3,33 +3,9 @@ import { WineLists } from "src/components/WineLists";
 import { client } from "src/libs/client";
 import { NextPage } from "next";
 import { keyTwoRank, spark } from "src/util";
+import { PagesProps } from "src/types";
 
-type Data = {
-  contents: {
-    id: string;
-    name: string;
-    origin: string;
-    variety: string;
-    taste: string;
-    rank: string;
-    producer?: string;
-    image?: string;
-    remarks?: string;
-  };
-};
-
-type SampleImage = {
-  wineImage: {
-    url: string;
-  };
-};
-
-type Props = {
-  data: Data[];
-  sampleImage: SampleImage;
-};
-
-export const getStaticProps: GetStaticProps<Props> = async () => {
+export const getStaticProps: GetStaticProps<PagesProps> = async () => {
   const data = await client.get({
     endpoint: `wine`,
   });
@@ -52,7 +28,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
   };
 };
 
-const TwoRank: NextPage<Props> = (props) => {
+const TwoRank: NextPage<PagesProps> = (props) => {
   return (
     <WineLists
       keyRank={keyTwoRank}
