@@ -27,7 +27,7 @@ export const WineLists: React.FC<Props> = (props) => {
         }
       );
     } catch (error) {
-      console.log(error.message);
+      console.log(error?.message);
     }
   };
 
