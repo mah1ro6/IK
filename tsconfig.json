@@ -16,6 +16,6 @@
     "incremental": true,
     "baseUrl": "."
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/libs/client.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/libs/client.js", "server.js"],
   "exclude": ["node_modules"]
 }
