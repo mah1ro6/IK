@@ -16,10 +16,7 @@ export type Data = {
 export type Props = {
   keyRank: string;
   keyType: string;
-  data: any;
-  // data: {
-  //   contents: Data[];
-  // };
+  contents: Data[];
   sampleImage: string;
 };
 
@@ -30,6 +27,8 @@ export type SampleImage = {
 };
 
 export type PagesProps = {
-  data: Data;
+  data: {
+    contents: Data[];
+  };
   sampleImage: SampleImage;
 };

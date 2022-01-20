@@ -2,7 +2,7 @@ import axios from "axios";
 import { Data, Props } from "src/types";
 
 export const WineLists: React.FC<Props> = (props) => {
-  const contents = props.data.contents;
+  const contents = props.contents;
 
   const rankData = contents?.filter(
     (data: Data) =>
