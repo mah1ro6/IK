@@ -33,7 +33,7 @@ const Another: NextPage<PagesProps> = (props) => {
     <WineLists
       keyRank={keyAnotherRank}
       keyType={red}
-      data={props.data}
+      contents={props.data.contents}
       sampleImage={props.sampleImage.wineImage.url}
     />
   );

@@ -33,7 +33,7 @@ const OneRank: NextPage<PagesProps> = (props) => {
     <WineLists
       keyRank={keyOneRank}
       keyType={rose}
-      data={props.data}
+      contents={props.data.contents}
       sampleImage={props.sampleImage.wineImage.url}
     />
   );

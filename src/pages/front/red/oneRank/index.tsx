@@ -5,7 +5,6 @@ import { NextPage } from "next";
 import { keyOneRank, red } from "src/util";
 import { PagesProps } from "src/types";
 
-
 export const getStaticProps: GetStaticProps<PagesProps> = async () => {
   const data = await client.get({
     endpoint: `wine`,
@@ -30,8 +29,6 @@ export const getStaticProps: GetStaticProps<PagesProps> = async () => {
 };
 
 const OneRank: NextPage<PagesProps> = (props) => {
-  console.log(props.data);
-
   return (
     <WineLists
       keyRank={keyOneRank}

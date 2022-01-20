@@ -33,7 +33,7 @@ const TwoRank: NextPage<PagesProps> = (props) => {
     <WineLists
       keyRank={keyTwoRank}
       keyType={red}
-      data={props.data}
+      contents={props.data.contents}
       sampleImage={props.sampleImage.wineImage.url}
     />
   );
