@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@types/superagent": "^4.1.14",
-    "axios": "^0.24.0",
+    "axios": "^0.25.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.2",
     "http-proxy-middleware": "^2.0.1",
