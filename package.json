@@ -3,23 +3,19 @@
   "private": true,
   "scripts": {
     "dev": "node server.js",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "NODE_ENV=production node server.js",
     "lint": "next lint"
   },
   "dependencies": {
-    "@types/superagent": "^4.1.14",
     "axios": "^0.25.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.2",
     "http-proxy-middleware": "^2.0.1",
     "microcms-js-sdk": "^2.0.0",
-    "microcms-lib": "^1.0.3",
     "next": "12.0.4",
-    "next-http-proxy-middleware": "^1.1.2",
     "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "superagent": "^7.0.2"
+    "react-dom": "17.0.2"
   },
   "devDependencies": {
     "@types/node": "16.11.11",
@@ -27,7 +23,6 @@
     "autoprefixer": "^10.4.0",
     "eslint": "7",
     "eslint-config-next": "12.0.4",
-    "microcms-typescript": "^1.0.10",
     "postcss": "^8.4.4",
     "prettier": "^2.5.1",
     "prettier-plugin-tailwind": "^2.2.12",

@@ -20,7 +20,7 @@ export const WineLists: React.FC<Props> = (props) => {
   const handleDelete = async (deleteId: string) => {
     try {
       await axios.post(
-        "/api/ik_api/src/main.php",
+        "/api",
         { id: deleteId },
         {
           headers: { "Content-Type": "application/json" },
