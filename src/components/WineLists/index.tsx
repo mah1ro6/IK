@@ -11,7 +11,7 @@ export const WineLists: React.FC<Props> = (props) => {
 
   if (rankData.length === 0) {
     return (
-      <p className="text-4xl h-screen text-gray-700 flex justify-center items-center font-mono">
+      <p className="flex items-center justify-center h-screen text-gray-700 font-mono text-4xl">
         登録しているワインがありません!
       </p>
     );
@@ -35,28 +35,33 @@ export const WineLists: React.FC<Props> = (props) => {
     <div className="h-screen">
       {rankData?.map((data: Data) => (
         <div
-          className="h-1/3 flex justify-around items-center bg-blue-100 mt-6"
+          className="flex items-center justify-around mt-6 h-1/3 bg-blue-100"
           key={data.id}
         >
-          <div>
+          <div className="text-center">
             <img
-              className="w-60 h-60 object-cover rounded-lg"
+              className="w-60 h-60 rounded-lg object-cover"
               src={data?.image ? data.image.url : props.sampleImage}
               alt="ワインの画像です"
             />
-            <button onClick={() => handleDelete(data.id)}>削除</button>
+            <button
+              className="mt-5 w-1/3 font-mono bg-yellow-100 rounded-lg"
+              onClick={() => handleDelete(data.id)}
+            >
+              削除
+            </button>
           </div>
-          <dl className="flex flex-wrap tracking-wide w-1/2 font-mono bg-yellow-50 rounded-lg p-7 text-gray-700">
-            <dt className="leading-relaxed flex w-3/12 font-bold">
+          <dl className="flex flex-wrap p-7 w-1/2 text-gray-700 font-mono tracking-wide bg-yellow-50 rounded-lg">
+            <dt className="flex w-3/12 font-bold leading-relaxed">
               ワイン名 :{" "}
             </dt>
-            <dd className="leading-relaxed w-9/12">{data.name}</dd>
-            <dt className="leading-relaxed flex w-3/12 font-bold">品種 : </dt>
-            <dd className="leading-relaxed w-9/12">{data.variety}</dd>
-            <dt className="leading-relaxed flex w-3/12 font-bold">産地 : </dt>
-            <dd className="leading-relaxed w-9/12">{data.origin}</dd>
-            <dt className="leading-relaxed flex w-3/12 font-bold">味わい : </dt>
-            <dd className="leading-relaxed w-9/12">{data.taste}</dd>
+            <dd className="w-9/12 leading-relaxed">{data.name}</dd>
+            <dt className="flex w-3/12 font-bold leading-relaxed">品種 : </dt>
+            <dd className="w-9/12 leading-relaxed">{data.variety}</dd>
+            <dt className="flex w-3/12 font-bold leading-relaxed">産地 : </dt>
+            <dd className="w-9/12 leading-relaxed">{data.origin}</dd>
+            <dt className="flex w-3/12 font-bold leading-relaxed">味わい : </dt>
+            <dd className="w-9/12 leading-relaxed">{data.taste}</dd>
             {data.producer ? (
               <>
                 <dt className="flex w-3/12 font-bold">生産者 : </dt>
