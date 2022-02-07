@@ -1,9 +1,5 @@
 import Link from "next/link";
-
-type PropsData = {
-  url: string;
-  text: string;
-};
+import { PropsData } from "src/types";
 
 type Props = {
   height: string;
@@ -20,7 +16,22 @@ export const Links: React.FC<Props> = (props) => {
       }
     >
       {props.propsData.map((data: PropsData) => (
-        <Link href={`/${data.url}`} key={data.url}>
+        <Link
+          href={
+            typeof data.type === "undefined"
+              ? `/${data.frontBack}`
+              : typeof data.rank === "undefined"
+              ? `/${data.frontBack}/${data?.type}`
+              : `/${data.frontBack}/${data?.type}/${data?.rank}`
+          }
+          key={
+            typeof data.type === "undefined"
+              ? `/${data.frontBack}`
+              : typeof data.rank === "undefined"
+              ? `/${data.frontBack}/${data?.type}`
+              : `/${data.frontBack}/${data?.type}/${data?.rank}`
+          }
+        >
           <a
             className={
               props.propsData.length === 4
