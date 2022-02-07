@@ -1,28 +1,27 @@
 import { Links } from "src/components/Links";
 import { NextPage } from "next";
-
-type PropsData = {
-  url: string;
-  text: string;
-};
+import { PropsData } from "src/types";
 
 const WinePage: NextPage = () => {
-
   const propsData: PropsData[] = [
     {
-      url: "front/red",
+      frontBack: "front",
+      type: "red",
       text: "赤ワイン",
     },
     {
-      url: "front/white",
+      frontBack: "front",
+      type: "white",
       text: "白ワイン",
     },
     {
-      url: "front/rose",
+      frontBack: "front",
+      type: "rose",
       text: "ロゼ",
     },
     {
-      url: "front/sparkling",
+      frontBack: "front",
+      type: "sparkling",
       text: "スパーク",
     },
   ];

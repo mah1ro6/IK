@@ -1,19 +1,15 @@
 import type { NextPage } from "next";
 import { Links } from "src/components/Links";
-
-type PropsData = {
-  url: string;
-  text: string;
-};
+import { PropsData } from "src/types";
 
 const Home: NextPage = () => {
   const propsData: PropsData[] = [
     {
-      url: "front",
+      frontBack: "front",
       text: "表に出ているワイン",
     },
     {
-      url: "back",
+      frontBack: "back",
       text: "セラーのワイン",
     },
   ];
