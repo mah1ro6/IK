@@ -31,4 +31,13 @@ export type PagesProps = {
     contents: Data[];
   };
   sampleImage: SampleImage;
+  type: string;
+  rank: string;
 };
+
+export type PropsData ={
+  frontBack: string;
+  type?: string;
+  rank?: string;
+  text: string;
+}
