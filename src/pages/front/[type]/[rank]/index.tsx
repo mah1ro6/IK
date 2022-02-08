@@ -1,4 +1,4 @@
-import { GetStaticPaths, GetStaticProps, GetStaticPropsContext, PreviewData } from "next";
+import { GetStaticPaths, GetStaticProps } from "next";
 import { WineLists } from "src/components/WineLists";
 import { client } from "src/libs/client";
 import { NextPage } from "next";
@@ -26,6 +26,9 @@ export const getStaticProps: GetStaticProps<PagesProps> = async (ctx: any) => {
 
   const data = await client.get({
     endpoint: "wine",
+    queries: {
+      limit: 100,
+    },
   });
 
   const sampleImage = await client.get({
@@ -50,6 +53,8 @@ export const getStaticProps: GetStaticProps<PagesProps> = async (ctx: any) => {
 
 const Rank: NextPage<PagesProps> = (props) => {
   const router = useRouter();
+
+  console.log(props.data);
 
   if (router.isFallback) {
     return (
