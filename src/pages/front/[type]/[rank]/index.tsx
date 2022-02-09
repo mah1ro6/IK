@@ -54,6 +54,7 @@ export const getStaticProps = async ({ params }: Params) => {
       type: type || null,
       rank: rank || null,
     },
+    revalidate: 1,
   };
 };
 
