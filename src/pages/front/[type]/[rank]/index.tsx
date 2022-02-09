@@ -1,11 +1,17 @@
-import { GetStaticPaths, GetStaticProps } from "next";
 import { WineLists } from "src/components/WineLists";
 import { client } from "src/libs/client";
 import { NextPage } from "next";
 import { PagesProps, Data } from "src/types";
 import { useRouter } from "next/router";
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export type Params = {
+  params: {
+    type: string;
+    rank: string;
+  };
+};
+
+export const getStaticPaths = async () => {
   const data = await client.get({
     endpoint: "wine",
   });
@@ -20,9 +26,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps<PagesProps> = async (ctx: any) => {
-  const { type } = ctx.params;
-  const { rank } = ctx.params;
+export const getStaticProps = async ({ params }: Params) => {
+  const { type } = params;
+  const { rank } = params;
 
   const data = await client.get({
     endpoint: "wine",
@@ -53,8 +59,6 @@ export const getStaticProps: GetStaticProps<PagesProps> = async (ctx: any) => {
 
 const Rank: NextPage<PagesProps> = (props) => {
   const router = useRouter();
-
-  console.log(props.data);
 
   if (router.isFallback) {
     return (
