@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Data, Props } from "src/types";
+import toast, { Toaster } from "react-hot-toast";
 
 export const WineLists: React.FC<Props> = (props) => {
   const contents = props.contents;
@@ -17,17 +18,25 @@ export const WineLists: React.FC<Props> = (props) => {
     );
   }
 
-  const handleDelete = async (deleteId: string) => {
+  const deletePost = async (deleteId: string) => {
+    await axios.post(
+      "/api",
+      { id: deleteId },
+      {
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+  };
+
+  const handleDelete = async (deleteId: string): Promise<void> => {
     try {
-      await axios.post(
-        "/api",
-        { id: deleteId },
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-    } catch (error) {
-      console.log(error);
+      toast.promise(deletePost(deleteId), {
+        loading: "削除中...",
+        success: "削除に成功しました!",
+        error: "削除に失敗しました...",
+      });
+    } catch (e) {
+      console.log(e);
     }
   };
 
@@ -50,6 +59,7 @@ export const WineLists: React.FC<Props> = (props) => {
             >
               削除
             </button>
+            <Toaster />
           </div>
           <dl className="flex flex-wrap p-7 w-1/2 text-gray-700 font-mono tracking-wide bg-yellow-50 rounded-lg">
             <dt className="flex w-3/12 font-bold leading-relaxed">
