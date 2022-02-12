@@ -1,11 +1,13 @@
 export type Data = {
   id: string;
+  frontOrCellar: string;
   name: string;
   origin: string;
   variety: string;
   taste: string;
   type: string;
   rank: string;
+  price?: string;
   producer?: string;
   image?: {
     url: string;
@@ -35,9 +37,9 @@ export type PagesProps = {
   rank: string;
 };
 
-export type PropsData ={
+export type PropsData = {
   frontBack: string;
   type?: string;
   rank?: string;
   text: string;
-}
+};
