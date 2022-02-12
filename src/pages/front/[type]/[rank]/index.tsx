@@ -69,11 +69,15 @@ const Rank: NextPage<PagesProps> = (props) => {
     );
   }
 
+  const data = props.data.contents.filter(
+    (data: Data) => data.frontOrCellar[0] === "表へ"
+  );
+
   return (
     <WineLists
       keyRank={props.rank}
       keyType={props.type}
-      contents={props.data.contents}
+      contents={data}
       sampleImage={props.sampleImage.wineImage.url}
     />
   );
