@@ -2,7 +2,7 @@ import axios from "axios";
 import { Data, Props } from "src/types";
 import toast, { Toaster } from "react-hot-toast";
 
-export const WineLists: React.FC<Props> = (props) => {
+export const FrontWineLists: React.FC<Props> = (props) => {
   const contents = props.contents;
 
   const rankData = contents?.filter(

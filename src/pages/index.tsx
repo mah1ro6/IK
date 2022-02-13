@@ -9,7 +9,7 @@ const Home: NextPage = () => {
       text: "表に出ているワイン",
     },
     {
-      frontBack: "back",
+      frontBack: "cellar",
       text: "セラーのワイン",
     },
   ];

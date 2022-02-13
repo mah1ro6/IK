@@ -1,4 +1,4 @@
-import { WineLists } from "src/components/WineLists";
+import { FrontWineLists } from "src/components/FrontWineLists";
 import { client } from "src/libs/client";
 import { NextPage } from "next";
 import { PagesProps, Data } from "src/types";
@@ -74,7 +74,7 @@ const Rank: NextPage<PagesProps> = (props) => {
   );
 
   return (
-    <WineLists
+    <FrontWineLists
       keyRank={props.rank}
       keyType={props.type}
       contents={data}

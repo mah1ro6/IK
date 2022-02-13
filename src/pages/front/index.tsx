@@ -2,7 +2,7 @@ import { Links } from "src/components/Links";
 import { NextPage } from "next";
 import { PropsData } from "src/types";
 
-const WinePage: NextPage = () => {
+const FrontPage: NextPage = () => {
   const propsData: PropsData[] = [
     {
       frontBack: "front",
@@ -33,4 +33,4 @@ const WinePage: NextPage = () => {
   );
 };
 
-export default WinePage;
+export default FrontPage;
