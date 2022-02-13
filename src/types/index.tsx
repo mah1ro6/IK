@@ -16,8 +16,8 @@ export type Data = {
 };
 
 export type Props = {
-  keyRank: string;
-  keyType: string;
+  keyRank?: string;
+  keyType?: string;
   contents: Data[];
   sampleImage: string;
 };
