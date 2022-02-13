@@ -72,6 +72,12 @@ export const FrontWineLists: React.FC<Props> = (props) => {
             <dd className="w-9/12 leading-relaxed">{data.origin}</dd>
             <dt className="flex w-3/12 font-bold leading-relaxed">味わい : </dt>
             <dd className="w-9/12 leading-relaxed">{data.taste}</dd>
+            {data.price ? (
+              <>
+                <dt className="flex w-3/12 font-bold">値段 : </dt>
+                <dd className="w-9/12">{data.price}</dd>
+              </>
+            ) : null}
             {data.producer ? (
               <>
                 <dt className="flex w-3/12 font-bold">生産者 : </dt>
