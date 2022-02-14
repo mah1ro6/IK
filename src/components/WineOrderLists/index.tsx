@@ -1,4 +1,6 @@
+import { handleDelete } from "src/method";
 import { Data, Props } from "src/types";
+import { Toaster } from "react-hot-toast";
 
 export const WineOrderLists: React.FC<Props> = (props) => {
   const contents = props.contents;
@@ -24,9 +26,13 @@ export const WineOrderLists: React.FC<Props> = (props) => {
               src={data?.image ? data.image.url : props.sampleImage}
               alt="ワインの画像です"
             />
-            <button className="mt-5 w-1/3 font-mono bg-yellow-100 rounded-lg">
-              表に出す
+            <button
+              className="mt-5 w-1/3 font-mono bg-yellow-100 rounded-lg"
+              onClick={() => handleDelete(data.id)}
+            >
+              発注済
             </button>
+            <Toaster />
           </div>
           <dl className="flex flex-wrap p-7 w-1/2 text-gray-700 font-mono tracking-wide bg-yellow-50 rounded-lg">
             <dt className="flex w-3/12 font-bold leading-relaxed">
