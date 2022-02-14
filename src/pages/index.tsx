@@ -12,9 +12,13 @@ const Home: NextPage = () => {
       frontBack: "cellar",
       text: "セラーのワイン",
     },
+    {
+      frontBack: "order",
+      text: "発注リスト",
+    },
   ];
 
-  return <Links height="h-1/3" propsData={propsData} />;
+  return <Links height="h-1/4" propsData={propsData} />;
 };
 
 export default Home;
