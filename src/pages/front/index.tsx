@@ -27,9 +27,9 @@ const FrontPage: NextPage = () => {
   ];
 
   return (
-    <div>
+    <>
       <Links height="h-1/3" propsData={propsData} />
-    </div>
+    </>
   );
 };
 

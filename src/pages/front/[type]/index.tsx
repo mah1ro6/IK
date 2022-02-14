@@ -27,11 +27,7 @@ const Type: NextPage = () => {
     },
   ];
 
-  return (
-    <div>
-      <Links height="h-1/4" propsData={propsData} />
-    </div>
-  );
+  return <Links height="h-1/4" propsData={propsData} />;
 };
 
 export default Type;

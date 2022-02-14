@@ -36,12 +36,10 @@ const CellarPage: NextPage<PagesProps> = (props) => {
   );
 
   return (
-    <div>
-      <CellarWineLists
-        contents={data}
-        sampleImage={props.sampleImage.wineImage.url}
-      />
-    </div>
+    <CellarWineLists
+      contents={data}
+      sampleImage={props.sampleImage.wineImage.url}
+    />
   );
 };
 
