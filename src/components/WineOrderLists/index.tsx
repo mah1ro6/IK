@@ -27,7 +27,7 @@ export const WineOrderLists: React.FC<Props> = (props) => {
               alt="ワインの画像です"
             />
             <button
-              className="mt-5 w-1/3 font-mono bg-yellow-100 rounded-lg"
+              className="mt-5 py-2 w-1/3 font-mono bg-yellow-100 rounded-lg"
               onClick={() => handleDelete(data.id)}
             >
               発注済
