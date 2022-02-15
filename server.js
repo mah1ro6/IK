@@ -21,7 +21,8 @@ app
       createProxyMiddleware({
         target: API_URL,
         pathRewrite: {
-          "^/api": "/ik_api/src/main.php",
+          "^/api/delete": "/ik_api/src/delete.php",
+          "^/api/cellarPatch": "/ik_api/src/cellarToFront.php",
         },
         changeOrigin: true,
       })
