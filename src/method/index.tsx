@@ -44,3 +44,25 @@ export const cellarToFront = async (id: string): Promise<void> => {
     console.log(e);
   }
 };
+
+export const orderPost = async (id: string) => {
+  await axios.post(
+    "/api/orderPatch",
+    { id },
+    {
+      headers: { "Content-Type": "application/json" },
+    }
+  );
+};
+
+export const handleOrder = async (id: string): Promise<void> => {
+  try {
+    await toast.promise(orderPost(id), {
+      loading: "送信中...",
+      success: "送信に成功しました!",
+      error: "送信に失敗しました...",
+    });
+  } catch (e) {
+    console.log(e);
+  }
+};

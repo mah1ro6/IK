@@ -1,6 +1,6 @@
 import { Data, Props } from "src/types";
 import { Toaster } from "react-hot-toast";
-import { handleDelete } from "src/method";
+import { handleDelete, handleOrder } from "src/method";
 
 export const FrontWineLists: React.FC<Props> = (props) => {
   const contents = props.contents;
@@ -32,10 +32,16 @@ export const FrontWineLists: React.FC<Props> = (props) => {
               alt="ワインの画像です"
             />
             <button
-              className="mt-5 w-1/3 font-mono bg-yellow-100 rounded-lg"
+              className="mt-5 mx-3 py-2 w-1/3 font-mono bg-yellow-100 rounded-lg"
               onClick={() => handleDelete(data.id)}
             >
               削除
+            </button>
+            <button
+              className="mt-5 mx-3 py-2 w-1/3 font-mono bg-yellow-100 rounded-lg"
+              onClick={() => handleOrder(data.id)}
+            >
+              発注する
             </button>
             <Toaster />
           </div>

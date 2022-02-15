@@ -23,6 +23,7 @@ app
         pathRewrite: {
           "^/api/delete": "/ik_api/src/delete.php",
           "^/api/cellarPatch": "/ik_api/src/cellarToFront.php",
+          "^/api/orderPatch": "/ik_api/src/onOrder.php",
         },
         changeOrigin: true,
       })

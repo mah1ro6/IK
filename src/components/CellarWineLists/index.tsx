@@ -1,4 +1,4 @@
-import { cellarToFront } from "src/method";
+import { cellarToFront, handleOrder } from "src/method";
 import { Data, Props } from "src/types";
 import { Toaster } from "react-hot-toast";
 
@@ -27,14 +27,24 @@ export const CellarWineLists: React.FC<Props> = (props) => {
               alt="ワインの画像です"
             />
             <button
-              className="mt-5 w-1/3 font-mono bg-yellow-100 rounded-lg"
+              className="mt-5 mx-3 py-2 w-1/3 font-mono bg-yellow-100 rounded-lg"
               onClick={() => cellarToFront(data.id)}
             >
               表に出す
             </button>
+            <button
+              className="mt-5 mx-3 py-2 w-1/3 font-mono bg-yellow-100 rounded-lg"
+              onClick={() => handleOrder(data.id)}
+            >
+              発注する
+            </button>
             <Toaster />
           </div>
           <dl className="flex flex-wrap p-7 w-1/2 text-gray-700 font-mono tracking-wide bg-yellow-50 rounded-lg">
+            <dt className="flex w-3/12 font-bold leading-relaxed">種類 : </dt>
+            <dd className="w-9/12 leading-relaxed">{data.type}</dd>
+            <dt className="flex w-3/12 font-bold leading-relaxed">ランク : </dt>
+            <dd className="w-9/12 leading-relaxed">{data.rank}</dd>
             <dt className="flex w-3/12 font-bold leading-relaxed">
               ワイン名 :{" "}
             </dt>
