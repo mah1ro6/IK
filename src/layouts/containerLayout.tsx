@@ -14,7 +14,9 @@ export const ContainerLayout: React.FC<Props> = ({ children }) => {
       {router.pathname !== "/" ? (
         <div className="">
           <Link href="/">
-            <a className="font-mono block py-5 text-xl bg-gray-200 text-gray-700 shadow-md text-center">トップに戻る</a>
+            <a className="block py-5 text-center text-gray-700 font-mono text-xl bg-gray-200 shadow-md">
+              トップに戻る
+            </a>
           </Link>
         </div>
       ) : null}
