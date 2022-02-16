@@ -7,22 +7,22 @@ export const CellarWineLists: React.FC<Props> = (props) => {
 
   if (contents.length === 0) {
     return (
-      <p className="flex items-center justify-center h-screen text-gray-700 font-mono text-4xl">
+      <p className="flex items-center justify-center h-screen text-gray-700 font-mono text-4xl sm:text-2xl">
         登録しているワインがありません!
       </p>
     );
   }
 
   return (
-    <div className="h-screen">
+    <div className="h-screen sm:h-full">
       {contents?.map((data: Data) => (
         <div
-          className="flex items-center justify-around mt-6 h-1/3 bg-blue-100"
+          className="flex items-center justify-around mt-6 h-1/3 bg-blue-100 sm:flex-wrap sm:mx-auto sm:py-8 sm:w-11/12 sm:h-auto sm:rounded-lg"
           key={data.id}
         >
           <div className="text-center">
             <img
-              className="w-60 h-60 rounded-lg object-cover"
+              className="w-60 h-60 rounded-lg object-cover sm:mx-auto"
               src={data?.image ? data.image.url : props.sampleImage}
               alt="ワインの画像です"
             />
@@ -40,37 +40,49 @@ export const CellarWineLists: React.FC<Props> = (props) => {
             </button>
             <Toaster />
           </div>
-          <dl className="flex flex-wrap p-7 w-1/2 text-gray-700 font-mono tracking-wide bg-yellow-50 rounded-lg">
-            <dt className="flex w-3/12 font-bold leading-relaxed">種類 : </dt>
-            <dd className="w-9/12 leading-relaxed">{data.type}</dd>
-            <dt className="flex w-3/12 font-bold leading-relaxed">ランク : </dt>
-            <dd className="w-9/12 leading-relaxed">{data.rank}</dd>
+          <dl className="sm: flex flex-wrap justify-around p-7 w-1/2 text-gray-700 font-mono tracking-wide bg-yellow-50 rounded-lg sm:mt-4 sm:w-11/12">
             <dt className="flex w-3/12 font-bold leading-relaxed">
-              ワイン名 :{" "}
+              ワイン名:{" "}
             </dt>
-            <dd className="w-9/12 leading-relaxed">{data.name}</dd>
-            <dt className="flex w-3/12 font-bold leading-relaxed">品種 : </dt>
-            <dd className="w-9/12 leading-relaxed">{data.variety}</dd>
-            <dt className="flex w-3/12 font-bold leading-relaxed">産地 : </dt>
-            <dd className="w-9/12 leading-relaxed">{data.origin}</dd>
-            <dt className="flex w-3/12 font-bold leading-relaxed">味わい : </dt>
-            <dd className="w-9/12 leading-relaxed">{data.taste}</dd>
+            <dd className="w-9/12 leading-relaxed sm:w-2/3">{data.name}</dd>
+            <dt className="flex w-3/12 font-bold leading-relaxed">種類: </dt>
+            <dd className="w-9/12 leading-relaxed sm:w-2/3">{data.type}</dd>
+            <dt className="flex w-3/12 font-bold leading-relaxed">ランク: </dt>
+            <dd className="w-9/12 leading-relaxed sm:w-2/3">{data.rank}</dd>
+            <dt className="flex w-3/12 font-bold leading-relaxed">品種: </dt>
+            <dd className="w-9/12 leading-relaxed sm:w-2/3">{data.variety}</dd>
+            <dt className="flex w-3/12 font-bold leading-relaxed">産地: </dt>
+            <dd className="w-9/12 leading-relaxed sm:w-2/3">{data.origin}</dd>
+            <dt className="flex w-3/12 font-bold leading-relaxed">味わい: </dt>
+            <dd className="w-9/12 leading-relaxed sm:w-2/3">{data.taste}</dd>
             {data.price ? (
               <>
-                <dt className="flex w-3/12 font-bold">値段 : </dt>
-                <dd className="w-9/12">{data.price}</dd>
+                <dt className="flex w-3/12 font-bold leading-relaxed">
+                  値段:{" "}
+                </dt>
+                <dd className="w-9/12 leading-relaxed sm:w-2/3">
+                  {data.price}
+                </dd>
               </>
             ) : null}
             {data.producer ? (
               <>
-                <dt className="flex w-3/12 font-bold">生産者 : </dt>
-                <dd className="w-9/12">{data.producer}</dd>
+                <dt className="flex w-3/12 font-bold leading-relaxed">
+                  生産者:{" "}
+                </dt>
+                <dd className="w-9/12 leading-relaxed sm:w-2/3">
+                  {data.producer}
+                </dd>
               </>
             ) : null}
             {data.remarks ? (
               <>
-                <dt className="flex w-3/12 font-bold">備考 : </dt>
-                <dd className="w-9/12">{data.remarks}</dd>
+                <dt className="flex w-3/12 font-bold leading-relaxed">
+                  備考:{" "}
+                </dt>
+                <dd className="w-9/12 leading-relaxed sm:w-2/3">
+                  {data.remarks}
+                </dd>
               </>
             ) : null}
           </dl>

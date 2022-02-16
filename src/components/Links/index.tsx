@@ -35,8 +35,8 @@ export const Links: React.FC<Props> = (props) => {
           <a
             className={
               props.propsData.length === 4
-                ? `${props.height} w-2/5 m-4 flex justify-center items-center bg-blue-300 rounded-2xl font-mono text-4xl text-white tracking-wider shadow-md`
-                : `${props.height} w-2/3 flex justify-center items-center bg-blue-300 rounded-2xl font-mono text-4xl text-white tracking-wider shadow-md`
+                ? `${props.height} w-2/5 m-4 flex justify-center items-center bg-blue-300 rounded-2xl font-mono text-4xl text-white tracking-wider shadow-md sm:text-2xl sm:w-full sm:h-1/5`
+                : `${props.height} w-2/3 flex justify-center items-center bg-blue-300 rounded-2xl font-mono text-4xl text-white tracking-wider shadow-md sm:text-2xl`
             }
           >
             {data.text}
