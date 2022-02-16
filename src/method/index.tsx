@@ -45,9 +45,9 @@ export const cellarToFront = async (id: string): Promise<void> => {
   }
 };
 
-export const orderPost = async (id: string) => {
+export const onOrderPost = async (id: string) => {
   await axios.post(
-    "/api/orderPatch",
+    "/api/onOrderPatch",
     { id },
     {
       headers: { "Content-Type": "application/json" },
@@ -55,9 +55,31 @@ export const orderPost = async (id: string) => {
   );
 };
 
-export const handleOrder = async (id: string): Promise<void> => {
+export const handleOnOrder = async (id: string): Promise<void> => {
   try {
-    await toast.promise(orderPost(id), {
+    await toast.promise(onOrderPost(id), {
+      loading: "送信中...",
+      success: "送信に成功しました!",
+      error: "送信に失敗しました...",
+    });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const offOrderPost = async (id: string) => {
+  await axios.post(
+    "/api/offOrderPatch",
+    { id },
+    {
+      headers: { "Content-Type": "application/json" },
+    }
+  );
+};
+
+export const handleOffOrder = async (id: string): Promise<void> => {
+  try {
+    await toast.promise(offOrderPost(id), {
       loading: "送信中...",
       success: "送信に成功しました!",
       error: "送信に失敗しました...",

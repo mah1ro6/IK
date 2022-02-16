@@ -1,11 +1,11 @@
-import { handleDelete } from "src/method";
+import { handleOffOrder } from "src/method";
 import { Data, Props } from "src/types";
 import { Toaster } from "react-hot-toast";
 
 export const WineOrderLists: React.FC<Props> = (props) => {
-  const contents = props.contents;
+  const data = props.contents;
 
-  if (contents.length === 0) {
+  if (data.length === 0) {
     return (
       <p className="flex items-center justify-center h-screen text-gray-700 font-mono text-4xl">
         登録しているワインがありません!
@@ -15,7 +15,7 @@ export const WineOrderLists: React.FC<Props> = (props) => {
 
   return (
     <div className="h-screen">
-      {contents?.map((data: Data) => (
+      {data?.map((data: Data) => (
         <div
           className="flex items-center justify-around mt-6 h-1/3 bg-blue-100"
           key={data.id}
@@ -28,7 +28,7 @@ export const WineOrderLists: React.FC<Props> = (props) => {
             />
             <button
               className="mt-5 py-2 w-1/3 font-mono bg-yellow-100 rounded-lg"
-              onClick={() => handleDelete(data.id)}
+              onClick={() => handleOffOrder(data.id)}
             >
               発注済
             </button>

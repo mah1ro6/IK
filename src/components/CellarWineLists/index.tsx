@@ -1,4 +1,4 @@
-import { cellarToFront, handleOrder } from "src/method";
+import { cellarToFront, handleOnOrder } from "src/method";
 import { Data, Props } from "src/types";
 import { Toaster } from "react-hot-toast";
 
@@ -34,7 +34,7 @@ export const CellarWineLists: React.FC<Props> = (props) => {
             </button>
             <button
               className="mt-5 mx-3 py-2 w-1/3 font-mono bg-yellow-100 rounded-lg"
-              onClick={() => handleOrder(data.id)}
+              onClick={() => handleOnOrder(data.id)}
             >
               発注する
             </button>
