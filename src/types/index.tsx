@@ -7,7 +7,7 @@ export type Data = {
   taste: string;
   type: string;
   rank: string;
-  price?: string;
+  price?: number;
   producer?: string;
   image?: {
     url: string;
