@@ -11,13 +11,27 @@ export const deletePost = async (deleteId: string) => {
   );
 };
 
-export const handleDelete = async (deleteId: string): Promise<void> => {
+export const handleDelete = async (
+  deleteId: string,
+  orderTrue: boolean
+): Promise<void> => {
   try {
-    await toast.promise(deletePost(deleteId), {
-      loading: "削除中...",
-      success: "削除に成功しました!",
-      error: "削除に失敗しました...",
-    });
+    if (orderTrue) {
+      toast(
+        "削除できません。\n削除するには発注リストから発注済をしてもう一度試してください。",
+        {
+          icon: "❌",
+          duration: 8000,
+        }
+      );
+      return;
+    } else {
+      await toast.promise(deletePost(deleteId), {
+        loading: "削除中...",
+        success: "削除に成功しました!",
+        error: "削除に失敗しました...",
+      });
+    }
   } catch (e) {
     console.log(e);
   }

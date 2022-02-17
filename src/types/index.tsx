@@ -13,6 +13,7 @@ export type Data = {
     url: string;
   };
   remarks?: string;
+  orderLists: boolean;
 };
 
 export type Props = {
