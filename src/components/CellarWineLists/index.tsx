@@ -37,7 +37,7 @@ export const CellarWineLists: React.FC<Props> = (props) => {
     <div className="h-screen sm:h-full">
       {contents?.map((data: Data, index) => (
         <div
-          className="flex items-center justify-around mt-6 h-1/3 bg-blue-100 sm:flex-wrap sm:mx-auto sm:py-8 sm:w-11/12 sm:h-auto sm:rounded-lg"
+          className="flex items-center justify-around mt-6 h-2/5 bg-blue-100 sm:flex-wrap sm:mx-auto sm:py-8 sm:w-11/12 sm:h-auto sm:rounded-lg"
           key={data.id}
         >
           <div className="text-center">
@@ -48,14 +48,20 @@ export const CellarWineLists: React.FC<Props> = (props) => {
             />
             <button
               className="mt-5 mx-3 py-2 w-1/3 font-mono bg-yellow-100 rounded-lg"
-              onClick={() => cellarToFront(data.id)}
+              onClick={() => cellarToFront(data.id, data.bottleCount)}
             >
               表に出す
             </button>
-            <div className="flex justify-between mt-5">
-              <div className="flex items-center">
-                <p className="font-mono">本数: </p>
-                <p className="ml-2 font-mono">{counts[index]}</p>
+            <div className="flex my-2 font-mono">
+              <p>在庫: </p>
+              <p className="ml-2 underline">
+                {data.bottleCount}
+              </p>
+            </div>
+            <div className="flex justify-between">
+              <div className="flex items-center font-mono">
+                <p>発注本数: </p>
+                <p className="ml-2 underline">{counts[index]}</p>
               </div>
               <div className="flex">
                 <button
@@ -75,7 +81,7 @@ export const CellarWineLists: React.FC<Props> = (props) => {
                 className="px-4 py-2 font-mono bg-yellow-300 rounded-lg"
                 onClick={() => handleOnOrder(data.id, counts[index])}
               >
-                送信
+                発注
               </button>
               <Toaster />
             </div>

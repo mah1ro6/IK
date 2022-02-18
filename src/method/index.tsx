@@ -1,10 +1,10 @@
 import axios from "axios";
 import toast from "react-hot-toast";
 
-export const deletePost = async (deleteId: string) => {
+export const deletePost = async (id: string) => {
   await axios.post(
     "/api/delete",
-    { id: deleteId },
+    { id },
     {
       headers: { "Content-Type": "application/json" },
     }
@@ -12,21 +12,28 @@ export const deletePost = async (deleteId: string) => {
 };
 
 export const handleDelete = async (
-  deleteId: string,
-  orderTrue: boolean
+  id: string,
+  orderTrue: boolean,
+  noInStockBottle: boolean
 ): Promise<void> => {
   try {
-    if (orderTrue) {
-      toast(
-        "削除できません。\n削除するには発注リストから発注するをしてもう一度試してください。",
-        {
-          icon: "❌",
-          duration: 8000,
-        }
-      );
-      return;
+    // if (orderTrue) {
+    //   toast(
+    //     "削除できません。\n削除するには発注リストから発注するをしてもう一度試してください。",
+    //     {
+    //       icon: "❌",
+    //       duration: 8000,
+    //     }
+    //   );
+    //   return;
+    if (!noInStockBottle) {
+      await toast.promise(frontToCellarPost(id, noInStockBottle), {
+        loading: "削除中...",
+        success: "削除に成功しました!",
+        error: "削除に失敗しました...",
+      });
     } else {
-      await toast.promise(deletePost(deleteId), {
+      await toast.promise(deletePost(id), {
         loading: "削除中...",
         success: "削除に成功しました!",
         error: "削除に失敗しました...",
@@ -37,19 +44,50 @@ export const handleDelete = async (
   }
 };
 
-export const cellarPost = async (id: string) => {
+export const frontToCellarPost = async (
+  id: string,
+  noInStockBottle: boolean
+) => {
   await axios.post(
-    "/api/cellarPatch",
-    { id },
+    "/api/frontToCellarPatch",
+    { id, noInStockBottle },
     {
       headers: { "Content-Type": "application/json" },
     }
   );
 };
 
-export const cellarToFront = async (id: string): Promise<void> => {
+// export const frontToCellar = async (
+//   id: string,
+//   noInStockBottle: boolean
+// ): Promise<void> => {
+//   try {
+//     await toast.promise(frontToCellarPost(id, noInStockBottle), {
+//       loading: "送信中...",
+//       success: "送信に成功しました!",
+//       error: "送信に失敗しました...",
+//     });
+//   } catch (e) {
+//     console.log(e);
+//   }
+// };
+
+export const cellarToFrontPost = async (id: string, bottleCount: number) => {
+  await axios.post(
+    "/api/cellarToFrontPatch",
+    { id, bottleCount },
+    {
+      headers: { "Content-Type": "application/json" },
+    }
+  );
+};
+
+export const cellarToFront = async (
+  id: string,
+  bottleCount: number
+): Promise<void> => {
   try {
-    await toast.promise(cellarPost(id), {
+    await toast.promise(cellarToFrontPost(id, bottleCount), {
       loading: "送信中...",
       success: "送信に成功しました!",
       error: "送信に失敗しました...",
