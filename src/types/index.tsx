@@ -7,6 +7,7 @@ export type Data = {
   taste: string;
   type: string;
   rank: string;
+  bottleCount: number;
   price?: number;
   producer?: string;
   image?: {
@@ -14,7 +15,8 @@ export type Data = {
   };
   remarks?: string;
   orderLists: boolean;
-  bottleCount: number;
+  orderBottleCount: number;
+  noInStockBottle: boolean;
 };
 
 export type Props = {
