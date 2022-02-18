@@ -22,7 +22,8 @@ app
         target: API_URL,
         pathRewrite: {
           "^/api/delete": "/ik_api/src/delete.php",
-          "^/api/cellarPatch": "/ik_api/src/cellarToFront.php",
+          "^/api/cellarToFrontPatch": "/ik_api/src/cellarToFront.php",
+          "^/api/frontToCellarPatch": "/ik_api/src/frontToCellar.php",
           "^/api/onOrderPatch": "/ik_api/src/onOrder.php",
           "^/api/offOrderPatch": "/ik_api/src/offOrder.php",
         },
@@ -42,4 +43,3 @@ app
   .catch((err) => {
     console.log("エラーが発生しました", err);
   });
-
