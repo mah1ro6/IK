@@ -18,7 +18,7 @@ export const handleDelete = async (
   try {
     if (orderTrue) {
       toast(
-        "削除できません。\n削除するには発注リストから発注済をしてもう一度試してください。",
+        "削除できません。\n削除するには発注リストから発注するをしてもう一度試してください。",
         {
           icon: "❌",
           duration: 8000,
@@ -59,23 +59,34 @@ export const cellarToFront = async (id: string): Promise<void> => {
   }
 };
 
-export const onOrderPost = async (id: string) => {
+export const onOrderPost = async (id: string, count: number) => {
   await axios.post(
     "/api/onOrderPatch",
-    { id },
+    { id, count },
     {
       headers: { "Content-Type": "application/json" },
     }
   );
 };
 
-export const handleOnOrder = async (id: string): Promise<void> => {
+export const handleOnOrder = async (
+  id: string,
+  count: number
+): Promise<void> => {
   try {
-    await toast.promise(onOrderPost(id), {
-      loading: "送信中...",
-      success: "送信に成功しました!",
-      error: "送信に失敗しました...",
-    });
+    if (count === 0) {
+      toast("発注本数が0本です", {
+        icon: "❌",
+        duration: 3000,
+      });
+      return;
+    } else {
+      await toast.promise(onOrderPost(id, count), {
+        loading: "送信中...",
+        success: "送信に成功しました!",
+        error: "送信に失敗しました...",
+      });
+    }
   } catch (e) {
     console.log(e);
   }
