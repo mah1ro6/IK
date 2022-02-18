@@ -14,6 +14,7 @@ export type Data = {
   };
   remarks?: string;
   orderLists: boolean;
+  bottleCount: number;
 };
 
 export type Props = {
