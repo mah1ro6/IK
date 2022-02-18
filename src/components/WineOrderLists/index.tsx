@@ -26,13 +26,19 @@ export const WineOrderLists: React.FC<Props> = (props) => {
               src={data?.image ? data.image.url : props.sampleImage}
               alt="ワインの画像です"
             />
-            <button
-              className="mt-5 py-2 w-1/3 font-mono bg-yellow-100 rounded-lg"
-              onClick={() => handleOffOrder(data.id)}
-            >
-              発注済
-            </button>
-            <Toaster />
+            <div className="flex items-center justify-around mt-5">
+              <div className="flex">
+                <p className="font-mono">発注本数:</p>
+                <p className="ml-5 underline font-mono">{data.bottleCount}</p>
+              </div>
+              <button
+                className="py-2 w-1/3 font-mono bg-yellow-100 rounded-lg"
+                onClick={() => handleOffOrder(data.id)}
+              >
+                発注する
+              </button>
+              <Toaster />
+            </div>
           </div>
           <dl className="sm: flex flex-wrap justify-around p-7 w-1/2 text-gray-700 font-mono tracking-wide bg-yellow-50 rounded-lg sm:mt-4 sm:w-11/12">
             <dt className="flex w-3/12 font-bold leading-relaxed">
