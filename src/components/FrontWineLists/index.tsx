@@ -59,8 +59,8 @@ export const FrontWineLists: React.FC<Props> = (props) => {
             </button>
             <div className="flex justify-between mt-5">
               <div className="flex items-center">
-                <p className="font-mono">本数: </p>
-                <p className="ml-2 font-mono">{counts[index]}</p>
+                <p className="font-mono">発注本数: </p>
+                <p className="ml-2 underline font-mono">{counts[index]}</p>
               </div>
               <div className="flex">
                 <button
@@ -80,7 +80,7 @@ export const FrontWineLists: React.FC<Props> = (props) => {
                 className="px-4 py-2 font-mono bg-yellow-300 rounded-lg"
                 onClick={() => handleOnOrder(data.id, counts[index])}
               >
-                送信
+                発注
               </button>
               <Toaster />
             </div>
