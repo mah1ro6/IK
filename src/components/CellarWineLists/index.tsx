@@ -11,7 +11,7 @@ export const CellarWineLists: React.FC<Props> = (props) => {
     for (let i = 0; i < contents.length; i++) {
       setCounts((count) => [...count, 0]);
     }
-  }, []);
+  }, [contents.length]);
 
   if (contents.length === 0) {
     return (

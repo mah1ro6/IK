@@ -16,7 +16,7 @@ export const FrontWineLists: React.FC<Props> = (props) => {
     for (let i = 0; i < rankData.length; i++) {
       setCounts((count) => [...count, 0]);
     }
-  }, []);
+  }, [rankData.length]);
 
   if (rankData.length === 0) {
     return (
