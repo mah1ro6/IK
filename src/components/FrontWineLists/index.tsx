@@ -12,6 +12,12 @@ export const FrontWineLists: React.FC<Props> = (props) => {
       data.rank[0] === props.keyRank && data.type[0] === props.keyType
   );
 
+  useEffect(() => {
+    for (let i = 0; i < rankData.length; i++) {
+      setCounts((count) => [...count, 0]);
+    }
+  }, []);
+
   if (rankData.length === 0) {
     return (
       <p className="flex items-center justify-center h-screen text-gray-700 font-mono text-4xl sm:text-2xl">
@@ -19,12 +25,6 @@ export const FrontWineLists: React.FC<Props> = (props) => {
       </p>
     );
   }
-
-  useEffect(() => {
-    for (let i = 0; i < rankData.length; i++) {
-      setCounts((count) => [...count, 0]);
-    }
-  }, []);
 
   const addCount = (index: number) => {
     setCounts(counts.map((count, i) => (i === index ? count + 1 : count)));

@@ -4,8 +4,14 @@ import { Toaster } from "react-hot-toast";
 import { useEffect, useState } from "react";
 
 export const CellarWineLists: React.FC<Props> = (props) => {
-  const contents = props.contents;
   const [counts, setCounts] = useState<number[]>([]);
+  const contents = props.contents;
+
+  useEffect(() => {
+    for (let i = 0; i < contents.length; i++) {
+      setCounts((count) => [...count, 0]);
+    }
+  }, []);
 
   if (contents.length === 0) {
     return (
@@ -14,12 +20,6 @@ export const CellarWineLists: React.FC<Props> = (props) => {
       </p>
     );
   }
-
-  useEffect(() => {
-    for (let i = 0; i < contents.length; i++) {
-      setCounts((count) => [...count, 0]);
-    }
-  }, []);
 
   const addCount = (index: number) => {
     setCounts(counts.map((count, i) => (i === index ? count + 1 : count)));
