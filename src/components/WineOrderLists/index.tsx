@@ -29,11 +29,19 @@ export const WineOrderLists: React.FC<Props> = (props) => {
             <div className="flex items-center justify-around mt-5">
               <div className="flex">
                 <p className="font-mono">発注本数:</p>
-                <p className="ml-5 underline font-mono">{data.orderBottleCount}</p>
+                <p className="ml-5 underline font-mono">
+                  {data.orderBottleCount}
+                </p>
               </div>
               <button
                 className="py-2 w-1/3 font-mono bg-yellow-100 rounded-lg"
-                onClick={() => handleOffOrder(data.id)}
+                onClick={() =>
+                  handleOffOrder(
+                    data.id,
+                    data.emptyFrontBottle,
+                    data.noInStockBottle
+                  )
+                }
               >
                 発注する
               </button>

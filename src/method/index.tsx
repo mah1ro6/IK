@@ -14,8 +14,7 @@ export const deletePost = async (id: string) => {
 export const handleDelete = async (
   id: string,
   orderTrue: boolean,
-  noInStockBottle: boolean,
-  emptyFrontBottle: boolean
+  noInStockBottle: boolean
 ): Promise<void> => {
   try {
     if (orderTrue) {
@@ -138,19 +137,27 @@ export const handleOnOrder = async (
   }
 };
 
-export const offOrderPost = async (id: string) => {
+export const offOrderPost = async (
+  id: string,
+  noInStockBottle: boolean,
+  emptyFrontBottle: boolean
+) => {
   await axios.post(
     "/api/offOrderPatch",
-    { id },
+    { id, noInStockBottle, emptyFrontBottle },
     {
       headers: { "Content-Type": "application/json" },
     }
   );
 };
 
-export const handleOffOrder = async (id: string): Promise<void> => {
+export const handleOffOrder = async (
+  id: string,
+  noInStockBottle: boolean,
+  emptyFrontBottle: boolean
+): Promise<void> => {
   try {
-    await toast.promise(offOrderPost(id), {
+    await toast.promise(offOrderPost(id, noInStockBottle, emptyFrontBottle), {
       loading: "送信中...",
       success: "送信に成功しました!",
       error: "送信に失敗しました...",
