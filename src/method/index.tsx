@@ -64,21 +64,6 @@ export const frontToCellarPost = async (
   );
 };
 
-// export const frontToCellar = async (
-//   id: string,
-//   noInStockBottle: boolean
-// ): Promise<void> => {
-//   try {
-//     await toast.promise(frontToCellarPost(id, noInStockBottle), {
-//       loading: "送信中...",
-//       success: "送信に成功しました!",
-//       error: "送信に失敗しました...",
-//     });
-//   } catch (e) {
-//     console.log(e);
-//   }
-// };
-
 export const cellarToFrontPost = async (id: string, bottleCount: number) => {
   await axios.post(
     "/api/cellarToFrontPatch",
