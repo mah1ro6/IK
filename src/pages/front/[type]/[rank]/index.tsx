@@ -70,7 +70,8 @@ const Rank: NextPage<PagesProps> = (props) => {
   }
 
   const data = props.data.contents.filter(
-    (data: Data) => data.frontOrCellar[0] === "表へ"
+    (data: Data) =>
+      data.frontOrCellar[0] === "表へ" && data.emptyFrontBottle === false
   );
 
   return (

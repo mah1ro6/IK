@@ -17,6 +17,7 @@ export type Data = {
   orderLists: boolean;
   orderBottleCount: number;
   noInStockBottle: boolean;
+  emptyFrontBottle: boolean;
 };
 
 export type Props = {

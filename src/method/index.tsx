@@ -14,19 +14,17 @@ export const deletePost = async (id: string) => {
 export const handleDelete = async (
   id: string,
   orderTrue: boolean,
-  noInStockBottle: boolean
+  noInStockBottle: boolean,
+  emptyFrontBottle: boolean
 ): Promise<void> => {
   try {
-    // if (orderTrue) {
-    //   toast(
-    //     "削除できません。\n削除するには発注リストから発注するをしてもう一度試してください。",
-    //     {
-    //       icon: "❌",
-    //       duration: 8000,
-    //     }
-    //   );
-    //   return;
-    if (!noInStockBottle) {
+    if (orderTrue) {
+      await toast.promise(onEmptyBottle(id), {
+        loading: "削除中...",
+        success: "削除に成功しました!",
+        error: "削除に失敗しました...",
+      });
+    } else if (!noInStockBottle) {
       await toast.promise(frontToCellarPost(id, noInStockBottle), {
         loading: "削除中...",
         success: "削除に成功しました!",
@@ -42,6 +40,16 @@ export const handleDelete = async (
   } catch (e) {
     console.log(e);
   }
+};
+
+export const onEmptyBottle = async (id: string) => {
+  await axios.post(
+    "/api/emptyBottlePatch",
+    { id },
+    {
+      headers: { "Content-Type": "application/json" },
+    }
+  );
 };
 
 export const frontToCellarPost = async (
