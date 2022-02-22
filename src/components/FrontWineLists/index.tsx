@@ -58,7 +58,6 @@ export const FrontWineLists: React.FC<Props> = (props) => {
                   data.id,
                   data.orderLists,
                   data.noInStockBottle,
-                  data.emptyFrontBottle
                 )
               }
             >
@@ -97,10 +96,10 @@ export const FrontWineLists: React.FC<Props> = (props) => {
               ワイン名:{" "}
             </dt>
             <dd className="w-9/12 leading-relaxed sm:w-2/3">{data.name}</dd>
-            <dt className="flex w-3/12 font-bold leading-relaxed">品種: </dt>
-            <dd className="w-9/12 leading-relaxed sm:w-2/3">{data.variety}</dd>
             <dt className="flex w-3/12 font-bold leading-relaxed">産地: </dt>
             <dd className="w-9/12 leading-relaxed sm:w-2/3">{data.origin}</dd>
+            <dt className="flex w-3/12 font-bold leading-relaxed">品種: </dt>
+            <dd className="w-9/12 leading-relaxed sm:w-2/3">{data.variety}</dd>
             <dt className="flex w-3/12 font-bold leading-relaxed">味わい: </dt>
             <dd className="w-9/12 leading-relaxed sm:w-2/3">{data.taste}</dd>
             {data.price ? (
