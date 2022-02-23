@@ -1,7 +1,7 @@
 import { cellarToFront, handleOnOrder } from "src/method";
 import { Data, Props } from "src/types";
 import toast, { Toaster } from "react-hot-toast";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export const CellarWineLists: React.FC<Props> = (props) => {
   const [counts, setCounts] = useState<number[]>([]);
@@ -9,6 +9,7 @@ export const CellarWineLists: React.FC<Props> = (props) => {
   const [varietyFilterQuery, setVarietyFilterQuery] = useState("");
   const [tasteFilterQuery, setTasteFilterQuery] = useState("");
   const [data, setData] = useState(props.contents);
+  const ref = useRef(null);
 
   useEffect(() => {
     for (let i = 0; i < data.length; i++) {
@@ -81,6 +82,51 @@ export const CellarWineLists: React.FC<Props> = (props) => {
     }
   };
 
+  const handlePriceFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const priceFilterContents = props.contents.filter(({ price }) => {
+      for (let i: number = prices.length; i > 0; i--) {
+        if (
+          i === prices.length &&
+          e.target.value === prices.length.toString() &&
+          price >= (i + 1) * 1000
+        ) {
+          return true;
+        }
+        if (
+          i > 1 &&
+          i < prices.length &&
+          e.target.value === i.toString() &&
+          (i + 1) * 1000 + 999 >= price &&
+          price >= (i + 1) * 1000
+        ) {
+          return true;
+        }
+        if (i === 1 && e.target.value === i.toString()) {
+          return true;
+        }
+      }
+    });
+
+    if (priceFilterContents.length === 0) {
+      toast.error(
+        `${prices[parseInt(e.target.value) - 1].price}円のワインはありません。`
+      );
+      e.target.value = "1";
+      setData(props.contents);
+    } else {
+      setData(priceFilterContents);
+    }
+  };
+
+  const prices = [
+    { id: 1, price: "〜なし〜" },
+    { id: 2, price: "3000~3999" },
+    { id: 3, price: "4000~4999" },
+    { id: 4, price: "5000~5999" },
+    { id: 5, price: "6000~6999" },
+    { id: 6, price: "7000~" },
+  ];
+
   const handleReset = () => {
     setData(props.contents);
     setOriginFilterQuery("");
@@ -135,13 +181,17 @@ export const CellarWineLists: React.FC<Props> = (props) => {
         </div>
         <div className="">
           <p className="mr-6">値段帯:</p>
-          <select id="price" className="rounded-lg">
-            <option value="">--なし--</option>
-            <option value="threeThousand">3000~3999</option>
-            <option value="fourThousand">4000~4999</option>
-            <option value="fiveThousand">5000~5999</option>
-            <option value="sixThousand">6000~6999</option>
-            <option value="sevenThousand">7000~</option>
+          <select
+            id="price"
+            className="rounded-lg"
+            onChange={(e) => handlePriceFilter(e)}
+            ref={ref}
+          >
+            {prices.map((price) => (
+              <option key={price.id} value={price.id}>
+                {price.price}
+              </option>
+            ))}
           </select>
         </div>
       </div>
