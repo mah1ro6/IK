@@ -8,7 +8,7 @@ export type Data = {
   type: string;
   rank: string;
   bottleCount: number;
-  price?: number;
+  price: number;
   producer?: string;
   image?: {
     url: string;
