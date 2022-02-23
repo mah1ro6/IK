@@ -43,7 +43,7 @@ export const CellarWineLists: React.FC<Props> = (props) => {
       !varietyFilterQuery.match("[^\x01-\x7E]") &&
       !tasteFilterQuery.match("[^\x01-\x7E]")
     ) {
-      toast.error("ひらがな、または漢字で入力してください。");
+      toast.error("ひらがな、または漢字で検索欄に入力してください。");
     } else if (
       originFilterQuery === "" &&
       varietyFilterQuery === "" &&
