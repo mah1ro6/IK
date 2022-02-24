@@ -162,7 +162,7 @@ export const CellarWineLists: React.FC<Props> = (props) => {
           <div className="flex items-end justify-evenly">
             <div>
               {textLists.map((list) => (
-                <div className="my-2">
+                <div key={list.title} className="my-2">
                   <p>{list.title}</p>
                   <input
                     type="text"
