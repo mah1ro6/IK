@@ -225,12 +225,12 @@ export const CellarWineLists: React.FC<Props> = (props) => {
             </button>
             <div className="flex my-2 font-mono">
               <p>在庫: </p>
-              <p className="ml-2 underline">{data.bottleCount}</p>
+              <p className="ml-2">{data.bottleCount}</p>
             </div>
             <div className="flex justify-between">
               <div className="flex items-center font-mono">
                 <p>発注本数: </p>
-                <p className="ml-2 underline">{counts[index]}</p>
+                <p className="ml-2">{counts[index]}</p>
               </div>
               <div className="flex">
                 <button
