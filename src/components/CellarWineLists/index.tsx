@@ -127,6 +127,27 @@ export const CellarWineLists: React.FC<Props> = (props) => {
     { id: 6, price: "7000~" },
   ];
 
+  const textLists = [
+    {
+      title: "産地: ",
+      placeholder: "例）ブルゴーニュ",
+      value: originFilterQuery,
+      onChange: setOriginFilterQuery,
+    },
+    {
+      title: "品種: ",
+      placeholder: "例）シャルドネ",
+      value: varietyFilterQuery,
+      onChange: setVarietyFilterQuery,
+    },
+    {
+      title: "味わい: ",
+      placeholder: "例）フルーティ",
+      value: tasteFilterQuery,
+      onChange: setTasteFilterQuery,
+    },
+  ];
+
   const handleReset = () => {
     setData(props.contents);
     setOriginFilterQuery("");
@@ -136,63 +157,53 @@ export const CellarWineLists: React.FC<Props> = (props) => {
 
   return (
     <div className="h-screen sm:h-full">
-      <div className="flex justify-evenly py-3 font-mono bg-red-100">
-        <div className="">
-          <p>産地:</p>
-          <input
-            type="text"
-            className="border rounded-lg"
-            placeholder="例) ブルゴーニュ、渋い"
-            pattern="[^\x20-\x7E]*"
-            value={originFilterQuery}
-            onChange={(e) => setOriginFilterQuery(e.target.value)}
-          />
-          <p>品種:</p>
-          <input
-            type="text"
-            className="border rounded-lg"
-            placeholder="例) ブルゴーニュ、渋い"
-            pattern="[^\x20-\x7E]*"
-            value={varietyFilterQuery}
-            onChange={(e) => setVarietyFilterQuery(e.target.value)}
-          />
-          <p>味わい:</p>
-          <input
-            type="text"
-            className="border rounded-lg"
-            placeholder="例) ブルゴーニュ、渋い"
-            pattern="[^\x20-\x7E]*"
-            value={tasteFilterQuery}
-            onChange={(e) => setTasteFilterQuery(e.target.value)}
-          />
-          <button
-            className="ml-6 py-2 w-20 font-mono bg-yellow-200 rounded-lg"
-            onClick={() => filterContents()}
-          >
-            絞り込む
-          </button>
+      <div className="py-3 font-mono bg-red-100 sm:mt-6 sm:mx-auto sm:py-5 sm:w-11/12 sm:rounded-lg">
+        <div className="mx-auto w-9/12 sm:w-10/12">
+          <div className="flex items-end justify-evenly">
+            <div>
+              {textLists.map((list) => (
+                <div className="my-2">
+                  <p>{list.title}</p>
+                  <input
+                    type="text"
+                    className="border rounded-lg"
+                    placeholder={list.placeholder}
+                    pattern="[^\x20-\x7E]*"
+                    value={list.value}
+                    onChange={(e) => list.onChange(e.target.value)}
+                  />
+                </div>
+              ))}
+              <p className="mr-6">値段帯:</p>
+              <select
+                id="price"
+                className="rounded-lg"
+                onChange={(e) => handlePriceFilter(e)}
+                ref={ref}
+              >
+                {prices.map((price) => (
+                  <option key={price.id} value={price.id}>
+                    {price.price}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <button
+                className="ml-6 py-2 w-20 font-mono bg-yellow-200 rounded-lg sm:m-4"
+                onClick={() => filterContents()}
+              >
+                絞り込む
+              </button>
 
-          <button
-            className="ml-6 py-2 w-20 font-mono bg-red-300 rounded-lg"
-            onClick={() => handleReset()}
-          >
-            リセット
-          </button>
-        </div>
-        <div className="">
-          <p className="mr-6">値段帯:</p>
-          <select
-            id="price"
-            className="rounded-lg"
-            onChange={(e) => handlePriceFilter(e)}
-            ref={ref}
-          >
-            {prices.map((price) => (
-              <option key={price.id} value={price.id}>
-                {price.price}
-              </option>
-            ))}
-          </select>
+              <button
+                className="ml-6 py-2 w-20 font-mono bg-red-300 rounded-lg sm:m-4"
+                onClick={() => handleReset()}
+              >
+                リセット
+              </button>
+            </div>
+          </div>
         </div>
       </div>
       {data?.map((data: Data, index) => (
