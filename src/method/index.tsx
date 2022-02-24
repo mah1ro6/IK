@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 
 export const deletePost = async (id: string) => {
   await axios.post(
-    "/api/delete",
+    "/api/proxy/delete",
     { id },
     {
       headers: { "Content-Type": "application/json" },
@@ -43,7 +43,7 @@ export const handleDelete = async (
 
 export const onEmptyBottle = async (id: string) => {
   await axios.post(
-    "/api/emptyBottlePatch",
+    "/api/proxy/emptyBottlePatch",
     { id },
     {
       headers: { "Content-Type": "application/json" },
@@ -56,7 +56,7 @@ export const frontToCellarPost = async (
   noInStockBottle: boolean
 ) => {
   await axios.post(
-    "/api/frontToCellarPatch",
+    "/api/proxy/frontToCellarPatch",
     { id, noInStockBottle },
     {
       headers: { "Content-Type": "application/json" },
@@ -66,7 +66,7 @@ export const frontToCellarPost = async (
 
 export const cellarToFrontPost = async (id: string, bottleCount: number) => {
   await axios.post(
-    "/api/cellarToFrontPatch",
+    "/api/proxy/cellarToFrontPatch",
     { id, bottleCount },
     {
       headers: { "Content-Type": "application/json" },
@@ -91,7 +91,7 @@ export const cellarToFront = async (
 
 export const onOrderPost = async (id: string, count: number) => {
   await axios.post(
-    "/api/onOrderPatch",
+    "/api/proxy/onOrderPatch",
     { id, count },
     {
       headers: { "Content-Type": "application/json" },
@@ -128,7 +128,7 @@ export const offOrderPost = async (
   emptyFrontBottle: boolean
 ) => {
   await axios.post(
-    "/api/offOrderPatch",
+    "/api/proxy/offOrderPatch",
     { id, noInStockBottle, emptyFrontBottle },
     {
       headers: { "Content-Type": "application/json" },
