@@ -4,45 +4,45 @@ import httpProxyMiddleware from "next-http-proxy-middleware";
 export const config = {
   api: {
     bodyParser: false,
+    externalResolver: true,
   },
 };
 
-const isDevelopment = process.env.NODE_ENV === "development" ? true : false;
+const isDevelopment = process.env.NODE_ENV !== "production";
 
-export default (req: NextApiRequest, res: NextApiResponse) => {
+const postRequest = async (req: NextApiRequest, res: NextApiResponse) => {
   isDevelopment
-    ? httpProxyMiddleware(req, res, {
-        target: "http://localhost:8888",
+    ? await httpProxyMiddleware(req, res, {
+        target: process.env.API_URL,
         changeOrigin: true,
         pathRewrite: [
           {
             patternStr: "^/api/proxy/delete",
-            replaceStr: "/ik_api/src/delete.php",
+            replaceStr: "/ik_request/src/delete.php",
           },
           {
             patternStr: "^/api/proxy/cellarToFrontPatch",
-            replaceStr: "/ik_api/src/cellarToFront.php",
+            replaceStr: "/ik_request/src/cellarToFront.php",
           },
           {
             patternStr: "^/api/proxy/frontToCellarPatch",
-            replaceStr: "/ik_api/src/frontToCellar.php",
+            replaceStr: "/ik_request/src/frontToCellar.php",
           },
           {
             patternStr: "^/api/proxy/emptyBottlePatch",
-            replaceStr: "/ik_api/src/onEmptyBottle.php",
+            replaceStr: "/ik_request/src/onEmptyBottle.php",
           },
           {
             patternStr: "^/api/proxy/onOrderPatch",
-            replaceStr: "/ik_api/src/onOrder.php",
+            replaceStr: "/ik_request/src/onOrder.php",
           },
           {
             patternStr: "^/api/proxy/offOrderPatch",
-            replaceStr: "/ik_api/src/offOrder.php",
+            replaceStr: "/ik_request/src/offOrder.php",
           },
         ],
       })
     : // 後にproductionの方を実装
       res.status(404).send(null);
-
-  // return proxy;
 };
+export default postRequest;
