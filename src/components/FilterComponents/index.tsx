@@ -1,9 +1,10 @@
+import { useRouter } from "next/router";
 import { ChangeEvent, useRef } from "react";
 import { textLists } from "src/types";
 
 type Props = {
   textLists: textLists;
-  prices: {
+  prices?: {
     id: number;
     price: string;
   }[];
@@ -14,6 +15,7 @@ type Props = {
 
 export const FilterComponents: React.FC<Props> = (props) => {
   const ref = useRef(null);
+  const router = useRouter();
 
   return (
     <div className="mx-auto my-5 py-6 w-11/12 font-mono bg-red-100 rounded-lg shadow-lg sm:mt-6 sm:py-5">
@@ -33,19 +35,24 @@ export const FilterComponents: React.FC<Props> = (props) => {
                 />
               </div>
             ))}
-            <p className="mr-6">値段帯:</p>
-            <select
-              id="price"
-              className="rounded-lg"
-              onChange={(e) => props.handlePriceFilter(e)}
-              ref={ref}
-            >
-              {props.prices.map((price) => (
-                <option key={price.id} value={price.id}>
-                  {price.price}
-                </option>
-              ))}
-            </select>
+
+            {router.pathname.indexOf("front") === -1 ? (
+              <>
+                <p className="mr-6">値段帯:</p>
+                <select
+                  id="price"
+                  className="rounded-lg"
+                  onChange={(e) => props.handlePriceFilter(e)}
+                  ref={ref}
+                >
+                  {props.prices?.map((price) => (
+                    <option key={price.id} value={price.id}>
+                      {price.price}
+                    </option>
+                  ))}
+                </select>
+              </>
+            ) : null}
           </div>
           <div>
             <button

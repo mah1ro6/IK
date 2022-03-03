@@ -2,11 +2,15 @@ import { Data, Props } from "src/types";
 import { handleDelete } from "src/method";
 import { WineOrderButton } from "../WineOrderButton";
 import { ItemLists } from "../ItemLists";
+import { FilterComponents } from "../FilterComponents";
+import { useFilter } from "src/hooks/useFilter";
 
 export const FrontWineLists: React.FC<Props> = (props) => {
   const contents = props.contents;
+  const { data, textLists, filterContents, handlePriceFilter, handleReset } =
+    useFilter(contents);
 
-  const rankData = contents?.filter(
+  const rankData = data?.filter(
     (data: Data) =>
       data.rank[0] === props.keyRank && data.type[0] === props.keyType
   );
@@ -21,6 +25,12 @@ export const FrontWineLists: React.FC<Props> = (props) => {
 
   return (
     <div className="h-screen">
+      <FilterComponents
+        textLists={textLists}
+        filterContents={filterContents}
+        handlePriceFilter={handlePriceFilter}
+        handleReset={handleReset}
+      />
       {rankData?.map((data: Data, index) => (
         <div
           className="flex items-center justify-around mx-auto my-5 w-11/12 h-1/3 bg-blue-100 rounded-lg shadow-lg sm:flex-wrap sm:py-8 sm:h-auto"
