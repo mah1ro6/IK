@@ -3,6 +3,7 @@ import { Data, Props } from "src/types";
 import { useRef } from "react";
 import { WineOrderButton } from "../WineOrderButton";
 import { useFilter } from "src/hooks/useFilter";
+import { ItemLists } from "../ItemLists";
 
 export const CellarWineLists: React.FC<Props> = (props) => {
   const {
@@ -97,56 +98,7 @@ export const CellarWineLists: React.FC<Props> = (props) => {
             </div>
             <WineOrderButton rankData={data} index={index} id={content.id} />
           </div>
-          <dl className="sm: flex flex-wrap justify-around p-7 w-1/2 text-gray-700 font-mono tracking-wide bg-yellow-50 rounded-lg sm:mt-4 sm:w-11/12">
-            <dt className="flex w-3/12 font-bold leading-relaxed">
-              ワイン名:{" "}
-            </dt>
-            <dd className="w-9/12 leading-relaxed sm:w-2/3">{content.name}</dd>
-            <dt className="flex w-3/12 font-bold leading-relaxed">種類: </dt>
-            <dd className="w-9/12 leading-relaxed sm:w-2/3">{content.type}</dd>
-            <dt className="flex w-3/12 font-bold leading-relaxed">ランク: </dt>
-            <dd className="w-9/12 leading-relaxed sm:w-2/3">{content.rank}</dd>
-            <dt className="flex w-3/12 font-bold leading-relaxed">産地: </dt>
-            <dd className="w-9/12 leading-relaxed sm:w-2/3">
-              {content.origin}
-            </dd>
-            <dt className="flex w-3/12 font-bold leading-relaxed">品種: </dt>
-            <dd className="w-9/12 leading-relaxed sm:w-2/3">
-              {content.variety}
-            </dd>
-            <dt className="flex w-3/12 font-bold leading-relaxed">味わい: </dt>
-            <dd className="w-9/12 leading-relaxed sm:w-2/3">{content.taste}</dd>
-            {content.price ? (
-              <>
-                <dt className="flex w-3/12 font-bold leading-relaxed">
-                  値段:{" "}
-                </dt>
-                <dd className="w-9/12 leading-relaxed sm:w-2/3">
-                  {content.price}
-                </dd>
-              </>
-            ) : null}
-            {content.producer ? (
-              <>
-                <dt className="flex w-3/12 font-bold leading-relaxed">
-                  生産者:{" "}
-                </dt>
-                <dd className="w-9/12 leading-relaxed sm:w-2/3">
-                  {content.producer}
-                </dd>
-              </>
-            ) : null}
-            {content.remarks ? (
-              <>
-                <dt className="flex w-3/12 font-bold leading-relaxed">
-                  備考:{" "}
-                </dt>
-                <dd className="w-9/12 leading-relaxed sm:w-2/3">
-                  {content.remarks}
-                </dd>
-              </>
-            ) : null}
-          </dl>
+          <ItemLists items={content} />
         </div>
       ))}
     </div>
