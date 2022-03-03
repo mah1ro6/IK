@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 export type Data = {
   id: string;
   frontOrCellar: string;
@@ -48,3 +50,10 @@ export type PropsData = {
   rank?: string;
   text: string;
 };
+
+export type textLists = {
+  title: string;
+  placeholder: string;
+  value: string;
+  onChange: Dispatch<SetStateAction<string>>;
+}[];
