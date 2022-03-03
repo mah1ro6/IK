@@ -38,7 +38,7 @@ export const ItemLists: React.FC<Props> = (props) => {
     },
     {
       title: "値段:",
-      titleData: data.price,
+      titleData: router.pathname.indexOf("front") !== -1 ? null : data.price,
     },
     {
       title: "生産者:",
