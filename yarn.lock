@@ -133,11 +133,6 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@libphp/amazon-linux-2-v80@latest":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@libphp/amazon-linux-2-v80/-/amazon-linux-2-v80-0.0.2.tgz#b8f80fe4d586480ffac0a2f949d4604fe8dada1a"
-  integrity sha512-RdbrPSoGXwBZZBSnv1IJSQS+q8MWp09vMImu22JJqn9UYx924VOi/C7MaV0/dsqSfRAjS5VzwW2I4MIOFEHeuA==
-
 "@napi-rs/triples@1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@napi-rs/triples/-/triples-1.0.3.tgz#76d6d0c3f4d16013c61e45dfca5ff1e6c31ae53c"
@@ -4075,13 +4070,6 @@ v8-compile-cache@^2.0.3:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/v8-compile-cache/-/v8-compile-cache-2.3.0.tgz#2de19618c66dc247dcfb6f99338035d8245a2cee"
   integrity sha512-l8lCEmLcLYZh4nbunNZvQCJc5pv7+RCwa8q/LdUx8u7lsWvPDKmpodJAJNwkAhJC//dFY48KuIEmjtd4RViDrA==
-
-vercel-php@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/vercel-php/-/vercel-php-0.4.0.tgz#e5b50e6c2792672e1994a1fafc3dee8e270c4737"
-  integrity sha512-h5i75/ft1fB6tDb8R9qsa4+13wnVZzoAY3bx6To46PCfJwRfcOQ5nLzVSUH4VzVjnWEoFHVlm6dRui4WYi13zA==
-  dependencies:
-    "@libphp/amazon-linux-2-v80" latest
 
 vercel@^24.0.0:
   version "24.0.0"
