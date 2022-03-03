@@ -23,7 +23,7 @@ export const FrontWineLists: React.FC<Props> = (props) => {
     <div className="h-screen">
       {rankData?.map((data: Data, index) => (
         <div
-          className="flex items-center justify-around mt-6 h-1/3 bg-blue-100 sm:flex-wrap sm:mx-auto sm:py-8 sm:w-11/12 sm:h-auto sm:rounded-lg"
+          className="flex items-center justify-around mx-auto my-5 w-11/12 h-1/3 bg-blue-100 rounded-lg shadow-lg sm:flex-wrap sm:py-8 sm:h-auto"
           key={data.id}
         >
           <div className="text-center">

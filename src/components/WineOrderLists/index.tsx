@@ -18,7 +18,7 @@ export const WineOrderLists: React.FC<Props> = (props) => {
     <div className="h-screen">
       {data?.map((data: Data) => (
         <div
-          className="flex items-center justify-around mt-6 h-1/3 bg-blue-100 sm:flex-wrap sm:mx-auto sm:py-8 sm:w-11/12 sm:h-auto sm:rounded-lg"
+          className="flex items-center justify-around mt-6 mx-auto w-11/12 h-1/3 bg-blue-100 rounded-lg shadow-lg sm:flex-wrap sm:py-8 sm:h-auto"
           key={data.id}
         >
           <div className="text-center">

@@ -26,7 +26,7 @@ export const CellarWineLists: React.FC<Props> = (props) => {
 
   return (
     <div className="h-screen sm:h-full">
-      <div className="py-3 font-mono bg-red-100 sm:mt-6 sm:mx-auto sm:py-5 sm:w-11/12 sm:rounded-lg">
+      <div className="mx-auto my-5 py-6 w-11/12 font-mono bg-red-100 rounded-lg shadow-lg sm:mt-6 sm:py-5">
         <div className="mx-auto w-9/12 sm:w-10/12">
           <div className="flex items-end justify-evenly">
             <div>
@@ -77,7 +77,7 @@ export const CellarWineLists: React.FC<Props> = (props) => {
       </div>
       {data?.map((content: Data, index) => (
         <div
-          className="flex items-center justify-around mt-6 h-2/5 bg-blue-100 sm:flex-wrap sm:mx-auto sm:py-8 sm:w-11/12 sm:h-auto sm:rounded-lg"
+          className="flex items-center justify-around mx-auto my-5 w-11/12 h-2/5 bg-blue-100 rounded-lg shadow-lg sm:flex-wrap sm:py-8 sm:h-auto"
           key={content.id}
         >
           <div className="text-center">
