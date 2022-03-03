@@ -17,6 +17,27 @@ export const useFilter = (contents: Data[]) => {
     { id: 6, price: "7000~" },
   ];
 
+  const textLists = [
+    {
+      title: "産地: ",
+      placeholder: "例）ブルゴーニュ",
+      value: originFilterQuery,
+      onChange: setOriginFilterQuery,
+    },
+    {
+      title: "品種: ",
+      placeholder: "例）シャルドネ",
+      value: varietyFilterQuery,
+      onChange: setVarietyFilterQuery,
+    },
+    {
+      title: "味わい: ",
+      placeholder: "例）フルーティ",
+      value: tasteFilterQuery,
+      onChange: setTasteFilterQuery,
+    },
+  ];
+
   const filterContents = () => {
     if (
       !originFilterQuery.match("[^\x01-\x7E]") &&
@@ -97,27 +118,6 @@ export const useFilter = (contents: Data[]) => {
       setData(priceFilterContents);
     }
   };
-
-  const textLists = [
-    {
-      title: "産地: ",
-      placeholder: "例）ブルゴーニュ",
-      value: originFilterQuery,
-      onChange: setOriginFilterQuery,
-    },
-    {
-      title: "品種: ",
-      placeholder: "例）シャルドネ",
-      value: varietyFilterQuery,
-      onChange: setVarietyFilterQuery,
-    },
-    {
-      title: "味わい: ",
-      placeholder: "例）フルーティ",
-      value: tasteFilterQuery,
-      onChange: setTasteFilterQuery,
-    },
-  ];
 
   const handleReset = () => {
     setData(contents);
