@@ -8,14 +8,12 @@ export const config = {
   },
 };
 
-// const isDevelopment = process.env.NODE_ENV !== "development";
+const isDevelopment = process.env.NODE_ENV !== "production";
 
 const postRequest = async (req: NextApiRequest, res: NextApiResponse) => {
-  // isDevelopment
-  //   ? 
-    await httpProxyMiddleware(req, res, {
+  isDevelopment
+    ? await httpProxyMiddleware(req, res, {
         target: process.env.API_URL,
-        // target: "http://ikgroup.php.xdomain.jp",
         changeOrigin: true,
         pathRewrite: [
           {
@@ -44,7 +42,7 @@ const postRequest = async (req: NextApiRequest, res: NextApiResponse) => {
           },
         ],
       })
-    // : // 後にproductionの方を実装
-    //   res.status(404).send(null);
+    : // 後にproductionの方を実装
+      res.status(404).send(null);
 };
 export default postRequest;
