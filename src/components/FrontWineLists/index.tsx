@@ -1,22 +1,14 @@
 import { Data, Props } from "src/types";
-import { Toaster } from "react-hot-toast";
-import { handleDelete, handleOnOrder } from "src/method";
-import { useEffect, useState } from "react";
+import { handleDelete } from "src/method";
+import { WineOrderButton } from "../WineOrderButton";
 
 export const FrontWineLists: React.FC<Props> = (props) => {
   const contents = props.contents;
-  const [counts, setCounts] = useState<number[]>([]);
 
   const rankData = contents?.filter(
     (data: Data) =>
       data.rank[0] === props.keyRank && data.type[0] === props.keyType
   );
-
-  useEffect(() => {
-    for (let i = 0; i < rankData.length; i++) {
-      setCounts((count) => [...count, 0]);
-    }
-  }, [rankData.length]);
 
   if (rankData.length === 0) {
     return (
@@ -25,18 +17,6 @@ export const FrontWineLists: React.FC<Props> = (props) => {
       </p>
     );
   }
-
-  const addCount = (index: number) => {
-    setCounts(counts.map((count, i) => (i === index ? count + 1 : count)));
-  };
-
-  const reduceCount = (index: number) => {
-    if (counts[index] > 0) {
-      setCounts(counts.map((count, i) => (i === index ? count - 1 : count)));
-    } else {
-      return;
-    }
-  };
 
   return (
     <div className="h-screen">
@@ -59,33 +39,7 @@ export const FrontWineLists: React.FC<Props> = (props) => {
             >
               削除
             </button>
-            <div className="flex justify-between mt-5">
-              <div className="flex items-center">
-                <p className="font-mono">発注本数: </p>
-                <p className="ml-2 font-mono">{counts[index]}</p>
-              </div>
-              <div className="flex">
-                <button
-                  className="mr-1 p-2 font-mono bg-gray-300 rounded-lg"
-                  onClick={() => addCount(index)}
-                >
-                  +
-                </button>
-                <button
-                  className="ml-1 p-2 font-mono bg-gray-300 rounded-lg"
-                  onClick={() => reduceCount(index)}
-                >
-                  -
-                </button>
-              </div>
-              <button
-                className="px-4 py-2 font-mono bg-yellow-300 rounded-lg"
-                onClick={() => handleOnOrder(data.id, counts[index])}
-              >
-                発注
-              </button>
-              <Toaster />
-            </div>
+            <WineOrderButton rankData={rankData} index={index} id={data.id} />
           </div>
           <dl className="sm: flex flex-wrap justify-around p-7 w-1/2 text-gray-700 font-mono tracking-wide bg-yellow-50 rounded-lg sm:mt-4 sm:w-11/12">
             <dt className="flex w-3/12 font-bold leading-relaxed">
