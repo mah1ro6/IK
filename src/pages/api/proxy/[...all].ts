@@ -18,27 +18,27 @@ const postRequest = async (req: NextApiRequest, res: NextApiResponse) => {
         pathRewrite: [
           {
             patternStr: "^/api/proxy/delete",
-            replaceStr: "/ik_request/src/delete.php",
+            replaceStr: "/ik_request/api/delete.php",
           },
           {
             patternStr: "^/api/proxy/cellarToFrontPatch",
-            replaceStr: "/ik_request/src/cellarToFront.php",
+            replaceStr: "/ik_request/api/cellarToFront.php",
           },
           {
             patternStr: "^/api/proxy/frontToCellarPatch",
-            replaceStr: "/ik_request/src/frontToCellar.php",
+            replaceStr: "/ik_request/api/frontToCellar.php",
           },
           {
             patternStr: "^/api/proxy/emptyBottlePatch",
-            replaceStr: "/ik_request/src/onEmptyBottle.php",
+            replaceStr: "/ik_request/api/onEmptyBottle.php",
           },
           {
             patternStr: "^/api/proxy/onOrderPatch",
-            replaceStr: "/ik_request/src/onOrder.php",
+            replaceStr: "/ik_request/api/onOrder.php",
           },
           {
             patternStr: "^/api/proxy/offOrderPatch",
-            replaceStr: "/ik_request/src/offOrder.php",
+            replaceStr: "/ik_request/api/offOrder.php",
           },
         ],
       })
