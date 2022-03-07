@@ -2,7 +2,6 @@ import { Dispatch, SetStateAction } from "react";
 
 export type Data = {
   id: string;
-  frontOrCellar: string;
   name: string;
   origin: string;
   variety: string;

@@ -32,8 +32,7 @@ export const getStaticProps = async () => {
 
 const CellarPage: NextPage<PagesProps> = (props) => {
   const data = props.data.contents.filter(
-    (data: Data) =>
-      data.frontOrCellar[0] === "セラーへ" || data.cellarBottleCount > 0
+    (data: Data) => data.cellarBottleCount > 0
   );
 
   return (
