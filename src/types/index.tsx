@@ -9,7 +9,7 @@ export type Data = {
   taste: string;
   type: string;
   rank: string;
-  bottleCount: number;
+  cellarBottleCount: number;
   price: number;
   producer?: string;
   image?: {

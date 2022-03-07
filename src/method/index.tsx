@@ -151,3 +151,31 @@ export const handleOffOrder = async (
     console.log(e);
   }
 };
+
+export const AddCellarStockPost = async (
+  id: string,
+  cellarBottleCount: number
+) => {
+  await axios.post(
+    "/api/proxy/addCellarStockPost",
+    { id, cellarBottleCount },
+    {
+      headers: { "Content-Type": "application/json" },
+    }
+  );
+};
+
+export const handleAddCellarStock = async (
+  id: string,
+  cellarBottleCount: number
+): Promise<void> => {
+  try {
+    await toast.promise(AddCellarStockPost(id, cellarBottleCount), {
+      loading: "送信中...",
+      success: "送信に成功しました!",
+      error: "送信に失敗しました...",
+    });
+  } catch (e) {
+    console.log(e);
+  }
+};

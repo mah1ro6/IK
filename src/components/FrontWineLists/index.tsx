@@ -1,6 +1,6 @@
 import { Data, Props } from "src/types";
-import { handleDelete } from "src/method";
-import { WineOrderButton } from "../WineOrderButton";
+import { handleDelete, handleOnOrder } from "src/method";
+import { HandleCountButton } from "../HandleCountButton";
 import { ItemLists } from "../ItemLists";
 import { FilterComponents } from "../FilterComponents";
 import { useFilter } from "src/hooks/useFilter";
@@ -50,7 +50,13 @@ export const FrontWineLists: React.FC<Props> = (props) => {
             >
               削除
             </button>
-            <WineOrderButton rankData={rankData} index={index} id={data.id} />
+            <HandleCountButton
+              rankData={rankData}
+              index={index}
+              id={data.id}
+              text="発注本数"
+              handlePost={handleOnOrder}
+            />
           </div>
           <ItemLists items={data} />
         </div>

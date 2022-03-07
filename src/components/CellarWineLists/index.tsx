@@ -1,6 +1,6 @@
-import { cellarToFront } from "src/method";
+import { cellarToFront, handleAddCellarStock, handleOnOrder } from "src/method";
 import { Data, Props } from "src/types";
-import { WineOrderButton } from "../WineOrderButton";
+import { HandleCountButton } from "../HandleCountButton";
 import { useFilter } from "src/hooks/useFilter";
 import { ItemLists } from "../ItemLists";
 import { FilterComponents } from "../FilterComponents";
@@ -45,15 +45,31 @@ export const CellarWineLists: React.FC<Props> = (props) => {
             />
             <button
               className="mt-5 mx-3 py-2 w-1/3 font-mono bg-yellow-100 rounded-lg"
-              onClick={() => cellarToFront(content.id, content.bottleCount)}
+              onClick={() =>
+                cellarToFront(content.id, content.cellarBottleCount)
+              }
             >
               表に出す
             </button>
-            <div className="flex my-2 font-mono">
+            {/* <div className="flex my-2 font-mono">
               <p>在庫: </p>
-              <p className="ml-2">{content.bottleCount}</p>
-            </div>
-            <WineOrderButton rankData={data} index={index} id={content.id} />
+              <p className="ml-2">{content.cellarBottleCount}</p>
+            </div> */}
+            <HandleCountButton
+              rankData={data}
+              content={content}
+              index={index}
+              id={content.id}
+              text="在庫"
+              handlePost={handleAddCellarStock}
+            />
+            <HandleCountButton
+              rankData={data}
+              index={index}
+              id={content.id}
+              text="発注本数"
+              handlePost={handleOnOrder}
+            />
           </div>
           <ItemLists items={content} />
         </div>

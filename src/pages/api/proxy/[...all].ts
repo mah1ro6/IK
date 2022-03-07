@@ -40,6 +40,10 @@ const postRequest = async (req: NextApiRequest, res: NextApiResponse) => {
             patternStr: "^/api/proxy/offOrderPatch",
             replaceStr: "/ik_request/api/offOrder.php",
           },
+          {
+            patternStr: "^/api/proxy/addCellarStockPost",
+            replaceStr: "/ik_request/api/addCellarStock.php",
+          },
         ],
       })
     : await httpProxyMiddleware(req, res, {
@@ -69,6 +73,10 @@ const postRequest = async (req: NextApiRequest, res: NextApiResponse) => {
           {
             patternStr: "^/api/proxy/offOrderPatch",
             replaceStr: "/api/offOrder.php",
+          },
+          {
+            patternStr: "^/api/proxy/addCellarStockPost",
+            replaceStr: "/api/addCellarStock.php",
           },
         ],
       });
