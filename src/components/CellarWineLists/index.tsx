@@ -40,7 +40,7 @@ export const CellarWineLists: React.FC<Props> = (props) => {
           <div className="text-center">
             <img
               className="w-60 h-60 rounded-lg object-cover sm:mx-auto"
-              src={content?.image ? content.image.url : props.sampleImage}
+              src={content?.image ? content.image.url : "/images/ikgroup-wineimage.jpg"}
               alt="ワインの画像です"
             />
             <button

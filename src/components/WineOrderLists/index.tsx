@@ -24,7 +24,7 @@ export const WineOrderLists: React.FC<Props> = (props) => {
           <div className="text-center">
             <img
               className="w-60 h-60 rounded-lg object-cover sm:mx-auto"
-              src={data?.image ? data.image.url : props.sampleImage}
+              src={data?.image ? data.image.url : "/images/ikgroup-wineimage.jpg"}
               alt="ワインの画像です"
             />
             <div className="flex items-center justify-around mt-5">

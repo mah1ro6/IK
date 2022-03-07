@@ -12,10 +12,6 @@ export const getStaticProps = async () => {
     },
   });
 
-  const sampleImage = await client.get({
-    endpoint: "wineimage",
-  });
-
   if (!data) {
     return {
       notFound: true,
@@ -25,7 +21,6 @@ export const getStaticProps = async () => {
   return {
     props: {
       data,
-      sampleImage,
     },
     revalidate: 1,
   };
@@ -36,7 +31,6 @@ const OrderPage: NextPage<PagesProps> = (props) => {
   return (
     <WineOrderLists
       contents={props.data.contents}
-      sampleImage={props.sampleImage.wineImage.url}
     />
   );
 };

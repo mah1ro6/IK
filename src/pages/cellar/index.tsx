@@ -11,10 +11,6 @@ export const getStaticProps = async () => {
     },
   });
 
-  const sampleImage = await client.get({
-    endpoint: "wineimage",
-  });
-
   if (!data) {
     return {
       notFound: true,
@@ -24,7 +20,6 @@ export const getStaticProps = async () => {
   return {
     props: {
       data,
-      sampleImage,
     },
     revalidate: 1,
   };
@@ -38,7 +33,6 @@ const CellarPage: NextPage<PagesProps> = (props) => {
   return (
     <CellarWineLists
       contents={data}
-      sampleImage={props.sampleImage.wineImage.url}
     />
   );
 };
