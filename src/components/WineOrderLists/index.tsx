@@ -37,8 +37,8 @@ export const WineOrderLists: React.FC<Props> = (props) => {
                 onClick={() =>
                   handleOffOrder(
                     data.id,
-                    data.emptyFrontBottle,
-                    data.noInStockBottle
+                    data.noInStockBottle,
+                    data.frontBottleCount
                   )
                 }
               >

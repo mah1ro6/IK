@@ -14,21 +14,25 @@ export const deletePost = async (id: string) => {
 export const handleDelete = async (
   id: string,
   orderTrue: boolean,
-  noInStockBottle: boolean
+  noInStockBottle: boolean,
+  frontBottleCount: number
 ): Promise<void> => {
   try {
     if (orderTrue) {
-      await toast.promise(onEmptyBottle(id), {
+      await toast.promise(onEmptyBottle(id, frontBottleCount), {
         loading: "削除中...",
         success: "削除に成功しました!",
         error: "削除に失敗しました...",
       });
     } else if (!noInStockBottle) {
-      await toast.promise(frontToCellarPost(id, noInStockBottle), {
-        loading: "削除中...",
-        success: "削除に成功しました!",
-        error: "削除に失敗しました...",
-      });
+      await toast.promise(
+        frontToCellarPost(id, noInStockBottle, frontBottleCount),
+        {
+          loading: "削除中...",
+          success: "削除に成功しました!",
+          error: "削除に失敗しました...",
+        }
+      );
     } else {
       await toast.promise(deletePost(id), {
         loading: "削除中...",
@@ -41,10 +45,10 @@ export const handleDelete = async (
   }
 };
 
-export const onEmptyBottle = async (id: string) => {
+export const onEmptyBottle = async (id: string, frontBottleCount: number) => {
   await axios.post(
     "/api/proxy/emptyBottlePatch",
-    { id },
+    { id, frontBottleCount },
     {
       headers: { "Content-Type": "application/json" },
     }
@@ -53,21 +57,26 @@ export const onEmptyBottle = async (id: string) => {
 
 export const frontToCellarPost = async (
   id: string,
-  noInStockBottle: boolean
+  noInStockBottle: boolean,
+  frontBottleCount: number
 ) => {
   await axios.post(
     "/api/proxy/frontToCellarPatch",
-    { id, noInStockBottle },
+    { id, noInStockBottle, frontBottleCount },
     {
       headers: { "Content-Type": "application/json" },
     }
   );
 };
 
-export const cellarToFrontPost = async (id: string, bottleCount: number) => {
+export const cellarToFrontPost = async (
+  id: string,
+  cellarBottleCount: number,
+  frontBottleCount: number
+) => {
   await axios.post(
     "/api/proxy/cellarToFrontPatch",
-    { id, bottleCount },
+    { id, cellarBottleCount, frontBottleCount },
     {
       headers: { "Content-Type": "application/json" },
     }
@@ -76,14 +85,18 @@ export const cellarToFrontPost = async (id: string, bottleCount: number) => {
 
 export const cellarToFront = async (
   id: string,
-  bottleCount: number
+  cellarBottleCount: number,
+  frontBottleCount: number
 ): Promise<void> => {
   try {
-    await toast.promise(cellarToFrontPost(id, bottleCount), {
-      loading: "送信中...",
-      success: "送信に成功しました!",
-      error: "送信に失敗しました...",
-    });
+    await toast.promise(
+      cellarToFrontPost(id, cellarBottleCount, frontBottleCount),
+      {
+        loading: "送信中...",
+        success: "送信に成功しました!",
+        error: "送信に失敗しました...",
+      }
+    );
   } catch (e) {
     console.log(e);
   }
@@ -125,11 +138,11 @@ export const handleOnOrder = async (
 export const offOrderPost = async (
   id: string,
   noInStockBottle: boolean,
-  emptyFrontBottle: boolean
+  frontBottleCount: number
 ) => {
   await axios.post(
     "/api/proxy/offOrderPatch",
-    { id, noInStockBottle, emptyFrontBottle },
+    { id, noInStockBottle, frontBottleCount },
     {
       headers: { "Content-Type": "application/json" },
     }
@@ -139,10 +152,10 @@ export const offOrderPost = async (
 export const handleOffOrder = async (
   id: string,
   noInStockBottle: boolean,
-  emptyFrontBottle: boolean
+  frontBottleCount: number
 ): Promise<void> => {
   try {
-    await toast.promise(offOrderPost(id, noInStockBottle, emptyFrontBottle), {
+    await toast.promise(offOrderPost(id, noInStockBottle, frontBottleCount), {
       loading: "送信中...",
       success: "送信に成功しました!",
       error: "送信に失敗しました...",

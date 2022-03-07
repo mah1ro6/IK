@@ -9,6 +9,7 @@ export type Data = {
   taste: string;
   type: string;
   rank: string;
+  frontBottleCount: number;
   cellarBottleCount: number;
   price: number;
   producer?: string;
@@ -19,7 +20,6 @@ export type Data = {
   orderLists: boolean;
   orderBottleCount: number;
   noInStockBottle: boolean;
-  emptyFrontBottle: boolean;
 };
 
 export type Props = {

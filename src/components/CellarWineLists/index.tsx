@@ -46,15 +46,11 @@ export const CellarWineLists: React.FC<Props> = (props) => {
             <button
               className="mt-5 mx-3 py-2 w-1/3 font-mono bg-yellow-100 rounded-lg"
               onClick={() =>
-                cellarToFront(content.id, content.cellarBottleCount)
+                cellarToFront(content.id, content.cellarBottleCount, content.frontBottleCount)
               }
             >
               表に出す
             </button>
-            {/* <div className="flex my-2 font-mono">
-              <p>在庫: </p>
-              <p className="ml-2">{content.cellarBottleCount}</p>
-            </div> */}
             <HandleCountButton
               rankData={data}
               content={content}
