@@ -45,7 +45,10 @@ export const FrontWineLists: React.FC<Props> = (props) => {
             <button
               className="mt-5 mx-3 py-2 w-1/3 font-mono bg-yellow-100 rounded-lg"
               onClick={() =>
-                handleDelete(data.id, data.orderLists, data.noInStockBottle, data.frontBottleCount)
+                handleDelete(
+                  data.id,
+                  data.frontBottleCount
+                )
               }
             >
               削除

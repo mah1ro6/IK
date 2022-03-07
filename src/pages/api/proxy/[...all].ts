@@ -25,10 +25,6 @@ const postRequest = async (req: NextApiRequest, res: NextApiResponse) => {
             replaceStr: "/ik_request/api/cellarToFront.php",
           },
           {
-            patternStr: "^/api/proxy/frontToCellarPatch",
-            replaceStr: "/ik_request/api/frontToCellar.php",
-          },
-          {
             patternStr: "^/api/proxy/emptyBottlePatch",
             replaceStr: "/ik_request/api/onEmptyBottle.php",
           },
@@ -57,10 +53,6 @@ const postRequest = async (req: NextApiRequest, res: NextApiResponse) => {
           {
             patternStr: "^/api/proxy/cellarToFrontPatch",
             replaceStr: "/api/cellarToFront.php",
-          },
-          {
-            patternStr: "^/api/proxy/frontToCellarPatch",
-            replaceStr: "/api/frontToCellar.php",
           },
           {
             patternStr: "^/api/proxy/emptyBottlePatch",

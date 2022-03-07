@@ -13,26 +13,18 @@ export const deletePost = async (id: string) => {
 
 export const handleDelete = async (
   id: string,
-  orderTrue: boolean,
-  noInStockBottle: boolean,
-  frontBottleCount: number
+  frontBottleCount: number,
 ): Promise<void> => {
+  console.log(frontBottleCount);
+
   try {
-    if (orderTrue) {
+    // if (orderLists || cellarBottleCount > 0) {
+    if (frontBottleCount > 0) {
       await toast.promise(onEmptyBottle(id, frontBottleCount), {
         loading: "削除中...",
         success: "削除に成功しました!",
         error: "削除に失敗しました...",
       });
-    } else if (!noInStockBottle) {
-      await toast.promise(
-        frontToCellarPost(id, noInStockBottle, frontBottleCount),
-        {
-          loading: "削除中...",
-          success: "削除に成功しました!",
-          error: "削除に失敗しました...",
-        }
-      );
     } else {
       await toast.promise(deletePost(id), {
         loading: "削除中...",
@@ -49,20 +41,6 @@ export const onEmptyBottle = async (id: string, frontBottleCount: number) => {
   await axios.post(
     "/api/proxy/emptyBottlePatch",
     { id, frontBottleCount },
-    {
-      headers: { "Content-Type": "application/json" },
-    }
-  );
-};
-
-export const frontToCellarPost = async (
-  id: string,
-  noInStockBottle: boolean,
-  frontBottleCount: number
-) => {
-  await axios.post(
-    "/api/proxy/frontToCellarPatch",
-    { id, noInStockBottle, frontBottleCount },
     {
       headers: { "Content-Type": "application/json" },
     }
@@ -137,12 +115,12 @@ export const handleOnOrder = async (
 
 export const offOrderPost = async (
   id: string,
-  noInStockBottle: boolean,
+  cellarBottleCount: number,
   frontBottleCount: number
 ) => {
   await axios.post(
     "/api/proxy/offOrderPatch",
-    { id, noInStockBottle, frontBottleCount },
+    { id, cellarBottleCount, frontBottleCount },
     {
       headers: { "Content-Type": "application/json" },
     }
@@ -151,11 +129,11 @@ export const offOrderPost = async (
 
 export const handleOffOrder = async (
   id: string,
-  noInStockBottle: boolean,
+  cellarBottleCount: number,
   frontBottleCount: number
 ): Promise<void> => {
   try {
-    await toast.promise(offOrderPost(id, noInStockBottle, frontBottleCount), {
+    await toast.promise(offOrderPost(id, cellarBottleCount, frontBottleCount), {
       loading: "送信中...",
       success: "送信に成功しました!",
       error: "送信に失敗しました...",
