@@ -19,7 +19,6 @@ export type Data = {
   remarks?: string;
   orderLists: boolean;
   orderBottleCount: number;
-  noInStockBottle: boolean;
 };
 
 export type Props = {
