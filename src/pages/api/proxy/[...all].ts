@@ -21,24 +21,24 @@ const postRequest = async (req: NextApiRequest, res: NextApiResponse) => {
             replaceStr: "/ik_request/api/delete.php",
           },
           {
-            patternStr: "^/api/proxy/cellarToFrontPatch",
-            replaceStr: "/ik_request/api/cellarToFront.php",
+            patternStr: "^/api/proxy/addToFrontPost",
+            replaceStr: "/ik_request/api/addToFront.php",
           },
           {
-            patternStr: "^/api/proxy/emptyBottlePatch",
-            replaceStr: "/ik_request/api/onEmptyBottle.php",
+            patternStr: "^/api/proxy/frontBottlePost",
+            replaceStr: "/ik_request/api/reduceFrontBottle.php",
           },
           {
-            patternStr: "^/api/proxy/onOrderPatch",
+            patternStr: "^/api/proxy/onOrderPost",
             replaceStr: "/ik_request/api/onOrder.php",
           },
           {
-            patternStr: "^/api/proxy/offOrderPatch",
+            patternStr: "^/api/proxy/offOrderPost",
             replaceStr: "/ik_request/api/offOrder.php",
           },
           {
-            patternStr: "^/api/proxy/addCellarStockPost",
-            replaceStr: "/ik_request/api/addCellarStock.php",
+            patternStr: "^/api/proxy/addToCellarPost",
+            replaceStr: "/ik_request/api/addToCellar.php",
           },
         ],
       })
@@ -51,24 +51,24 @@ const postRequest = async (req: NextApiRequest, res: NextApiResponse) => {
             replaceStr: "/api/delete.php",
           },
           {
-            patternStr: "^/api/proxy/cellarToFrontPatch",
-            replaceStr: "/api/cellarToFront.php",
+            patternStr: "^/api/proxy/addToFrontPost",
+            replaceStr: "/api/addToFront.php",
           },
           {
-            patternStr: "^/api/proxy/emptyBottlePatch",
+            patternStr: "^/api/proxy/emptyBottlePost",
             replaceStr: "/api/onEmptyBottle.php",
           },
           {
-            patternStr: "^/api/proxy/onOrderPatch",
+            patternStr: "^/api/proxy/onOrderPost",
             replaceStr: "/api/onOrder.php",
           },
           {
-            patternStr: "^/api/proxy/offOrderPatch",
+            patternStr: "^/api/proxy/offOrderPost",
             replaceStr: "/api/offOrder.php",
           },
           {
-            patternStr: "^/api/proxy/addCellarStockPost",
-            replaceStr: "/api/addCellarStock.php",
+            patternStr: "^/api/proxy/addToCellarPost",
+            replaceStr: "/api/addToCellar.php",
           },
         ],
       });

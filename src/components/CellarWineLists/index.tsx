@@ -1,4 +1,4 @@
-import { cellarToFront, handleAddCellarStock, handleOnOrder } from "src/method";
+import { addToFront, handleAddToCellar, handleOnOrder } from "src/method";
 import { Data, Props } from "src/types";
 import { HandleCountButton } from "../HandleCountButton";
 import { useFilter } from "src/hooks/useFilter";
@@ -46,7 +46,11 @@ export const CellarWineLists: React.FC<Props> = (props) => {
             <button
               className="mt-5 mx-3 py-2 w-1/3 font-mono bg-yellow-100 rounded-lg"
               onClick={() =>
-                cellarToFront(content.id, content.cellarBottleCount, content.frontBottleCount)
+                addToFront(
+                  content.id,
+                  content.cellarBottleCount,
+                  content.frontBottleCount
+                )
               }
             >
               表に出す
@@ -57,7 +61,7 @@ export const CellarWineLists: React.FC<Props> = (props) => {
               index={index}
               id={content.id}
               text="在庫"
-              handlePost={handleAddCellarStock}
+              handlePost={handleAddToCellar}
             />
             <HandleCountButton
               rankData={data}
