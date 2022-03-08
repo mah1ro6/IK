@@ -1,9 +1,11 @@
-import { NextPage } from "next";
+import { GetStaticProps, NextPage } from "next";
 import { client } from "src/libs/client";
 import { Data, PagesProps } from "src/types";
 import { CellarWineLists } from "src/components/CellarWineLists";
 
-export const getStaticProps = async () => {
+export const getStaticProps: GetStaticProps<
+  Pick<PagesProps, "data">
+> = async () => {
   const data = await client.get({
     endpoint: "wine",
     queries: {
@@ -30,11 +32,7 @@ const CellarPage: NextPage<PagesProps> = (props) => {
     (data: Data) => data.cellarBottleCount > 0
   );
 
-  return (
-    <CellarWineLists
-      contents={data}
-    />
-  );
+  return <CellarWineLists contents={data} />;
 };
 
 export default CellarPage;

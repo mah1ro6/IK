@@ -1,17 +1,13 @@
 import { FrontWineLists } from "src/components/FrontWineLists";
 import { client } from "src/libs/client";
-import { NextPage } from "next";
+import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { PagesProps, Data } from "src/types";
 import { useRouter } from "next/router";
+import { ParsedUrlQuery } from "node:querystring";
 
-export type Params = {
-  params: {
-    type: string;
-    rank: string;
-  };
-};
+export type Params = ParsedUrlQuery & Pick<Data, "type" | "rank">;
 
-export const getStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths<Params> = async () => {
   const data = await client.get({
     endpoint: "wine",
   });
@@ -26,9 +22,11 @@ export const getStaticPaths = async () => {
   };
 };
 
-export const getStaticProps = async ({ params }: Params) => {
-  const { type } = params;
-  const { rank } = params;
+export const getStaticProps: GetStaticProps<PagesProps, Params> = async ({
+  params,
+}) => {
+  const { type } = params as Params;
+  const { rank } = params as Params;
 
   const data = await client.get({
     endpoint: "wine",
@@ -46,8 +44,8 @@ export const getStaticProps = async ({ params }: Params) => {
   return {
     props: {
       data,
-      type: type || null,
-      rank: rank || null,
+      type,
+      rank,
     },
     revalidate: 1,
   };
@@ -69,11 +67,7 @@ const Rank: NextPage<PagesProps> = (props) => {
   );
 
   return (
-    <FrontWineLists
-      keyRank={props.rank}
-      keyType={props.type}
-      contents={data}
-    />
+    <FrontWineLists keyRank={props.rank} keyType={props.type} contents={data} />
   );
 };
 
