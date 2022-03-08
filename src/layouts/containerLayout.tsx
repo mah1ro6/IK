@@ -12,9 +12,9 @@ export const ContainerLayout: React.FC<Props> = ({ children }) => {
   return (
     <div className="mx-auto bg-gray-100">
       {router.pathname !== "/" ? (
-        <div className="">
+        <div>
           <Link href="/">
-            <a className="block py-5 text-center text-gray-700 font-mono text-xl bg-gray-200 shadow-md">
+            <a className="block mb-6 py-5 text-center text-gray-700 font-mono text-xl bg-gray-200 shadow-md">
               トップに戻る
             </a>
           </Link>

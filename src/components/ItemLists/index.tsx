@@ -54,13 +54,11 @@ export const ItemLists: React.FC<Props> = (props) => {
     <dl className="sm: flex flex-wrap justify-around p-7 w-1/2 text-gray-700 font-mono tracking-wide bg-yellow-50 rounded-lg sm:mt-4 sm:w-11/12">
       {lists.map((item) =>
         item.titleData ? (
-          <React.Fragment key={item.titleData}>
-            <dt className="flex w-3/12 font-bold leading-relaxed">
+          <React.Fragment key={item.title}>
+            <dt className="flex w-3/12 font-bold leading-loose">
               {item.title}
             </dt>
-            <dd className="w-9/12 leading-relaxed sm:w-2/3">
-              {item.titleData}
-            </dd>
+            <dd className="w-9/12 leading-loose sm:w-2/3">{item.titleData}</dd>
           </React.Fragment>
         ) : null
       )}

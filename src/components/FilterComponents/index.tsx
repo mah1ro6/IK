@@ -18,7 +18,7 @@ export const FilterComponents: React.FC<Props> = (props) => {
   const router = useRouter();
 
   return (
-    <div className="mx-auto my-5 py-6 w-11/12 font-mono bg-red-100 rounded-lg shadow-lg sm:mt-6 sm:py-5">
+    <div className="mb-6 mx-auto py-6 w-11/12 font-mono bg-red-100 rounded-lg shadow-lg">
       <div className="mx-auto w-9/12 sm:w-10/12">
         <div className="flex items-end justify-evenly">
           <div>

@@ -4,6 +4,8 @@ import { HandleCountButton } from "../HandleCountButton";
 import { ItemLists } from "../ItemLists";
 import { FilterComponents } from "../FilterComponents";
 import { useFilter } from "src/hooks/useFilter";
+import React from "react";
+import { ContentLayout } from "src/layouts/contentLayout";
 
 export const FrontWineLists: React.FC<Props> = (props) => {
   const contents = props.contents;
@@ -24,7 +26,7 @@ export const FrontWineLists: React.FC<Props> = (props) => {
   }
 
   return (
-    <div className="h-screen">
+    <div>
       <FilterComponents
         textLists={textLists}
         filterContents={filterContents}
@@ -32,41 +34,37 @@ export const FrontWineLists: React.FC<Props> = (props) => {
         handleReset={handleReset}
       />
       {rankData?.map((data: Data, index) => (
-        <div
-          className="flex items-center justify-around mx-auto my-5 w-11/12 h-2/5 bg-blue-100 rounded-lg shadow-lg sm:flex-wrap sm:py-8 sm:h-auto"
-          key={data.id}
-        >
-          <div className="text-center">
-            <img
-              className="w-60 h-60 rounded-lg object-cover sm:mx-auto"
-              src={data?.image ? data.image.url : "/images/ikgroup-wineimage.jpg"}
-              alt="ワインの画像です"
-            />
-            <button
-              className="mt-5 mx-3 py-2 w-1/3 font-mono bg-yellow-100 rounded-lg"
-              onClick={() =>
-                handleDelete(
-                  data.id,
-                  data.frontBottleCount
-                )
-              }
-            >
-              削除
-            </button>
-            <div className="flex mt-5 font-mono">
-              <p>表にある本数:</p>
-              <p className="ml-5">{data.frontBottleCount}</p>
+        <React.Fragment key={data.id}>
+          <ContentLayout>
+            <div className="text-center">
+              <img
+                className="w-60 h-60 rounded-lg object-cover sm:mx-auto"
+                src={
+                  data?.image ? data.image.url : "/images/ikgroup-wineimage.jpg"
+                }
+                alt="ワインの画像です"
+              />
+              <button
+                className="mt-5 mx-3 py-2 w-1/3 font-mono bg-yellow-100 rounded-lg"
+                onClick={() => handleDelete(data.id, data.frontBottleCount)}
+              >
+                削除
+              </button>
+              <div className="flex mt-5 font-mono">
+                <p>表にある本数:</p>
+                <p className="ml-5">{data.frontBottleCount}</p>
+              </div>
+              <HandleCountButton
+                rankData={rankData}
+                index={index}
+                id={data.id}
+                text="発注本数"
+                handlePost={handleOnOrder}
+              />
             </div>
-            <HandleCountButton
-              rankData={rankData}
-              index={index}
-              id={data.id}
-              text="発注本数"
-              handlePost={handleOnOrder}
-            />
-          </div>
-          <ItemLists items={data} />
-        </div>
+            <ItemLists items={data} />
+          </ContentLayout>
+        </React.Fragment>
       ))}
     </div>
   );
