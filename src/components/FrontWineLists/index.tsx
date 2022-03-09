@@ -54,6 +54,10 @@ export const FrontWineLists: React.FC<Props> = (props) => {
                 <p>表にある本数:</p>
                 <p className="ml-5">{data.frontBottleCount}</p>
               </div>
+              <div className="flex mt-5 font-mono">
+                <p>セラーにある本数:</p>
+                <p className="ml-5">{data.cellarBottleCount}</p>
+              </div>
               <HandleCountButton
                 rankData={rankData}
                 index={index}
