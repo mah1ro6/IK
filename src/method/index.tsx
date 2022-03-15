@@ -172,3 +172,23 @@ export const handleAddToCellar = async (
     console.log(e);
   }
 };
+
+export const setItemTextPost = async (data: string, id: string) => {
+  await axios.post(
+    "/api/proxy/setItemTextPost",
+    { data, id },
+    { headers: { "Content-Type": "application/json" } }
+  );
+};
+
+export const handleSetItemText = async (data: string, id: string) => {
+  try {
+    await toast.promise(setItemTextPost(data, id), {
+      loading: "送信中...",
+      success: "送信に成功しました!",
+      error: "送信に失敗しました...",
+    });
+  } catch (e) {
+    console.log(e);
+  }
+};
