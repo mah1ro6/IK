@@ -56,14 +56,14 @@ export const FilterComponents: React.FC<Props> = (props) => {
           </div>
           <div>
             <button
-              className="ml-6 py-2 w-20 font-mono bg-yellow-200 rounded-lg sm:m-4"
+              className="ml-6 py-2 w-20 font-mono bg-blue-200 rounded-lg sm:m-4"
               onClick={() => props.filterContents()}
             >
               絞り込む
             </button>
 
             <button
-              className="ml-6 py-2 w-20 font-mono bg-red-300 rounded-lg sm:m-4"
+              className="ml-6 py-2 w-20 font-mono bg-yellow-300 rounded-lg sm:m-4"
               onClick={() => props.handleReset()}
             >
               リセット
