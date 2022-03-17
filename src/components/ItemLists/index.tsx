@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { handleSetItemText } from "src/method";
 import { Data } from "src/types";
 
@@ -49,7 +50,26 @@ export const ItemLists: React.FC<Props> = (props) => {
       titleData: data.remarks,
     },
   ]);
-  const [initWineItems, setInitWineItems] = useState(wineItems);
+  const [initWineItems, setInitWineItems] = useState<
+    (
+      | {
+          title: string;
+          titleData: string | null;
+        }
+      | {
+          title: string;
+          titleData: number | null;
+        }
+      | {
+          title: string;
+          titleData: string | undefined;
+        }
+    )[]
+  >([]);
+
+  useEffect(() => {
+    setInitWineItems(wineItems);
+  }, []);
 
   const handleChange = (
     e:
@@ -65,17 +85,48 @@ export const ItemLists: React.FC<Props> = (props) => {
   };
 
   const handleSetItem = (id: string) => {
-    console.log(initWineItems);
-    console.log(wineItems);
-
-    const postData = wineItems.filter((item, index) => {
+    const initPostData = wineItems.filter((item, index) => {
       return item.titleData !== initWineItems[index].titleData;
     });
 
-    console.log(JSON.stringify(postData));
+    const test = initPostData.filter(
+      ({ title }) => title === "種類:" || title === "ランク:"
+    );
 
-    setOnPatch(false);
-    handleSetItemText(JSON.stringify(postData), id);
+    const postData = test.filter((data) => {
+      if (data.title === "種類:")
+        return (
+          data.titleData === "red" ||
+          data.titleData === "white" ||
+          data.titleData === "rose" ||
+          data.titleData === "sparkling"
+        );
+      if (data.title === "ランク:")
+        return (
+          data.titleData === "oneRank" ||
+          data.titleData === "twoRank" ||
+          data.titleData === "another"
+        );
+    });
+
+    if (initPostData.length === 0) {
+      setOnPatch(false);
+    }
+    if (test.length !== postData.length) {
+      test.map((data) => {
+        if (data.title === "種類:") {
+          toast.error(
+            'ワインの種類は\n"red","white","rose","spark"\nのどれかを入力してください'
+          );
+        } else if (data.title === "ランク:") {
+          toast.error(
+            'ワインのランクは\n"oneRank","twoRank","another"\nのどれかを入力してください'
+          );
+        }
+      });
+    } else {
+      handleSetItemText(JSON.stringify(initPostData), id);
+    }
   };
 
   return (
