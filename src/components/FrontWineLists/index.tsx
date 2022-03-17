@@ -44,12 +44,15 @@ export const FrontWineLists: React.FC<Props> = (props) => {
                 }
                 alt="ワインの画像です"
               />
-              <button
-                className="mt-5 mx-3 py-2 w-1/3 font-mono bg-yellow-100 rounded-lg"
-                onClick={() => handleDelete(data.id, data.frontBottleCount)}
-              >
-                削除
-              </button>
+              <div className="flex items-center justify-between mt-5 font-mono">
+                <p>ワインを1本削除する</p>
+                <button
+                  className="py-2 w-1/3 font-mono bg-yellow-100 rounded-lg"
+                  onClick={() => handleDelete(data.id, data.frontBottleCount)}
+                >
+                  削除
+                </button>
+              </div>
               <div className="flex mt-5 font-mono">
                 <p>表にある本数:</p>
                 <p className="ml-5">{data.frontBottleCount}</p>
