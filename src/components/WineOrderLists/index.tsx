@@ -3,10 +3,10 @@ import { Data, Props } from "src/types";
 import { Toaster } from "react-hot-toast";
 import { ItemLists } from "../ItemLists";
 import { ContentLayout } from "src/layouts/contentLayout";
-import React from "react";
+import React, { useMemo } from "react";
 
 export const WineOrderLists: React.FC<Props> = (props) => {
-  const data = props.contents;
+  const data = useMemo(() => props.contents, [props.contents]);
 
   if (data.length === 0) {
     return (

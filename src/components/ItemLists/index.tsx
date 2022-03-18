@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
 import { handleSetItemText } from "src/method";
 import { Data } from "src/types";
@@ -10,7 +10,7 @@ type Props = {
 
 export const ItemLists: React.FC<Props> = (props) => {
   const router = useRouter();
-  const data = props.items;
+  const data = useMemo(() => props.items, []);
   const [onPatch, setOnPatch] = useState(false);
   const [wineItems, setWineItems] = useState([
     {
@@ -71,63 +71,69 @@ export const ItemLists: React.FC<Props> = (props) => {
     setInitWineItems(wineItems);
   }, []);
 
-  const handleChange = (
-    e:
-      | React.ChangeEvent<HTMLTextAreaElement>
-      | React.ChangeEvent<HTMLInputElement>,
-    index: number
-  ) => {
-    setWineItems((items) =>
-      items.map((item, i) =>
-        i === index ? { title: item.title, titleData: e.target.value } : item
-      )
-    );
-  };
+  const handleChange = useCallback(
+    (
+      e:
+        | React.ChangeEvent<HTMLTextAreaElement>
+        | React.ChangeEvent<HTMLInputElement>,
+      index: number
+    ) => {
+      setWineItems((items) =>
+        items.map((item, i) =>
+          i === index ? { title: item.title, titleData: e.target.value } : item
+        )
+      );
+    },
+    [wineItems]
+  );
 
-  const handleSetItem = (id: string) => {
-    const initPostData = wineItems.filter((item, index) => {
-      return item.titleData !== initWineItems[index].titleData;
-    });
-
-    const test = initPostData.filter(
-      ({ title }) => title === "種類:" || title === "ランク:"
-    );
-
-    const postData = test.filter((data) => {
-      if (data.title === "種類:")
-        return (
-          data.titleData === "red" ||
-          data.titleData === "white" ||
-          data.titleData === "rose" ||
-          data.titleData === "sparkling"
-        );
-      if (data.title === "ランク:")
-        return (
-          data.titleData === "oneRank" ||
-          data.titleData === "twoRank" ||
-          data.titleData === "another"
-        );
-    });
-
-    if (initPostData.length === 0) {
-      setOnPatch(false);
-    }
-    if (test.length !== postData.length) {
-      test.map((data) => {
-        if (data.title === "種類:") {
-          toast.error(
-            'ワインの種類は\n"red","white","rose","spark"\nのどれかを入力してください'
-          );
-        } else if (data.title === "ランク:") {
-          toast.error(
-            'ワインのランクは\n"oneRank","twoRank","another"\nのどれかを入力してください'
-          );
-        }
+  const handleSetItem = useCallback(
+    (id: string) => {
+      const initPostData = wineItems.filter((item, index) => {
+        return item.titleData !== initWineItems[index].titleData;
       });
-    } else {
-      handleSetItemText(JSON.stringify(initPostData), id);
-    }
-  };
+
+      const filterPostData = initPostData.filter(
+        ({ title }) => title === "種類:" || title === "ランク:"
+      );
+
+      const typeAndRankData = filterPostData.filter((data) => {
+        if (data.title === "種類:")
+          return (
+            data.titleData === "red" ||
+            data.titleData === "white" ||
+            data.titleData === "rose" ||
+            data.titleData === "sparkling"
+          );
+        if (data.title === "ランク:")
+          return (
+            data.titleData === "oneRank" ||
+            data.titleData === "twoRank" ||
+            data.titleData === "another"
+          );
+      });
+
+      if (initPostData.length === 0) {
+        setOnPatch(false);
+      }
+      if (filterPostData.length !== typeAndRankData.length) {
+        filterPostData.map((data) => {
+          if (data.title === "種類:") {
+            toast.error(
+              'ワインの種類は\n"red","white","rose","spark"\nのどれかを入力してください'
+            );
+          } else if (data.title === "ランク:") {
+            toast.error(
+              'ワインのランクは\n"oneRank","twoRank","another"\nのどれかを入力してください'
+            );
+          }
+        });
+      } else {
+        handleSetItemText(JSON.stringify(initPostData), id);
+      }
+    },
+    [wineItems]
+  );
 
   return (
     <dl className="sm: flex flex-wrap justify-around p-7 w-1/2 text-gray-700 font-mono tracking-wide bg-yellow-50 rounded-lg sm:mt-4 sm:w-11/12">

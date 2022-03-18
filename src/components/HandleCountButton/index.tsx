@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Toaster } from "react-hot-toast";
 import { Data } from "src/types";
 
@@ -21,26 +21,32 @@ export const HandleCountButton: React.FC<Props> = (props) => {
     for (let i = 0; i < props.rankData.length; i++) {
       setOrderCounts((count) => [...count, 0]);
     }
-  }, [props.rankData.length]);
+  }, []);
 
-  const addCount = (index: number) => {
-    setOrderCounts(
-      orderCounts.map((count, i) => (i === index ? count + 1 : count))
-    );
-    setStockBottleCounts(
-      (counts) => counts.map((count, i) => (i === index ? count + 1 : count))
-    );
-  };
-
-  const reduceCount = (index: number) => {
-    if (orderCounts[index] > 0) {
+  const addCount = useCallback(
+    (index: number) => {
       setOrderCounts(
-        orderCounts.map((count, i) => (i === index ? count - 1 : count))
+        orderCounts.map((count, i) => (i === index ? count + 1 : count))
       );
-    } else {
-      return;
-    }
-  };
+      setStockBottleCounts((counts) =>
+        counts.map((count, i) => (i === index ? count + 1 : count))
+      );
+    },
+    [orderCounts, stockBottleCounts]
+  );
+
+  const reduceCount = useCallback(
+    (index: number) => {
+      if (orderCounts[index] > 0) {
+        setOrderCounts(
+          orderCounts.map((count, i) => (i === index ? count - 1 : count))
+        );
+      } else {
+        return;
+      }
+    },
+    [orderCounts]
+  );
 
   return (
     <div className="flex justify-between mt-5">

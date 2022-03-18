@@ -4,17 +4,20 @@ import { HandleCountButton } from "../HandleCountButton";
 import { ItemLists } from "../ItemLists";
 import { FilterComponents } from "../FilterComponents";
 import { useFilter } from "src/hooks/useFilter";
-import React from "react";
+import React, { useCallback, useMemo } from "react";
 import { ContentLayout } from "src/layouts/contentLayout";
 
 export const FrontWineLists: React.FC<Props> = (props) => {
-  const contents = props.contents;
+  const contents = useMemo(() => props.contents, []);
   const { data, textLists, filterContents, handlePriceFilter, handleReset } =
     useFilter(contents);
 
   const rankData = data?.filter(
-    (data: Data) =>
-      data.rank[0] === props.keyRank && data.type[0] === props.keyType
+    useCallback(
+      (data: Data) =>
+        data.rank[0] === props.keyRank && data.type[0] === props.keyType,
+      [data]
+    )
   );
 
   if (rankData.length === 0) {

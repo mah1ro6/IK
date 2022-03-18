@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import toast from "react-hot-toast";
 import { Data } from "src/types";
 
@@ -17,28 +17,31 @@ export const useFilter = (contents: Data[]) => {
     { id: 6, price: "7000~" },
   ];
 
-  const textLists = [
-    {
-      title: "産地: ",
-      placeholder: "例）ブルゴーニュ",
-      value: originFilterQuery,
-      onChange: setOriginFilterQuery,
-    },
-    {
-      title: "品種: ",
-      placeholder: "例）シャルドネ",
-      value: varietyFilterQuery,
-      onChange: setVarietyFilterQuery,
-    },
-    {
-      title: "味わい: ",
-      placeholder: "例）フルーティ",
-      value: tasteFilterQuery,
-      onChange: setTasteFilterQuery,
-    },
-  ];
+  const textLists = useMemo(
+    () => [
+      {
+        title: "産地: ",
+        placeholder: "例）ブルゴーニュ",
+        value: originFilterQuery,
+        onChange: setOriginFilterQuery,
+      },
+      {
+        title: "品種: ",
+        placeholder: "例）シャルドネ",
+        value: varietyFilterQuery,
+        onChange: setVarietyFilterQuery,
+      },
+      {
+        title: "味わい: ",
+        placeholder: "例）フルーティ",
+        value: tasteFilterQuery,
+        onChange: setTasteFilterQuery,
+      },
+    ],
+    [originFilterQuery, varietyFilterQuery, tasteFilterQuery]
+  );
 
-  const filterContents = () => {
+  const filterContents = useCallback(() => {
     if (
       !originFilterQuery.match("[^\x01-\x7E]") &&
       !varietyFilterQuery.match("[^\x01-\x7E]") &&
@@ -81,50 +84,55 @@ export const useFilter = (contents: Data[]) => {
           : setData(filterData);
       }
     }
-  };
+  }, [originFilterQuery, varietyFilterQuery, tasteFilterQuery]);
 
-  const handlePriceFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const priceFilterContents = contents.filter(({ price }) => {
-      for (let i: number = prices.length; i > 0; i--) {
-        if (
-          i === prices.length &&
-          e.target.value === prices.length.toString() &&
-          price >= (i + 1) * 1000
-        ) {
-          return true;
+  const handlePriceFilter = useCallback(
+    (e: React.ChangeEvent<HTMLSelectElement>) => {
+      const priceFilterContents = contents.filter(({ price }) => {
+        for (let i: number = prices.length; i > 0; i--) {
+          if (
+            i === prices.length &&
+            e.target.value === prices.length.toString() &&
+            price >= (i + 1) * 1000
+          ) {
+            return true;
+          }
+          if (
+            i > 1 &&
+            i < prices.length &&
+            e.target.value === i.toString() &&
+            (i + 1) * 1000 + 999 >= price &&
+            price >= (i + 1) * 1000
+          ) {
+            return true;
+          }
+          if (i === 1 && e.target.value === i.toString()) {
+            return true;
+          }
         }
-        if (
-          i > 1 &&
-          i < prices.length &&
-          e.target.value === i.toString() &&
-          (i + 1) * 1000 + 999 >= price &&
-          price >= (i + 1) * 1000
-        ) {
-          return true;
-        }
-        if (i === 1 && e.target.value === i.toString()) {
-          return true;
-        }
+      });
+
+      if (priceFilterContents.length === 0) {
+        toast.error(
+          `${
+            prices[parseInt(e.target.value) - 1].price
+          }円のワインはありません。`
+        );
+        e.target.value = "1";
+        setData(contents);
+      } else {
+        setData(priceFilterContents);
       }
-    });
+    },
+    []
+  );
 
-    if (priceFilterContents.length === 0) {
-      toast.error(
-        `${prices[parseInt(e.target.value) - 1].price}円のワインはありません。`
-      );
-      e.target.value = "1";
-      setData(contents);
-    } else {
-      setData(priceFilterContents);
-    }
-  };
-
-  const handleReset = () => {
+  const handleReset = useCallback(() => {
     setData(contents);
     setOriginFilterQuery("");
     setVarietyFilterQuery("");
     setTasteFilterQuery("");
-  };
+  }, []);
 
   return {
     data,
