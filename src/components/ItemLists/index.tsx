@@ -2,7 +2,8 @@ import { useRouter } from "next/router";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
 import { handleSetItemText } from "src/method";
-import { Data } from "src/types";
+import { Data, WineItem } from "src/types";
+import { filterRankLists, filterTypeLists, wineItemLists } from "src/utils";
 
 type Props = {
   items: Data;
@@ -12,60 +13,8 @@ export const ItemLists: React.FC<Props> = (props) => {
   const router = useRouter();
   const data = useMemo(() => props.items, []);
   const [onPatch, setOnPatch] = useState(false);
-  const [wineItems, setWineItems] = useState([
-    {
-      title: "ワイン名:",
-      titleData: data.name,
-    },
-    {
-      title: "種類:",
-      titleData: router.pathname.indexOf("cellar") !== -1 ? data.type[0] : null,
-    },
-    {
-      title: "ランク:",
-      titleData: router.pathname.indexOf("cellar") !== -1 ? data.rank[0] : null,
-    },
-    {
-      title: "産地:",
-      titleData: data.origin,
-    },
-    {
-      title: "品種:",
-      titleData: data.variety,
-    },
-    {
-      title: "味わい:",
-      titleData: data.taste,
-    },
-    {
-      title: "値段:",
-      titleData: router.pathname.indexOf("front") !== -1 ? null : data.price,
-    },
-    {
-      title: "生産者:",
-      titleData: data.producer,
-    },
-    {
-      title: "備考:",
-      titleData: data.remarks,
-    },
-  ]);
-  const [initWineItems, setInitWineItems] = useState<
-    (
-      | {
-          title: string;
-          titleData: string | null;
-        }
-      | {
-          title: string;
-          titleData: number | null;
-        }
-      | {
-          title: string;
-          titleData: string | undefined;
-        }
-    )[]
-  >([]);
+  const [wineItems, setWineItems] = useState(wineItemLists(data));
+  const [initWineItems, setInitWineItems] = useState<WineItem>([]);
 
   useEffect(() => {
     setInitWineItems(wineItems);
@@ -97,26 +46,20 @@ export const ItemLists: React.FC<Props> = (props) => {
         ({ title }) => title === "種類:" || title === "ランク:"
       );
 
-      const typeAndRankData = filterPostData.filter((data) => {
-        if (data.title === "種類:")
-          return (
-            data.titleData === "red" ||
-            data.titleData === "white" ||
-            data.titleData === "rose" ||
-            data.titleData === "sparkling"
-          );
-        if (data.title === "ランク:")
-          return (
-            data.titleData === "oneRank" ||
-            data.titleData === "twoRank" ||
-            data.titleData === "another"
-          );
-      });
+      const filterTypeAndRank = filterPostData.some((data, i) =>
+        data.title === "種類:"
+          ? data.titleData === filterTypeLists[i]
+          : data.title === "ランク:"
+          ? data.titleData === filterRankLists[i]
+          : undefined
+      );
+
+      console.log(filterTypeAndRank);
 
       if (initPostData.length === 0) {
         setOnPatch(false);
       }
-      if (filterPostData.length !== typeAndRankData.length) {
+      if (!filterTypeAndRank && filterPostData.length !== 0) {
         filterPostData.map((data) => {
           if (data.title === "種類:") {
             toast.error(

@@ -47,3 +47,8 @@ export type textLists = {
   value: string;
   onChange: Dispatch<SetStateAction<string>>;
 }[];
+
+export type WineItem = {
+  title: string;
+  titleData: string | number | null | undefined;
+}[];

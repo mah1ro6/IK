@@ -1,21 +1,13 @@
 import { useCallback, useMemo, useState } from "react";
 import toast from "react-hot-toast";
 import { Data } from "src/types";
+import { prices } from "src/utils";
 
 export const useFilter = (contents: Data[]) => {
   const [originFilterQuery, setOriginFilterQuery] = useState("");
   const [varietyFilterQuery, setVarietyFilterQuery] = useState("");
   const [tasteFilterQuery, setTasteFilterQuery] = useState("");
   const [data, setData] = useState(contents);
-
-  const prices = [
-    { id: 1, price: "〜なし〜" },
-    { id: 2, price: "3000~3999" },
-    { id: 3, price: "4000~4999" },
-    { id: 4, price: "5000~5999" },
-    { id: 5, price: "6000~6999" },
-    { id: 6, price: "7000~" },
-  ];
 
   const textLists = useMemo(
     () => [
