@@ -41,7 +41,7 @@ export type PropsData = {
   text: string;
 };
 
-export type textLists = {
+export type TextLists = {
   title: string;
   placeholder: string;
   value: string;

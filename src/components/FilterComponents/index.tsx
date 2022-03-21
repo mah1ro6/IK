@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
 import { ChangeEvent, useRef } from "react";
-import { textLists } from "src/types";
+import { TextLists } from "src/types";
 
 type Props = {
-  textLists: textLists;
+  textLists: TextLists;
   prices?: {
     id: number;
     price: string;
