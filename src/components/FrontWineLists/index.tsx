@@ -12,12 +12,13 @@ export const FrontWineLists: React.FC<Props> = (props) => {
   const { data, textLists, filterContents, handlePriceFilter, handleReset } =
     useFilter(contents);
 
-  const rankData = data?.filter(
-    useCallback(
-      (data: Data) =>
-        data.rank[0] === props.keyRank && data.type[0] === props.keyType,
-      [data]
-    )
+  const rankData = useMemo(
+    () =>
+      data?.filter(
+        (data: Data) =>
+          data.rank[0] === props.keyRank && data.type[0] === props.keyType
+      ),
+    []
   );
 
   if (rankData.length === 0) {
