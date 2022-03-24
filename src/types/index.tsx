@@ -48,7 +48,26 @@ export type TextLists = {
   onChange: Dispatch<SetStateAction<string>>;
 }[];
 
-export type WineItem = {
+type WineItem = {
   title: string;
   titleData: string | number | null | undefined;
-}[];
+};
+
+export type State = {
+  onPatch: boolean;
+  wineItems: WineItem[];
+};
+
+type HandleChangeAction = {
+  type: "patchOff" | "patchOn" | "handleChange";
+  index: number;
+  value: string;
+};
+
+type NormalAction = {
+  type: "patchOff" | "patchOn" | "handleChange";
+  index?: undefined;
+  value?: undefined;
+};
+
+export type Action = HandleChangeAction | NormalAction;

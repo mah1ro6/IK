@@ -1,9 +1,10 @@
 import { useRouter } from "next/router";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useMemo, useReducer } from "react";
 import toast from "react-hot-toast";
 import { handleSetItemText } from "src/method";
-import { Data, WineItem } from "src/types";
+import { Data } from "src/types";
 import { filterRankLists, filterTypeLists, wineItemLists } from "src/utils";
+import { reducer } from "src/hooks/reducer";
 
 type Props = {
   items: Data;
@@ -12,13 +13,12 @@ type Props = {
 export const ItemLists: React.FC<Props> = (props) => {
   const router = useRouter();
   const data = useMemo(() => props.items, []);
-  const [onPatch, setOnPatch] = useState(false);
-  const [wineItems, setWineItems] = useState(wineItemLists(data));
-  const [initWineItems, setInitWineItems] = useState<WineItem>([]);
 
-  useEffect(() => {
-    setInitWineItems(wineItems);
+  const initState = useMemo(() => {
+    return { onPatch: false, wineItems: wineItemLists(data, router) };
   }, []);
+
+  const [state, dispatch] = useReducer(reducer, initState);
 
   const handleChange = useCallback(
     (
@@ -27,39 +27,32 @@ export const ItemLists: React.FC<Props> = (props) => {
         | React.ChangeEvent<HTMLInputElement>,
       index: number
     ) => {
-      setWineItems((items) =>
-        items.map((item, i) =>
-          i === index ? { title: item.title, titleData: e.target.value } : item
-        )
-      );
+      dispatch({ type: "handleChange", index, value: e.target.value });
     },
-    [wineItems]
+    [state.wineItems]
   );
 
   const handleSetItem = useCallback(
     (id: string) => {
-      const initPostData = wineItems.filter((item, index) => {
-        return item.titleData !== initWineItems[index].titleData;
+      const initPostData = state.wineItems.filter((item, index) => {
+        return item.titleData !== initState.wineItems[index].titleData;
       });
 
       const filterPostData = initPostData.filter(
         ({ title }) => title === "種類:" || title === "ランク:"
       );
 
-      const filterTypeAndRank = filterPostData.some((data, i) =>
+      const filterTypeAndRank = filterPostData.some((data) =>
         data.title === "種類:"
-          ? data.titleData === filterTypeLists[i]
+          ? filterTypeLists.some((type) => type === data.titleData)
           : data.title === "ランク:"
-          ? data.titleData === filterRankLists[i]
-          : undefined
+          ? filterRankLists.some((rank) => rank === data.titleData)
+          : null
       );
 
-      console.log(filterTypeAndRank);
-
       if (initPostData.length === 0) {
-        setOnPatch(false);
-      }
-      if (!filterTypeAndRank && filterPostData.length !== 0) {
+        dispatch({ type: "patchOff" });
+      } else if (!filterTypeAndRank && filterPostData.length !== 0) {
         filterPostData.map((data) => {
           if (data.title === "種類:") {
             toast.error(
@@ -75,16 +68,16 @@ export const ItemLists: React.FC<Props> = (props) => {
         handleSetItemText(JSON.stringify(initPostData), id);
       }
     },
-    [wineItems]
+    [state.wineItems]
   );
 
   return (
     <dl className="sm: flex flex-wrap justify-around p-7 w-1/2 text-gray-700 font-mono tracking-wide bg-yellow-50 rounded-lg sm:mt-4 sm:w-11/12">
-      {wineItems.map((item, index) =>
+      {state.wineItems.map((item, index) =>
         item.titleData || item.titleData === "" ? (
           <React.Fragment key={item.title}>
             <dt className="mt-2 w-1/4 font-bold leading-loose">{item.title}</dt>
-            {!onPatch ? (
+            {!state.onPatch ? (
               <dd className="mt-2 w-3/4 leading-loose sm:w-2/3">
                 {item.titleData}
               </dd>
@@ -111,7 +104,7 @@ export const ItemLists: React.FC<Props> = (props) => {
             <p className="w-1/2 text-gray-500">項目の編集</p>
             <button
               className="py-2 w-1/3 font-mono bg-blue-200 rounded-lg"
-              onClick={() => setOnPatch(true)}
+              onClick={() => dispatch({ type: "patchOn" })}
             >
               編集
             </button>

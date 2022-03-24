@@ -4,7 +4,7 @@ import { HandleCountButton } from "../HandleCountButton";
 import { ItemLists } from "../ItemLists";
 import { FilterComponents } from "../FilterComponents";
 import { useFilter } from "src/hooks/useFilter";
-import React, { useCallback, useMemo } from "react";
+import React, { useMemo } from "react";
 import { ContentLayout } from "src/layouts/contentLayout";
 
 export const FrontWineLists: React.FC<Props> = (props) => {

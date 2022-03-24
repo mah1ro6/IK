@@ -1,8 +1,8 @@
-import { useRouter } from "next/router";
+import { NextRouter } from "next/router";
 import { Data } from "src/types";
 
-export const wineItemLists = (data: Data) => {
-  const router = useRouter();
+export const wineItemLists = (data: Data, router: NextRouter) => {
+  
   return [
     {
       title: "ワイン名:",
