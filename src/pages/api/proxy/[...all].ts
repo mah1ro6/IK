@@ -59,8 +59,8 @@ const postRequest = async (req: NextApiRequest, res: NextApiResponse) => {
             replaceStr: "/ik_request/api/addToFront.php",
           },
           {
-            patternStr: "^/api/proxy/emptyBottlePost",
-            replaceStr: "/ik_request/api/onEmptyBottle.php",
+            patternStr: "^/api/proxy/frontBottlePost",
+            replaceStr: "/ik_request/api/reduceFrontBottle.php",
           },
           {
             patternStr: "^/api/proxy/onOrderPost",
