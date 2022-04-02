@@ -1,7 +1,7 @@
 import { GetStaticProps, NextPage } from "next";
 import { client } from "src/libs/client";
 import { PagesProps } from "src/types";
-import { WineOrderLists } from "src/components/WineOrderLists";
+import { WineOrderLists } from "src/pages/order/wineOrderLists";
 
 export const getStaticProps: GetStaticProps<
   Pick<PagesProps, "data">
