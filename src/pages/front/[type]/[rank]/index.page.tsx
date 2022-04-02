@@ -1,4 +1,4 @@
-import { FrontWineLists } from "src/components/FrontWineLists";
+import { FrontWineLists } from "src/pages/front/[type]/[rank]/frontWineLists";
 import { client } from "src/libs/client";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { PagesProps, Data } from "src/types";

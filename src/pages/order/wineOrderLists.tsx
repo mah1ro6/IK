@@ -1,7 +1,7 @@
 import { handleOffOrder } from "src/method";
 import { Data, Props } from "src/types";
 import { Toaster } from "react-hot-toast";
-import { ItemLists } from "../ItemLists";
+import { ItemLists } from "../../components/ItemLists";
 import { ContentLayout } from "src/layouts/contentLayout";
 import React, { useMemo } from "react";
 
