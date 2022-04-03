@@ -70,11 +70,9 @@ export const useFilter = (contents: Data[]) => {
       const filterData =
         tasteFilterData.length === 0 ? isVarietyData : tasteFilterData;
 
-      {
-        filterData.length === 0
-          ? toast.error("検索に一致するワインが見つかりませんでした。")
-          : setData(filterData);
-      }
+      filterData.length === data.length
+        ? toast.error("検索に一致するワインが見つかりませんでした。")
+        : setData(filterData);
     }
   }, [originFilterQuery, varietyFilterQuery, tasteFilterQuery]);
 

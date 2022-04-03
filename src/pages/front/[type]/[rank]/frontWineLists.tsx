@@ -9,7 +9,7 @@ import { ContentLayout } from "src/layouts/contentLayout";
 import Image from "next/image";
 
 export const FrontWineLists: React.FC<Props> = (props) => {
-  const contents = useMemo(() => props.contents, []);
+  const contents = useMemo(() => props.contents, [props.contents]);
   const { data, textLists, filterContents, handlePriceFilter, handleReset } =
     useFilter(contents);
 
@@ -19,7 +19,7 @@ export const FrontWineLists: React.FC<Props> = (props) => {
         (data: Data) =>
           data.rank[0] === props.keyRank && data.type[0] === props.keyType
       ),
-    []
+    [data, props.keyRank, props.keyType]
   );
 
   if (rankData.length === 0) {

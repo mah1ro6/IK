@@ -21,7 +21,7 @@ export const HandleCountButton: React.FC<Props> = (props) => {
     for (let i = 0; i < props.rankData.length; i++) {
       setOrderCounts((count) => [...count, 0]);
     }
-  }, []);
+  }, [props.rankData.length]);
 
   const addCount = useCallback(
     (index: number) => {
@@ -32,7 +32,7 @@ export const HandleCountButton: React.FC<Props> = (props) => {
         counts.map((count, i) => (i === index ? count + 1 : count))
       );
     },
-    [orderCounts, stockBottleCounts]
+    [orderCounts]
   );
 
   const reduceCount = useCallback(

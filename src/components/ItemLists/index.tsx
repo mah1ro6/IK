@@ -12,11 +12,11 @@ type Props = {
 
 export const ItemLists: React.FC<Props> = (props) => {
   const router = useRouter();
-  const data = useMemo(() => props.items, []);
+  const data = useMemo(() => props.items, [props.items]);
 
   const initState = useMemo(() => {
     return { onPatch: false, wineItems: wineItemLists(data, router) };
-  }, []);
+  }, [data, router]);
 
   const [state, dispatch] = useReducer(reducer, initState);
 
@@ -29,7 +29,7 @@ export const ItemLists: React.FC<Props> = (props) => {
     ) => {
       dispatch({ type: "handleChange", index, value: e.target.value });
     },
-    [state.wineItems]
+    []
   );
 
   const handleSetItem = useCallback(
@@ -68,7 +68,7 @@ export const ItemLists: React.FC<Props> = (props) => {
         handleSetItemText(JSON.stringify(initPostData), id);
       }
     },
-    [state.wineItems]
+    [state.wineItems, initState.wineItems]
   );
 
   return (
