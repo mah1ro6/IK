@@ -6,6 +6,7 @@ import { ItemLists } from "../../components/ItemLists";
 import { FilterComponents } from "../../components/FilterComponents";
 import React from "react";
 import { ContentLayout } from "src/layouts/contentLayout";
+import Image from "next/image";
 
 export const CellarWineLists: React.FC<Props> = (props) => {
   const {
@@ -38,15 +39,20 @@ export const CellarWineLists: React.FC<Props> = (props) => {
         <React.Fragment key={content.id}>
           <ContentLayout>
             <div className="text-center">
-              <img
-                className="w-60 h-60 rounded-lg object-cover sm:mx-auto"
-                src={
-                  content?.image
-                    ? content.image.url
-                    : "/images/ikgroup-wineimage.jpg"
-                }
-                alt="ワインの画像です"
-              />
+              <div>
+                <Image
+                  src={
+                    content?.image
+                      ? content.image.url
+                      : "/images/ikgroup-wineimage.jpg"
+                  }
+                  objectFit={"cover"}
+                  width={240}
+                  height={240}
+                  alt="ワインの画像です"
+                  className="rounded-lg"
+                />
+              </div>
               <button
                 className="mt-5 mx-3 py-2 w-1/3 font-mono bg-yellow-100 rounded-lg"
                 onClick={() =>

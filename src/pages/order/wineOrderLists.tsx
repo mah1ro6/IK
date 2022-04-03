@@ -4,6 +4,7 @@ import { Toaster } from "react-hot-toast";
 import { ItemLists } from "../../components/ItemLists";
 import { ContentLayout } from "src/layouts/contentLayout";
 import React, { useMemo } from "react";
+import Image from "next/image";
 
 export const WineOrderLists: React.FC<Props> = (props) => {
   const data = useMemo(() => props.contents, [props.contents]);
@@ -22,13 +23,20 @@ export const WineOrderLists: React.FC<Props> = (props) => {
         <React.Fragment key={data.id}>
           <ContentLayout>
             <div className="text-center">
-              <img
-                className="w-60 h-60 rounded-lg object-cover sm:mx-auto"
-                src={
-                  data?.image ? data.image.url : "/images/ikgroup-wineimage.jpg"
-                }
-                alt="ワインの画像です"
-              />
+              <div>
+                <Image
+                  src={
+                    data?.image
+                      ? data.image.url
+                      : "/images/ikgroup-wineimage.jpg"
+                  }
+                  objectFit={"cover"}
+                  width={240}
+                  height={240}
+                  alt="ワインの画像です"
+                  className="rounded-lg"
+                />
+              </div>
               <div className="flex items-center justify-around mt-5">
                 <div className="flex">
                   <p className="font-mono">発注本数:</p>
