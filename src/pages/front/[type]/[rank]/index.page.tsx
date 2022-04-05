@@ -1,9 +1,10 @@
 import { FrontWineLists } from "src/pages/front/[type]/[rank]/frontWineLists";
 import { client } from "src/libs/client";
-import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import { CustomNextPage, GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { PagesProps, Data } from "src/types";
 import { useRouter } from "next/router";
 import { ParsedUrlQuery } from "node:querystring";
+import { backToTopLayout } from "src/layouts/backToTopLayout";
 
 export type Params = ParsedUrlQuery & Pick<Data, "type" | "rank">;
 
@@ -51,7 +52,7 @@ export const getStaticProps: GetStaticProps<PagesProps, Params> = async ({
   };
 };
 
-const Rank: NextPage<PagesProps> = (props) => {
+const Rank: CustomNextPage<PagesProps> = (props) => {
   const router = useRouter();
 
   if (router.isFallback) {
@@ -72,3 +73,5 @@ const Rank: NextPage<PagesProps> = (props) => {
 };
 
 export default Rank;
+
+Rank.getLayout = backToTopLayout;

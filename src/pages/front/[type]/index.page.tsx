@@ -1,9 +1,10 @@
 import { Links } from "src/components/Links";
-import { NextPage } from "next";
+import { CustomNextPage } from "next";
 import { useRouter } from "next/router";
 import { PropsData } from "src/types";
+import { backToTopLayout } from "src/layouts/backToTopLayout";
 
-const Type: NextPage = () => {
+const Type: CustomNextPage = () => {
   const router = useRouter();
 
   const propsData: PropsData[] = [
@@ -31,3 +32,5 @@ const Type: NextPage = () => {
 };
 
 export default Type;
+
+Type.getLayout = backToTopLayout;

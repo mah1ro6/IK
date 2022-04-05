@@ -1,7 +1,8 @@
-import { GetStaticProps, NextPage } from "next";
+import { CustomNextPage, GetStaticProps } from "next";
 import { client } from "src/libs/client";
 import { Data, PagesProps } from "src/types";
 import { CellarWineLists } from "src/pages/cellar/cellarWineLists";
+import { backToTopLayout } from "src/layouts/backToTopLayout";
 
 export const getStaticProps: GetStaticProps<
   Pick<PagesProps, "data">
@@ -27,7 +28,7 @@ export const getStaticProps: GetStaticProps<
   };
 };
 
-const CellarPage: NextPage<PagesProps> = (props) => {
+const CellarPage: CustomNextPage<PagesProps> = (props) => {
   const data = props.data.contents.filter(
     (data: Data) => data.cellarBottleCount > 0
   );
@@ -36,3 +37,5 @@ const CellarPage: NextPage<PagesProps> = (props) => {
 };
 
 export default CellarPage;
+
+CellarPage.getLayout = backToTopLayout;
