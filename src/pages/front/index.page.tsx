@@ -1,8 +1,9 @@
 import { Links } from "src/components/Links";
-import { NextPage } from "next";
+import { CustomNextPage } from "next";
 import { PropsData } from "src/types";
+import { backToTopLayout } from "src/layouts/backToTopLayout";
 
-const FrontPage: NextPage = () => {
+const FrontPage: CustomNextPage = () => {
   const propsData: PropsData[] = [
     {
       frontBack: "front",
@@ -34,3 +35,5 @@ const FrontPage: NextPage = () => {
 };
 
 export default FrontPage;
+
+FrontPage.getLayout = backToTopLayout;
