@@ -3,15 +3,15 @@ import { handleDelete, handleOnOrder } from "src/method";
 import { HandleCountButton } from "../../../../components/HandleCountButton";
 import { ItemLists } from "../../../../components/ItemLists";
 import { FilterComponents } from "../../../../components/FilterComponents";
-import { useFilter } from "src/hooks/useFilter";
+import { useItemFilter } from "src/hooks/useItemFilter";
 import React, { useMemo } from "react";
 import { ContentLayout } from "src/layouts/contentLayout";
 import Image from "next/image";
 
 export const FrontWineLists: React.FC<Props> = (props) => {
   const contents = useMemo(() => props.contents, [props.contents]);
-  const { data, textLists, filterContents, handlePriceFilter, handleReset } =
-    useFilter(contents);
+  const { data, textLists, filterContents, handleReset } =
+    useItemFilter(contents);
 
   const rankData = useMemo(
     () =>
@@ -35,7 +35,6 @@ export const FrontWineLists: React.FC<Props> = (props) => {
       <FilterComponents
         textLists={textLists}
         filterContents={filterContents}
-        handlePriceFilter={handlePriceFilter}
         handleReset={handleReset}
       />
       {rankData?.map((data: Data, index) => (

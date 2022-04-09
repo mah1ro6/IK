@@ -1,7 +1,7 @@
 import { GetStaticProps } from "next";
 import { client } from "src/libs/client";
 import { PagesProps } from "src/types";
-import { WineOrderLists } from "src/pages/order/wineOrderLists";
+import { WineOrderLists } from "src/pages/order/_wineOrderLists";
 import { backToTopLayout } from "src/layouts/backToTopLayout";
 import type { CustomNextPage } from "next";
 
@@ -26,7 +26,7 @@ export const getStaticProps: GetStaticProps<
     props: {
       data,
     },
-    revalidate: 1,
+    revalidate: 3,
   };
 };
 

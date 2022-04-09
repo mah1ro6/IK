@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { ChangeEvent, useRef } from "react";
+import { Toaster } from "react-hot-toast";
 import { TextLists } from "src/types";
 
 type Props = {
@@ -8,7 +9,7 @@ type Props = {
     id: number;
     price: string;
   }[];
-  handlePriceFilter: (e: ChangeEvent<HTMLSelectElement>) => void;
+  handlePriceFilter?: (e: ChangeEvent<HTMLSelectElement>) => void;
   filterContents: () => void;
   handleReset: () => void;
 };
@@ -42,7 +43,11 @@ export const FilterComponents: React.FC<Props> = (props) => {
                 <select
                   id="price"
                   className="rounded-lg"
-                  onChange={(e) => props.handlePriceFilter(e)}
+                  onChange={(e) =>
+                    typeof props.handlePriceFilter !== "undefined"
+                      ? props.handlePriceFilter(e)
+                      : null
+                  }
                   ref={ref}
                 >
                   {props.prices?.map((price) => (
@@ -61,7 +66,7 @@ export const FilterComponents: React.FC<Props> = (props) => {
             >
               絞り込む
             </button>
-
+            <Toaster />
             <button
               className="ml-6 py-2 w-20 font-mono bg-yellow-300 rounded-lg sm:m-4"
               onClick={() => props.handleReset()}

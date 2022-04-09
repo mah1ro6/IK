@@ -1,30 +1,18 @@
 import { addToFront, handleAddToCellar, handleOnOrder } from "src/method";
 import { Data, Props } from "src/types";
 import { HandleCountButton } from "../../components/HandleCountButton";
-import { useFilter } from "src/hooks/useFilter";
+import { useItemFilter } from "src/hooks/useItemFilter";
 import { ItemLists } from "../../components/ItemLists";
 import { FilterComponents } from "../../components/FilterComponents";
 import React from "react";
 import { ContentLayout } from "src/layouts/contentLayout";
 import Image from "next/image";
+import { usePriceFilter } from "./_usePriceFilter";
 
 export const CellarWineLists: React.FC<Props> = (props) => {
-  const {
-    data,
-    prices,
-    textLists,
-    handlePriceFilter,
-    filterContents,
-    handleReset,
-  } = useFilter(props.contents);
-
-  if (data.length === 0) {
-    return (
-      <p className="flex items-center justify-center h-screen text-gray-700 font-mono text-4xl sm:text-2xl">
-        登録しているワインがありません!
-      </p>
-    );
-  }
+  const { data, textLists, setData, filterContents, handleReset } =
+    useItemFilter(props.contents);
+  const { prices, handlePriceFilter } = usePriceFilter(props.contents, setData);
 
   return (
     <div>
