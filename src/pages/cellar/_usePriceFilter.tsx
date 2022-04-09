@@ -45,7 +45,7 @@ export const usePriceFilter = (
         setData(priceFilterContents);
       }
     },
-    []
+    [contents, setData]
   );
 
   return {

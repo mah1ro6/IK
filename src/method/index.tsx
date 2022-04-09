@@ -29,7 +29,7 @@ export const handleDelete = async (
         error: "削除に失敗しました...",
       });
     }
-  } catch (e) {
+  } catch (e: any) {
     throw new Error(e.message);
   }
 };
@@ -75,7 +75,7 @@ export const addToFront = async (
         error: "送信に失敗しました...",
       }
     );
-  } catch (e) {
+  } catch (e: any) {
     throw new Error(e.message);
   }
 };
@@ -108,7 +108,7 @@ export const handleOnOrder = async (
         error: "送信に失敗しました...",
       });
     }
-  } catch (e) {
+  } catch (e: any) {
     throw new Error(e.message);
   }
 };
@@ -138,7 +138,7 @@ export const handleOffOrder = async (
       success: "送信に成功しました!",
       error: "送信に失敗しました...",
     });
-  } catch (e) {
+  } catch (e: any) {
     throw new Error(e.message);
   }
 };
@@ -166,7 +166,7 @@ export const handleAddToCellar = async (
       success: "送信に成功しました!",
       error: "送信に失敗しました...",
     });
-  } catch (e) {
+  } catch (e: any) {
     throw new Error(e.message);
   }
 };
@@ -186,7 +186,7 @@ export const handleSetItemText = async (data: string, id: string) => {
       success: "送信に成功しました!",
       error: "送信に失敗しました...",
     });
-  } catch (e) {
+  } catch (e: any) {
     throw new Error(e.message);
   }
 };
