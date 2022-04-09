@@ -1,6 +1,6 @@
 import { FrontWineLists } from "src/pages/front/[type]/[rank]/frontWineLists";
 import { client } from "src/libs/client";
-import { CustomNextPage, GetStaticPaths, GetStaticProps, NextPage } from "next";
+import { CustomNextPage, GetStaticPaths, GetStaticProps } from "next";
 import { PagesProps, Data } from "src/types";
 import { useRouter } from "next/router";
 import { ParsedUrlQuery } from "node:querystring";
@@ -23,11 +23,18 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps<PagesProps, Params> = async ({
-  params,
-}) => {
-  const { type } = params as Params;
-  const { rank } = params as Params;
+export const getStaticProps: GetStaticProps<
+  PagesProps,
+  { type: string; rank: string }
+> = async ({ params }) => {
+  if (!params) {
+    return {
+      notFound: true,
+    };
+  }
+
+  const type = params?.type;
+  const rank = params?.rank;
 
   const data = await client.get({
     endpoint: "wine",
@@ -48,7 +55,7 @@ export const getStaticProps: GetStaticProps<PagesProps, Params> = async ({
       type,
       rank,
     },
-    revalidate: 1,
+    revalidate: 3,
   };
 };
 

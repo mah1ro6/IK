@@ -24,7 +24,7 @@ export const getStaticProps: GetStaticProps<
     props: {
       data,
     },
-    revalidate: 1,
+    revalidate: 3,
   };
 };
 

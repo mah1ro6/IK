@@ -15,8 +15,6 @@ export const handleDelete = async (
   id: string,
   frontBottleCount: number
 ): Promise<void> => {
-  console.log(frontBottleCount);
-
   try {
     if (frontBottleCount > 0) {
       await toast.promise(reduceFrontBottle(id, frontBottleCount), {
@@ -32,7 +30,7 @@ export const handleDelete = async (
       });
     }
   } catch (e) {
-    console.log(e);
+    throw new Error(e.message);
   }
 };
 
@@ -78,7 +76,7 @@ export const addToFront = async (
       }
     );
   } catch (e) {
-    console.log(e);
+    throw new Error(e.message);
   }
 };
 
@@ -111,7 +109,7 @@ export const handleOnOrder = async (
       });
     }
   } catch (e) {
-    console.log(e);
+    throw new Error(e.message);
   }
 };
 
@@ -141,7 +139,7 @@ export const handleOffOrder = async (
       error: "送信に失敗しました...",
     });
   } catch (e) {
-    console.log(e);
+    throw new Error(e.message);
   }
 };
 
@@ -169,7 +167,7 @@ export const handleAddToCellar = async (
       error: "送信に失敗しました...",
     });
   } catch (e) {
-    console.log(e);
+    throw new Error(e.message);
   }
 };
 
@@ -189,6 +187,6 @@ export const handleSetItemText = async (data: string, id: string) => {
       error: "送信に失敗しました...",
     });
   } catch (e) {
-    console.log(e);
+    throw new Error(e.message);
   }
 };
