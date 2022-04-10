@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import React, { useCallback, useMemo, useReducer } from "react";
 import toast from "react-hot-toast";
 import { handleSetItemText } from "src/method";
@@ -8,15 +7,15 @@ import { reducer } from "src/hooks/reducer";
 
 type Props = {
   items: Data;
+  offFilter?: "order";
 };
 
 export const ItemLists: React.FC<Props> = (props) => {
-  const router = useRouter();
   const data = useMemo(() => props.items, [props.items]);
 
   const initState = useMemo(() => {
-    return { onPatch: false, wineItems: wineItemLists(data, router) };
-  }, [data, router]);
+    return { onPatch: false, wineItems: wineItemLists(data) };
+  }, [data]);
 
   const [state, dispatch] = useReducer(reducer, initState);
 
@@ -98,7 +97,7 @@ export const ItemLists: React.FC<Props> = (props) => {
           </React.Fragment>
         ) : null
       )}
-      {router.pathname.indexOf("order") === -1 ? (
+      {typeof props.offFilter !== "undefined" ? (
         <div className="mt-6 w-full">
           <div className="flex flex-auto items-center mt-7">
             <p className="w-1/2 text-gray-500">項目の編集</p>

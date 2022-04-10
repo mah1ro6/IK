@@ -33,8 +33,8 @@ export const getStaticProps: GetStaticProps<
     };
   }
 
-  const type = params?.type;
-  const rank = params?.rank;
+  const type = params.type;
+  const rank = params.rank;
 
   const data = await client.get({
     endpoint: "wine",

@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import { ChangeEvent, useRef } from "react";
 import { Toaster } from "react-hot-toast";
 import { TextLists } from "src/types";
@@ -16,7 +15,6 @@ type Props = {
 
 export const FilterComponents: React.FC<Props> = (props) => {
   const ref = useRef(null);
-  const router = useRouter();
 
   return (
     <div className="mb-6 mx-auto py-6 w-11/12 font-mono bg-red-100 rounded-lg shadow-lg">
@@ -36,8 +34,7 @@ export const FilterComponents: React.FC<Props> = (props) => {
                 />
               </div>
             ))}
-
-            {router.pathname.indexOf("front") === -1 ? (
+            {typeof props.handlePriceFilter !== "undefined" ? (
               <>
                 <p className="mr-6">値段帯:</p>
                 <select

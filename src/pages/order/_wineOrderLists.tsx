@@ -57,7 +57,7 @@ export const WineOrderLists: React.FC<Props> = (props) => {
                 <Toaster />
               </div>
             </div>
-            <ItemLists items={data} />
+            <ItemLists items={data} offFilter="order"/>
           </ContentLayout>
         </React.Fragment>
       ))}
