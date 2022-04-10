@@ -4,6 +4,7 @@ import { handleSetItemText } from "src/method";
 import { Data } from "src/types";
 import { filterRankLists, filterTypeLists, wineItemLists } from "src/utils";
 import { reducer } from "src/hooks/reducer";
+import { useRouter } from "next/router";
 
 type Props = {
   items: Data;
@@ -11,11 +12,12 @@ type Props = {
 };
 
 export const ItemLists: React.FC<Props> = (props) => {
+  const router = useRouter()
   const data = useMemo(() => props.items, [props.items]);
 
   const initState = useMemo(() => {
-    return { onPatch: false, wineItems: wineItemLists(data) };
-  }, [data]);
+    return { onPatch: false, wineItems: wineItemLists(data, router) };
+  }, [data, router]);
 
   const [state, dispatch] = useReducer(reducer, initState);
 
