@@ -72,7 +72,7 @@ export const useItemFilter = (contents: Data[]) => {
   useEffect(() => {
     if (data.length === 0) {
       toast.error("検索に一致するワインが見つかりませんでした。");
-      setData(contents);
+      handleReset();
     }
   }, [data.length]);
 
