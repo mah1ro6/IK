@@ -19,7 +19,7 @@ export const FilterComponents: React.FC<Props> = (props) => {
   return (
     <div className="mb-6 mx-auto py-6 w-11/12 font-mono bg-red-100 rounded-lg shadow-lg">
       <div className="mx-auto w-9/12 sm:w-10/12">
-        <div className="flex items-end justify-evenly">
+        <div className="flex items-end justify-between">
           <div>
             {props.textLists.map((list) => (
               <div key={list.title} className="my-2">
@@ -34,27 +34,6 @@ export const FilterComponents: React.FC<Props> = (props) => {
                 />
               </div>
             ))}
-            {typeof props.handlePriceFilter !== "undefined" ? (
-              <>
-                <p className="mr-6">値段帯:</p>
-                <select
-                  id="price"
-                  className="rounded-lg"
-                  onChange={(e) =>
-                    typeof props.handlePriceFilter !== "undefined"
-                      ? props.handlePriceFilter(e)
-                      : null
-                  }
-                  ref={ref}
-                >
-                  {props.prices?.map((price) => (
-                    <option key={price.id} value={price.id}>
-                      {price.price}
-                    </option>
-                  ))}
-                </select>
-              </>
-            ) : null}
           </div>
           <div>
             <button
@@ -72,6 +51,27 @@ export const FilterComponents: React.FC<Props> = (props) => {
             </button>
           </div>
         </div>
+        {typeof props.handlePriceFilter !== "undefined" ? (
+          <div className="flex mt-5 pt-5 border-t-2 border-gray-600">
+            <p className="mr-6">値段帯:</p>
+            <select
+              id="price"
+              className="rounded-lg"
+              onChange={(e) =>
+                typeof props.handlePriceFilter !== "undefined"
+                  ? props.handlePriceFilter(e)
+                  : null
+              }
+              ref={ref}
+            >
+              {props.prices?.map((price) => (
+                <option key={price.id} value={price.id}>
+                  {price.price}
+                </option>
+              ))}
+            </select>
+          </div>
+        ) : null}
       </div>
     </div>
   );
