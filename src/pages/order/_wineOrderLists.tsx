@@ -1,12 +1,12 @@
 import { handleOffOrder } from "src/method";
-import { Data, Props } from "src/types";
+import { Data, KeyProps } from "src/types";
 import { Toaster } from "react-hot-toast";
 import { ItemLists } from "../../components/ItemLists";
 import { ContentLayout } from "src/layouts/contentLayout";
 import React, { useMemo } from "react";
 import Image from "next/image";
 
-export const WineOrderLists: React.FC<Props> = (props) => {
+export const WineOrderLists: React.FC<KeyProps> = (props) => {
   const data = useMemo(() => props.contents, [props.contents]);
 
   if (data.length === 0) {

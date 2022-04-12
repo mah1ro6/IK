@@ -22,14 +22,14 @@ export const ItemLists: React.FC<Props> = (props) => {
 
   const [state, dispatch] = useReducer(reducer, initState);
 
-  const handleChange = useCallback(
+  const handleInputChange = useCallback(
     (
       e:
         | React.ChangeEvent<HTMLTextAreaElement>
         | React.ChangeEvent<HTMLInputElement>,
       index: number
     ) => {
-      dispatch({ type: "handleChange", index, value: e.target.value });
+      dispatch({ type: "handleInputChange", index, value: e.target.value });
     },
     []
   );
@@ -87,14 +87,14 @@ export const ItemLists: React.FC<Props> = (props) => {
               <input
                 className="mt-2 border rounded-md"
                 value={item.titleData}
-                onChange={(e) => handleChange(e, index)}
+                onChange={(e) => handleInputChange(e, index)}
               />
             ) : (
               <textarea
                 className="mt-2 border rounded-md"
                 wrap="soft"
                 value={item.titleData}
-                onChange={(e) => handleChange(e, index)}
+                onChange={(e) => handleInputChange(e, index)}
               />
             )}
           </React.Fragment>

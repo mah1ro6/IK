@@ -20,7 +20,7 @@ export type Data = {
   orderBottleCount: number;
 };
 
-export type Props = {
+export type KeyProps = {
   keyRank?: string;
   keyType?: string;
   contents: Data[];
@@ -58,16 +58,8 @@ export type State = {
   wineItems: WineItem[];
 };
 
-type HandleChangeAction = {
-  type: "patchOff" | "patchOn" | "handleChange";
-  index: number;
-  value: string;
+export type Action = {
+  type: "patchOff" | "patchOn" | "handleInputChange";
+  index?: number;
+  value?: string;
 };
-
-type NormalAction = {
-  type: "patchOff" | "patchOn" | "handleChange";
-  index?: undefined;
-  value?: undefined;
-};
-
-export type Action = HandleChangeAction | NormalAction;

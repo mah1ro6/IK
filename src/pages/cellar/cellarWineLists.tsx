@@ -1,5 +1,5 @@
 import { addToFront, handleAddToCellar, handleOnOrder } from "src/method";
-import { Data, Props } from "src/types";
+import { Data, KeyProps } from "src/types";
 import { HandleCountButton } from "../../components/HandleCountButton";
 import { useItemFilter } from "src/hooks/useItemFilter";
 import { ItemLists } from "../../components/ItemLists";
@@ -9,7 +9,7 @@ import { ContentLayout } from "src/layouts/contentLayout";
 import Image from "next/image";
 import { usePriceFilter } from "./_usePriceFilter";
 
-export const CellarWineLists: React.FC<Props> = (props) => {
+export const CellarWineLists: React.FC<KeyProps> = (props) => {
   const { data, textLists, setData, filterContents, handleReset } =
     useItemFilter(props.contents);
   const { prices, handlePriceFilter } = usePriceFilter(props.contents, setData);

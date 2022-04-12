@@ -1,4 +1,4 @@
-import { Data, Props } from "src/types";
+import { Data, KeyProps } from "src/types";
 import { handleDelete, handleOnOrder } from "src/method";
 import { HandleCountButton } from "../../../../components/HandleCountButton";
 import { ItemLists } from "../../../../components/ItemLists";
@@ -8,7 +8,7 @@ import React, { useMemo } from "react";
 import { ContentLayout } from "src/layouts/contentLayout";
 import Image from "next/image";
 
-export const FrontWineLists: React.FC<Props> = (props) => {
+export const FrontWineLists: React.FC<KeyProps> = (props) => {
   const contents = useMemo(() => props.contents, [props.contents]);
   const { data, textLists, filterContents, handleReset } =
     useItemFilter(contents);

@@ -6,7 +6,7 @@ export const reducer = (state: State, action: Action): State => {
       return { ...state, onPatch: false };
     case "patchOn":
       return { ...state, onPatch: true };
-    case "handleChange":
+    case "handleInputChange":
       const items = state.wineItems.map((item, i) =>
         i === action.index
           ? { title: item.title, titleData: action.value }
