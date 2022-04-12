@@ -2,13 +2,10 @@ import { FrontWineLists } from "src/pages/front/[type]/[rank]/frontWineLists";
 import { client } from "src/libs/client";
 import { CustomNextPage, GetStaticPaths, GetStaticProps } from "next";
 import { PagesProps, Data } from "src/types";
-import { useRouter } from "next/router";
-import { ParsedUrlQuery } from "node:querystring";
 import { backToTopLayout } from "src/layouts/backToTopLayout";
 
-export type Params = ParsedUrlQuery & Pick<Data, "type" | "rank">;
 
-export const getStaticPaths: GetStaticPaths<Params> = async () => {
+export const getStaticPaths: GetStaticPaths<Pick<Data, "type" | "rank">> = async () => {
   const data = await client.get({
     endpoint: "wine",
   });
@@ -19,7 +16,7 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
 
   return {
     paths,
-    fallback: true,
+    fallback: "blocking",
   };
 };
 
@@ -27,15 +24,6 @@ export const getStaticProps: GetStaticProps<
   PagesProps,
   { type: string; rank: string }
 > = async ({ params }) => {
-  if (!params) {
-    return {
-      notFound: true,
-    };
-  }
-
-  const type = params.type;
-  const rank = params.rank;
-
   const data = await client.get({
     endpoint: "wine",
     queries: {
@@ -43,7 +31,7 @@ export const getStaticProps: GetStaticProps<
     },
   });
 
-  if (!data) {
+  if (!data || !params) {
     return {
       notFound: true,
     };
@@ -52,23 +40,14 @@ export const getStaticProps: GetStaticProps<
   return {
     props: {
       data,
-      type,
-      rank,
+      rank: params.rank,
+      type: params.rank,
     },
     revalidate: 3,
   };
 };
 
 const Rank: CustomNextPage<PagesProps> = (props) => {
-  const router = useRouter();
-
-  if (router.isFallback) {
-    return (
-      <p className="flex items-center justify-center h-screen text-gray-700 font-mono text-4xl">
-        Loading...
-      </p>
-    );
-  }
 
   const data = props.data.contents.filter(
     (data: Data) => data.frontBottleCount > 0
