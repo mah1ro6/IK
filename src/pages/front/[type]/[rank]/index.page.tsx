@@ -4,8 +4,9 @@ import { CustomNextPage, GetStaticPaths, GetStaticProps } from "next";
 import { PagesProps, Data } from "src/types";
 import { backToTopLayout } from "src/layouts/backToTopLayout";
 
-
-export const getStaticPaths: GetStaticPaths<Pick<Data, "type" | "rank">> = async () => {
+export const getStaticPaths: GetStaticPaths<
+  Pick<Data, "type" | "rank">
+> = async () => {
   const data = await client.get({
     endpoint: "wine",
   });
@@ -37,18 +38,20 @@ export const getStaticProps: GetStaticProps<
     };
   }
 
+  const type = params.type;
+  const rank = params.rank;
+
   return {
     props: {
       data,
-      rank: params.rank,
-      type: params.rank,
+      rank,
+      type,
     },
     revalidate: 3,
   };
 };
 
 const Rank: CustomNextPage<PagesProps> = (props) => {
-
   const data = props.data.contents.filter(
     (data: Data) => data.frontBottleCount > 0
   );
