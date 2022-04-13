@@ -44,32 +44,44 @@ export const FilterComponents: React.FC<Props> = (props) => {
             </button>
             <Toaster />
             <button
-              className="ml-6 py-2 w-20 font-mono bg-yellow-300 rounded-lg sm:m-4"
+              type="reset"
+              className="ml-6 px-3 py-2 font-mono bg-yellow-300 rounded-lg sm:m-4"
               onClick={() => props.handleReset()}
             >
-              リセット
+              項目のリセット
             </button>
           </div>
         </div>
         {typeof props.handlePriceFilter !== "undefined" ? (
-          <div className="flex mt-5 pt-5 border-t-2 border-gray-600">
-            <p className="mr-6">値段帯:</p>
-            <select
-              id="price"
-              className="rounded-lg"
-              onChange={(e) =>
-                typeof props.handlePriceFilter !== "undefined"
-                  ? props.handlePriceFilter(e)
-                  : null
-              }
-              ref={ref}
-            >
-              {props.prices?.map((price) => (
-                <option key={price.id} value={price.id}>
-                  {price.price}
-                </option>
-              ))}
-            </select>
+          <div className="mt-5 pt-5 border-t-2 border-gray-600">
+            <form className="flex justify-between">
+              <div className="flex items-center">
+                <p className="mr-6">値段帯:</p>
+                <select
+                  id="price"
+                  className="rounded-lg"
+                  onChange={(e) =>
+                    typeof props.handlePriceFilter !== "undefined"
+                      ? props.handlePriceFilter(e)
+                      : null
+                  }
+                  ref={ref}
+                >
+                  {props.prices?.map((price) => (
+                    <option key={price.id} value={price.id}>
+                      {price.price}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <button
+                type="reset"
+                className="ml-6 px-5 py-2 font-mono bg-yellow-300 rounded-lg sm:m-4"
+                onClick={() => props.handleReset()}
+              >
+                値段帯のリセット
+              </button>
+            </form>
           </div>
         ) : null}
       </div>
