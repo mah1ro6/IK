@@ -7,7 +7,7 @@ export const useItemFilter = (contents: Data[]) => {
   const [varietyFilterQuery, setVarietyFilterQuery] = useState("");
   const [tasteFilterQuery, setTasteFilterQuery] = useState("");
   const [data, setData] = useState(contents);
-
+  
   const textLists = useMemo(
     () => [
       {

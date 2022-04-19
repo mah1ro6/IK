@@ -1,63 +1,73 @@
 import { FrontWineLists } from "src/pages/front/[type]/[rank]/frontWineLists";
 import { client } from "src/libs/client";
 import { CustomNextPage, GetStaticPaths, GetStaticProps } from "next";
-import { PagesProps, Data } from "src/types";
+import { Data } from "src/types";
 import { backToTopLayout } from "src/layouts/backToTopLayout";
+import { MicroCMSListResponse } from "microcms-js-sdk";
+import { useRouter } from "next/router";
 
-export const getStaticPaths: GetStaticPaths<
-  Pick<Data, "type" | "rank">
-> = async () => {
-  const data = await client.get({
+export const getStaticPaths: GetStaticPaths<{
+  rank: string;
+}> = async () => {
+  const data = await client.getList({
     endpoint: "wine",
+    queries: {
+      limit: 1000,
+    },
   });
 
-  const paths = data.contents.map((data: Data) => ({
-    params: { type: data.type[0], rank: data.rank[0] },
-  }));
+  const ranks = data.contents.map(
+    (data: Data) => `/front/${data.type[0]}/${data.rank[0]}`
+  );
 
   return {
-    paths,
+    paths: ranks,
     fallback: "blocking",
   };
 };
 
 export const getStaticProps: GetStaticProps<
-  PagesProps,
-  { type: string; rank: string }
-> = async ({ params }) => {
-  const data = await client.get({
-    endpoint: "wine",
-    queries: {
-      limit: 100,
-    },
-  });
-
-  if (!data || !params) {
+  MicroCMSListResponse<Data>,
+  { rank: string }
+> = async (ctx) => {
+  if (!ctx.params) {
     return {
       notFound: true,
     };
   }
 
-  const type = params.type;
-  const rank = params.rank;
+  const data = await client.getList({
+    endpoint: "wine",
+    queries: {
+      filters: `rank[contains]${ctx.params.rank}`,
+      limit: 1000,
+    },
+  });
+
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
-    props: {
-      data,
-      rank,
-      type,
-    },
+    props: data,
     revalidate: 3,
   };
 };
 
-const Rank: CustomNextPage<PagesProps> = (props) => {
-  const data = props.data.contents.filter(
+const Rank: CustomNextPage<MicroCMSListResponse<Data>> = (props) => {
+  const router = useRouter();
+  const data = props.contents?.filter(
     (data: Data) => data.frontBottleCount > 0
   );
 
   return (
-    <FrontWineLists keyRank={props.rank} keyType={props.type} contents={data} />
+    <FrontWineLists
+      keyRank={props.contents[0].rank[0]}
+      keyType={router.query.type as string}
+      contents={data}
+    />
   );
 };
 

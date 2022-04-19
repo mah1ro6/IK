@@ -15,7 +15,7 @@ export const FrontWineLists: React.FC<KeyProps> = (props) => {
 
   const rankData = useMemo(
     () =>
-      data?.filter(
+      data.filter(
         (data: Data) =>
           data.rank[0] === props.keyRank && data.type[0] === props.keyType
       ),

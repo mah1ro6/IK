@@ -1,28 +1,64 @@
 import { Links } from "src/components/Links";
-import { CustomNextPage } from "next";
-import { useRouter } from "next/router";
-import { PropsData } from "src/types";
+import { CustomNextPage, GetStaticPaths, GetStaticProps } from "next";
+import { Data, PropsData } from "src/types";
 import { backToTopLayout } from "src/layouts/backToTopLayout";
+import { client } from "src/libs/client";
+import { MicroCMSListResponse } from "microcms-js-sdk";
 
-const Type: CustomNextPage = () => {
-  const router = useRouter();
+export const getStaticPaths: GetStaticPaths<{ type: string }> = async () => {
+  const data = await client.getList({
+    endpoint: "wine",
+    queries: { limit: 1000 },
+  });
 
+  const types = data.contents.map((data: Data) => `/front/${data.type[0]}`);
+
+  return {
+    paths: types,
+    fallback: "blocking",
+  };
+};
+
+export const getStaticProps: GetStaticProps<
+  MicroCMSListResponse<Data>,
+  { type: string }
+> = async (ctx) => {
+  if (!ctx.params) {
+    return {
+      notFound: true,
+    };
+  }
+
+  const data = await client.getObject({
+    endpoint: "wine",
+    queries: {
+      filters: `type[contains]${ctx.params.type}`,
+      limit: 1000,
+    },
+  });
+
+  return {
+    props: data,
+  };
+};
+
+const Type: CustomNextPage<MicroCMSListResponse<Data>> = (props) => {
   const propsData: PropsData[] = [
     {
       frontBack: "front",
-      type: `${router.query.type}`,
+      type: `${props.contents[0].type}`,
       rank: "oneRank",
       text: "1ランク",
     },
     {
       frontBack: "front",
-      type: `${router.query.type}`,
+      type: `${props.contents[0].type}`,
       rank: "twoRank",
       text: "2ランク",
     },
     {
       frontBack: "front",
-      type: `${router.query.type}`,
+      type: `${props.contents[0].type}`,
       rank: "another",
       text: "その他",
     },

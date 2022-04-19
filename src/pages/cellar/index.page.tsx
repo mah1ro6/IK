@@ -1,16 +1,17 @@
 import { CustomNextPage, GetStaticProps } from "next";
 import { client } from "src/libs/client";
-import { Data, PagesProps } from "src/types";
+import { Data } from "src/types";
 import { CellarWineLists } from "src/pages/cellar/cellarWineLists";
 import { backToTopLayout } from "src/layouts/backToTopLayout";
+import { MicroCMSListResponse } from "microcms-js-sdk";
 
 export const getStaticProps: GetStaticProps<
-  Pick<PagesProps, "data">
+  MicroCMSListResponse<Data>
 > = async () => {
-  const data = await client.get({
+  const data = await client.getList({
     endpoint: "wine",
     queries: {
-      limit: 100,
+      limit: 1000,
     },
   });
 
@@ -21,15 +22,13 @@ export const getStaticProps: GetStaticProps<
   }
 
   return {
-    props: {
-      data,
-    },
+    props: data,
     revalidate: 3,
   };
 };
 
-const CellarPage: CustomNextPage<PagesProps> = (props) => {
-  const data = props.data.contents.filter(
+const CellarPage: CustomNextPage<MicroCMSListResponse<Data>> = (props) => {
+  const data = props?.contents.filter(
     (data: Data) => data.cellarBottleCount > 0
   );
 
