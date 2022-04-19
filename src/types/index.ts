@@ -26,14 +26,6 @@ export type KeyProps = {
   contents: Data[];
 };
 
-export type PagesProps = {
-  data: {
-    contents: Data[];
-  };
-  type: string;
-  rank: string;
-};
-
 export type PropsData = {
   frontBack: string;
   type?: string;
