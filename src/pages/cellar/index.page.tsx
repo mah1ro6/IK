@@ -8,7 +8,7 @@ import { MicroCMSListResponse } from "microcms-js-sdk";
 export const getStaticProps: GetStaticProps<
   MicroCMSListResponse<Data>
 > = async () => {
-  const data = await client.getList({
+  const data = await client.getList<Data>({
     endpoint: "wine",
     queries: {
       limit: 1000,

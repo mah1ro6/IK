@@ -3,10 +3,10 @@ import { CustomNextPage, GetStaticPaths, GetStaticProps } from "next";
 import { Data, PropsData } from "src/types";
 import { backToTopLayout } from "src/layouts/backToTopLayout";
 import { client } from "src/libs/client";
-import { MicroCMSListResponse } from "microcms-js-sdk";
+import { MicroCMSDate, MicroCMSListResponse } from "microcms-js-sdk";
 
 export const getStaticPaths: GetStaticPaths<{ type: string }> = async () => {
-  const data = await client.getList({
+  const data = await client.getList<Data>({
     endpoint: "wine",
     queries: { limit: 1000 },
   });
@@ -20,7 +20,7 @@ export const getStaticPaths: GetStaticPaths<{ type: string }> = async () => {
 };
 
 export const getStaticProps: GetStaticProps<
-  MicroCMSListResponse<Data>,
+  Data & MicroCMSDate,
   { type: string }
 > = async (ctx) => {
   if (!ctx.params) {
@@ -29,7 +29,7 @@ export const getStaticProps: GetStaticProps<
     };
   }
 
-  const data = await client.getObject({
+  const data = await client.getObject<Data>({
     endpoint: "wine",
     queries: {
       filters: `type[contains]${ctx.params.type}`,

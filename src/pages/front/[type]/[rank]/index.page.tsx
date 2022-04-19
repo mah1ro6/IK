@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 export const getStaticPaths: GetStaticPaths<{
   rank: string;
 }> = async () => {
-  const data = await client.getList({
+  const data = await client.getList<Data>({
     endpoint: "wine",
     queries: {
       limit: 1000,
@@ -36,7 +36,7 @@ export const getStaticProps: GetStaticProps<
     };
   }
 
-  const data = await client.getList({
+  const data = await client.getList<Data>({
     endpoint: "wine",
     queries: {
       filters: `rank[contains]${ctx.params.rank}`,
