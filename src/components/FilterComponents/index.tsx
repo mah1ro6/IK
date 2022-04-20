@@ -20,13 +20,13 @@ export const FilterComponents: React.FC<Props> = (props) => {
     <div className="mb-6 mx-auto py-6 w-11/12 font-mono bg-red-100 rounded-lg shadow-lg">
       <div className="mx-auto w-9/12 sm:w-10/12">
         <div className="flex items-end justify-between sm:flex-col sm:items-center">
-          <div className="sm:w-10/12">
+          <div className="sm:mx-auto sm:w-10/12">
             {props.textLists.map((list) => (
-              <div key={list.title} className="my-2 sm:flex sm:justify-between">
+              <div key={list.title}>
                 <p>{list.title}</p>
                 <input
                   type="text"
-                  className="border rounded-lg"
+                  className="border rounded-lg sm:block sm:mx-auto"
                   placeholder={list.placeholder}
                   pattern="[^\x20-\x7E]*"
                   value={list.value}
@@ -76,7 +76,7 @@ export const FilterComponents: React.FC<Props> = (props) => {
               </div>
               <button
                 type="reset"
-                className="ml-6 px-5 py-2 font-mono bg-yellow-300 rounded-lg sm:m-4 sm:mx-auto sm:w-3/5"
+                className="ml-6 px-5 py-2 font-mono bg-yellow-300 rounded-lg sm:m-4 sm:mx-auto sm:w-4/5"
                 onClick={() => props.handleReset()}
               >
                 値段帯のリセット
