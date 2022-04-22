@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { ComponentProps, useCallback } from "react";
 import toast from "react-hot-toast";
 import { Data } from "src/types";
 import { prices } from "src/utils";
@@ -7,8 +7,8 @@ export const usePriceFilter = (
   contents: Data[],
   setData: React.Dispatch<React.SetStateAction<Data[]>>
 ) => {
-  const handlePriceFilter = useCallback(
-    (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handlePriceFilter: ComponentProps<"select">["onChange"] = useCallback(
+    (e) => {
       const priceFilterContents = contents.filter(({ price }) => {
         for (let i: number = prices.length; i > 0; i--) {
           if (

@@ -1,4 +1,4 @@
-import { ChangeEvent, useRef } from "react";
+import { ComponentProps, useRef } from "react";
 import { Toaster } from "react-hot-toast";
 import { TextLists } from "src/types";
 
@@ -8,7 +8,7 @@ type Props = {
     id: number;
     price: string;
   }[];
-  handlePriceFilter?: (e: ChangeEvent<HTMLSelectElement>) => void;
+  handlePriceFilter?: ComponentProps<"select">["onChange"];
   filterContents: () => void;
   handleReset: () => void;
 };
@@ -38,7 +38,7 @@ export const FilterComponents: React.FC<Props> = (props) => {
           <div>
             <button
               className="ml-6 py-2 w-20 font-mono bg-blue-200 rounded-lg sm:m-4"
-              onClick={() => props.filterContents()}
+              onClick={props.filterContents}
             >
               絞り込む
             </button>
@@ -46,7 +46,7 @@ export const FilterComponents: React.FC<Props> = (props) => {
             <button
               type="reset"
               className="ml-6 px-3 py-2 font-mono bg-yellow-300 rounded-lg sm:m-4"
-              onClick={() => props.handleReset()}
+              onClick={props.handleReset}
             >
               項目のリセット
             </button>
@@ -77,7 +77,7 @@ export const FilterComponents: React.FC<Props> = (props) => {
               <button
                 type="reset"
                 className="ml-6 px-5 py-2 font-mono bg-yellow-300 rounded-lg sm:m-4 sm:mx-auto sm:w-4/5"
-                onClick={() => props.handleReset()}
+                onClick={props.handleReset}
               >
                 値段帯のリセット
               </button>
