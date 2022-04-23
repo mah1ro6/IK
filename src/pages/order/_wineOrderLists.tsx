@@ -43,7 +43,7 @@ export const WineOrderLists: React.FC<KeyProps> = (props) => {
                   <p className="ml-5 font-mono">{data.orderBottleCount}</p>
                 </div>
                 <button
-                  className="py-2 w-1/3 font-mono bg-yellow-100 rounded-lg"
+                  className="py-2 w-1/3 font-mono bg-yellow-100 rounded-lg hover:bg-yellow-300"
                   onClick={() =>
                     handleOffOrder(
                       data.id,

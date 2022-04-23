@@ -58,7 +58,7 @@ export const FrontWineLists: React.FC<KeyProps> = (props) => {
               <div className="flex items-center justify-between mt-5 font-mono">
                 <p>ワインを1本削除する</p>
                 <button
-                  className="py-2 w-1/3 font-mono bg-yellow-100 rounded-lg"
+                  className="py-2 w-1/3 font-mono bg-yellow-100 rounded-lg hover:bg-yellow-300"
                   onClick={() => handleDelete(data.id, data.frontBottleCount)}
                 >
                   削除

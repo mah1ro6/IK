@@ -42,7 +42,7 @@ export const CellarWineLists: React.FC<KeyProps> = (props) => {
                 />
               </div>
               <button
-                className="mt-5 mx-3 py-2 w-1/3 font-mono bg-yellow-100 rounded-lg"
+                className="mt-5 mx-3 py-2 w-1/3 font-mono bg-yellow-100 rounded-lg hover:bg-yellow-300"
                 onClick={() =>
                   addToFront(
                     content.id,

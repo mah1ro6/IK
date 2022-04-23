@@ -12,13 +12,13 @@ export const PatchComponent: React.FC<Props> = (props) => {
       <div className="flex flex-auto items-center mt-7">
         <p className="w-1/2 text-gray-500">項目の編集</p>
         <button
-          className="py-2 w-1/3 font-mono bg-blue-200 rounded-lg"
+          className="py-2 w-1/3 font-mono bg-blue-200 rounded-lg hover:bg-blue-400"
           onClick={() => props.dispatch({ type: "patchOn" })}
         >
           編集
         </button>
         <button
-          className="ml-3 py-2 w-1/3 font-mono bg-yellow-300 rounded-lg"
+          className="ml-3 py-2 w-1/3 font-mono bg-yellow-200 rounded-lg hover:bg-yellow-400"
           onClick={() => props.handleSetItem(props.id)}
         >
           完了

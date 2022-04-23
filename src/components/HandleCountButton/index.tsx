@@ -60,14 +60,14 @@ export const HandleCountButton: React.FC<Props> = (props) => {
       </div>
       <div className="flex">
         <button
-          className="mr-1 p-2 font-mono bg-gray-300 rounded-lg"
+          className="mr-1 p-2 font-mono bg-gray-300 rounded-lg hover:bg-gray-400"
           onClick={() => addCount(props.index)}
         >
           +
         </button>
         {props.text === "発注本数" ? (
           <button
-            className="ml-1 p-2 font-mono bg-gray-300 rounded-lg"
+            className="ml-1 p-2 font-mono bg-gray-300 rounded-lg hover:bg-gray-400"
             onClick={() => reduceCount(props.index)}
           >
             -
@@ -75,7 +75,7 @@ export const HandleCountButton: React.FC<Props> = (props) => {
         ) : null}
       </div>
       <button
-        className="px-4 py-2 font-mono bg-yellow-300 rounded-lg"
+        className="px-4 py-2 font-mono bg-yellow-300 rounded-lg hover:bg-yellow-400"
         onClick={() =>
           props.handlePost(
             props.id,
